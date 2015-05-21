@@ -3,6 +3,8 @@
 body{
   box-sizing: border-box;
   background: #444444;
+  //font-family: 'Julius Sans One', sans-serif;
+  font-family: 'Glegoo', serif;
   font-size: 1rem;
 }
 
@@ -20,7 +22,7 @@ body{
 
 // --------------style definition & variables
 // red & white theme
-$wrapperBackgroundColor:     #F2F2F2;
+$wrapperBackgroundColor:     #F5F5F5;
 $primaryColor:               #400101;
 $primaryColorBG:             #F2F2F2;
 $secondaryColor:             #8C0303;
@@ -30,11 +32,12 @@ $primaryColorFocus:          #9A0F16;
 $dark:                       #111;
 $bright:                     #F2F2F2;
 
+$linkBackground:             #C3C3C3;
 $linkColor:                  $primaryColor;
 $linkHoverColor:             $primaryColorFocus;
-$linkHoverBackground:        $bright;
+$linkHoverBackground:        #FFF;
 $linkBorderColor:            $tertiaryColor;
-$linkBorderColorActive:       $dark;
+$linkBorderColorActive:      $dark;
 
 #wrapper{
   margin: 0 auto;
@@ -48,23 +51,27 @@ $linkBorderColorActive:       $dark;
 
 .head{
   display: block;
-  background: #dedede;
 }
 
 .head h1{
   color: $primaryColor;
-  font-size: 3rem;
-  font-family: "Trebuchet MS", Verdana, sans-serif;
+  font-size: 3.6rem;
+  font-family: 'Julius Sans One', sans-serif;
+  padding-top: 0.5rem;
   border-top: 1px solid $primaryColor;
 }
 
 .head h2{
   color: $primaryColor;
-  font-family:'verdana', sans-serif;
-  font-size: small;
+  font-family: 'Glegoo', serif;
+  text-align: left;
+  padding-left: 1rem;
+  font-size: 1rem;
+  font-weight: 200;
 }
 
 .head img{
+  padding-left: 1rem;
   max-width: 60px;
   height: auto;
   float: left;
@@ -72,49 +79,73 @@ $linkBorderColorActive:       $dark;
 
 // ------------------------ main container
 .mainwrapper{
-  background: $bright;
+  //background: $tertiaryColor;
 }
 
 //-------------------------- menu styles
 .menu-styles{
+  font-family: 'Glegoo', serif;
+  font-weight: 400;
+  font-size: 0.9rem;
   width: 100%;
   padding-top: 1rem;
   padding-bottom: 1rem;
+  background:#DEDEDE;
 }
 
 .btn{
   width: 30%;
-  padding: 10px;
+  margin-left: 1rem;
   //border: 1px solid $borderColor;
   float: left;
 }
 
-.btn a{
-  padding: 10px;
-  border-radius: 2px;
+.btn a:link, a:visited{
+  padding: 0.4rem;
+  border-radius: 3px;
   text-decoration: none;
   color: $primaryColor;
-  background: $primaryColorBG;
+  background: $linkBackground;
   border: 1px solid $tertiaryColor;
+}
 
+.btn a:hover{
+  color: $linkHoverColor;
+  background: $linkHoverBackground;
+  border: 1px solid $linkHoverColor;
 }
 
 .style-chooser{
-  border: 1px solid $linkBorderColor;
   padding: 0.4rem;
   width: 40%;
   float: right;
+  text-align: right;
 }
 
 .h3{
   color: $primaryColor;
 }
 
+//-------------------------------sort by
+
 .sort-styles{
   background: $secondaryColor;
   padding-top: 1rem;
   padding-bottom: 1rem;
   margin: 0;
+  font-weight: 400;
+  font-size: 0.9rem;
+}
+.sort-styles h3{
+  color: $bright;
+  padding-left: 1rem;
+  font-size: 1.2rem;
+  padding-top: 1rem;
+}
+
+.sort-styles ul{
+  margin-left: 0;
+  padding-left: 1rem;
 }
 
 .sort-styles ul li{
@@ -125,9 +156,10 @@ $linkBorderColorActive:       $dark;
 .sort-styles ul li a:link{
   border: 1px solid $linkBorderColor;
   padding: 7px;
+  border-radius: 3px;
   text-decoration: none;
   color: $primaryColor;
-  background: $primaryColorBG;
+  background: $linkBackground;
 }
 
 .sort-styles ul li a:hover{
@@ -135,34 +167,95 @@ $linkBorderColorActive:       $dark;
   padding: 7px;
   text-decoration: none;
   color: $linkHoverColor;
-  background: $primaryColorBG;
+  background: $linkHoverBackground;
 }
 
 //-------------------------- Tasklist styles
 
-.listnotes{}
+.listnotes{
+  display: table;
+  border-collapse:collapse;
+}
 
 
 .listheader{
+  font-family: 'Julius Sans One', sans-serif;
   display: table-header-group;
+  border-bottom: 1px solid #444444;
 }
 
 .list-head-elem{
   display: table-cell;
+  font-family: 'Julius Sans One', sans-serif;
+  font-weight: bold;
   color: $dark;
-  font-size: 1.1rem;
-  font-weight: 200;
+  font-size: 1.2rem;
+  background: #dedede;
+  padding: 0.5rem;
 }
 
 
 .tasklistrow{
   display: table-row;
+  width: 100%;
+  //padding-bottom: 1rem;
+  border-bottom: 1px solid $dark;
+  font-size: 0.9rem;
 }
 
 .list-elem{
   display: table-cell;
-
+  padding: 0.7 rem;
 }
+
+.task-date{
+  width: 25%;
+}
+
+.task-desc{
+  max-width: 40%;
+}
+
+.task-desc textarea{
+  width:90% ;
+  height: auto;
+  border: 1px solid $linkBorderColor;
+  background: $bright;
+}
+
+
+.task-importance{
+  width: 20%;
+}
+
+input[type=range] {
+  margin-top: 0.5rem;
+  width: 70%;
+  //background: $linkColor;
+}
+
+.task-edit-btn{
+  width: 15%;
+}
+
+.task-edit-btn a:link, a:visited{
+  border: 1px solid $linkBorderColor;
+  padding: 7px;
+  border-radius: 3px;
+  text-decoration: none;
+  color: $primaryColor;
+  background: $linkBackground;
+}
+
+.task-edit-btn a:hover{
+  border: 1px solid $primaryColor;
+  padding: 7px;
+  border-radius: 3px;
+  text-decoration: none;
+  color: $linkHoverColor;
+  background: $linkHoverBackground;
+}
+
 
 //-------------------------- footer styles
 footer{
@@ -170,6 +263,7 @@ footer{
 }
 
 .footer{
+  font-family: 'Julius Sans One', sans-serif;
   height: 3rem;
   bottom: 0;
   width: 100%;
