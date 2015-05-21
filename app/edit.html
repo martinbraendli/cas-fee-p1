@@ -4,9 +4,21 @@
     <meta charset="UTF-8">
     <title>Notify Pro</title>
 
-    <script src="js/notepro.js"></script>
+    <link rel="stylesheet" href="css/styles.css"/>
+
+    <script src="js/NoteFactory.js"></script>
+    <script src="js/NoteProController.js"></script>
+    <script src="js/NoteProEdit.js"></script>
 </head>
 <body>
-    EDIT
+EDIT
+
+<form>
+    <input id="text" type="text"/>
+
+    <button onclick="NoteProEdit.saveNote(); return false">Speichern</button>
+    --> speichern returns to index.html and prints all entries to console
+</form>
+
 </body>
 </html>

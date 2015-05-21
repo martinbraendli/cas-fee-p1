@@ -6,7 +6,9 @@
     <link rel="stylesheet" href="css/normalize.css" />
     <link href='http://fonts.googleapis.com/css?family=Julius+Sans+One|Glegoo:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/styles.css" />
-    <script src="js/notepro.js"></script>
+    <script src="js/NoteFactory.js"></script>
+    <script src="js/NoteProController.js"></script>
+    <script src="js/NoteProEdit.js"></script>
 
     <!--<script type="text/javascript">-->
         <!--function updateTextInput(val) {-->
@@ -27,7 +29,7 @@
         <div class="mainwrapper">
             <div class="menu-styles clearfix2">
                 <div class="btn">
-                    <a id="addNote" href="#" >Add a Note</a>
+                    <a id="addNote" href="edit.html" >Add a Note</a>
                 </div>
                 <div class="style-chooser">
                     <span>Choose your Style</span>
@@ -124,6 +126,13 @@
 <script type="text/javascript">
     function updateTextInput(val) {
         document.getElementById('printvalue').value=val;
+    }
+
+    // print all entries
+    console.log("print all entries");
+    var notes = NoteProController.readNotes();
+    for(var i = 1; i < notes.length; i++){
+        console.log(notes[i].toString());
     }
 </script>
 </html>
