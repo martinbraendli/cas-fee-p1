@@ -1,0 +1,194 @@
+// ---------------SCSS FLX file/
+// ---------------general declarations
+body{
+  box-sizing: border-box;
+  background: #444444;
+  font-size: 1rem;
+}
+
+.clearfix:after{
+  clear: both;
+  content: "";
+  display: inline;
+}
+
+.clearfix2{
+  overflow: auto;
+  zoom: 1;
+}
+
+
+// --------------style definition & variables
+// red & white theme
+$wrapperBackgroundColor:     #F2F2F2;
+$primaryColor:               #400101;
+$primaryColorBG:             #F2F2F2;
+$secondaryColor:             #8C0303;
+$tertiaryColor:              #8C8C8C;
+
+$primaryColorFocus:          #9A0F16;
+$dark:                       #111;
+$bright:                     #F2F2F2;
+
+$linkColor:                  $primaryColor;
+$linkHoverColor:             $primaryColorFocus;
+$linkHoverBackground:        $bright;
+$linkBorderColor:            $tertiaryColor;
+$linkBorderColorActive:       $dark;
+
+#wrapper{
+  margin: 0 auto;
+  max-width: 80%;
+  background: $wrapperBackgroundColor;
+  border: 1px solid #111;
+  //padding: 1rem 1rem 0 1rem;
+}
+
+// ----------------------------- head styles
+
+.head{
+  display: block;
+  background: #dedede;
+}
+
+.head h1{
+  color: $primaryColor;
+  font-size: 3rem;
+  font-family: "Trebuchet MS", Verdana, sans-serif;
+  border-top: 1px solid $primaryColor;
+}
+
+.head h2{
+  color: $primaryColor;
+  font-family:'verdana', sans-serif;
+  font-size: small;
+}
+
+.head img{
+  max-width: 60px;
+  height: auto;
+  float: left;
+}
+
+// ------------------------ main container
+.mainwrapper{
+  background: $bright;
+}
+
+//-------------------------- menu styles
+.menu-styles{
+  width: 100%;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.btn{
+  width: 30%;
+  padding: 10px;
+  //border: 1px solid $borderColor;
+  float: left;
+}
+
+.btn a{
+  padding: 10px;
+  border-radius: 2px;
+  text-decoration: none;
+  color: $primaryColor;
+  background: $primaryColorBG;
+  border: 1px solid $tertiaryColor;
+
+}
+
+.style-chooser{
+  border: 1px solid $linkBorderColor;
+  padding: 0.4rem;
+  width: 40%;
+  float: right;
+}
+
+.h3{
+  color: $primaryColor;
+}
+
+.sort-styles{
+  background: $secondaryColor;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  margin: 0;
+}
+
+.sort-styles ul li{
+  display: inline;
+  padding-right: 10px;
+}
+
+.sort-styles ul li a:link{
+  border: 1px solid $linkBorderColor;
+  padding: 7px;
+  text-decoration: none;
+  color: $primaryColor;
+  background: $primaryColorBG;
+}
+
+.sort-styles ul li a:hover{
+  border: 1px solid $linkBorderColor;
+  padding: 7px;
+  text-decoration: none;
+  color: $linkHoverColor;
+  background: $primaryColorBG;
+}
+
+//-------------------------- Tasklist styles
+
+.listnotes{}
+
+
+.listheader{
+  display: table-header-group;
+}
+
+.list-head-elem{
+  display: table-cell;
+  color: $dark;
+  font-size: 1.1rem;
+  font-weight: 200;
+}
+
+
+.tasklistrow{
+  display: table-row;
+}
+
+.list-elem{
+  display: table-cell;
+
+}
+
+//-------------------------- footer styles
+footer{
+  //position: relative;
+}
+
+.footer{
+  height: 3rem;
+  bottom: 0;
+  width: 100%;
+  border-top: 1px solid #333333;
+  padding-top: 1rem;
+  background: $dark;
+  color: $primaryColorBG;
+}
+
+.footer-desc{
+  text-align: right;
+  float: left;
+  padding-left: 1rem;
+  color: $linkBorderColor;
+}
+
+.footer-copy{
+  float: right;
+  color: $bright;
+  font-size: 0.8rem;
+  padding-right: 1rem;
+}

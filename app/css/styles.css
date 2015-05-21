@@ -1,0 +1,129 @@
+body {
+  box-sizing: border-box;
+  background: #444444;
+  font-size: 1rem; }
+
+.clearfix:after {
+  clear: both;
+  content: "";
+  display: inline; }
+
+.clearfix2 {
+  overflow: auto;
+  zoom: 1; }
+
+#wrapper {
+  margin: 0 auto;
+  max-width: 80%;
+  background: #F2F2F2;
+  border: 1px solid #111; }
+
+.head {
+  display: block;
+  background: #dedede; }
+
+.head h1 {
+  color: #400101;
+  font-size: 3rem;
+  font-family: "Trebuchet MS", Verdana, sans-serif;
+  border-top: 1px solid #400101; }
+
+.head h2 {
+  color: #400101;
+  font-family: 'verdana', sans-serif;
+  font-size: small; }
+
+.head img {
+  max-width: 60px;
+  height: auto;
+  float: left; }
+
+.mainwrapper {
+  background: #F2F2F2; }
+
+.menu-styles {
+  width: 100%;
+  padding-top: 1rem;
+  padding-bottom: 1rem; }
+
+.btn {
+  width: 30%;
+  padding: 10px;
+  float: left; }
+
+.btn a {
+  padding: 10px;
+  border-radius: 2px;
+  text-decoration: none;
+  color: #400101;
+  background: #F2F2F2;
+  border: 1px solid #8C8C8C; }
+
+.style-chooser {
+  border: 1px solid #8C8C8C;
+  padding: 0.4rem;
+  width: 40%;
+  float: right; }
+
+.h3 {
+  color: #400101; }
+
+.sort-styles {
+  background: #8C0303;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  margin: 0; }
+
+.sort-styles ul li {
+  display: inline;
+  padding-right: 10px; }
+
+.sort-styles ul li a:link {
+  border: 1px solid #8C8C8C;
+  padding: 7px;
+  text-decoration: none;
+  color: #400101;
+  background: #F2F2F2; }
+
+.sort-styles ul li a:hover {
+  border: 1px solid #8C8C8C;
+  padding: 7px;
+  text-decoration: none;
+  color: #9A0F16;
+  background: #F2F2F2; }
+
+.listheader {
+  display: table-header-group; }
+
+.list-head-elem {
+  display: table-cell;
+  color: #111;
+  font-size: 1.1rem;
+  font-weight: 200; }
+
+.tasklistrow {
+  display: table-row; }
+
+.list-elem {
+  display: table-cell; }
+
+.footer {
+  height: 3rem;
+  bottom: 0;
+  width: 100%;
+  border-top: 1px solid #333333;
+  padding-top: 1rem;
+  background: #111;
+  color: #F2F2F2; }
+
+.footer-desc {
+  text-align: right;
+  float: left;
+  padding-left: 1rem;
+  color: #8C8C8C; }
+
+.footer-copy {
+  float: right;
+  color: #F2F2F2;
+  font-size: 0.8rem;
+  padding-right: 1rem; }
