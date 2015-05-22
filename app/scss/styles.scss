@@ -31,17 +31,18 @@ $tertiaryColor:              #8C8C8C;
 $primaryColorFocus:          #9A0F16;
 $dark:                       #111;
 $bright:                     #F2F2F2;
+$darkgray:                   #444444;
 
 $linkBackground:             #C3C3C3;
 $linkColor:                  $primaryColor;
 $linkHoverColor:             $primaryColorFocus;
 $linkHoverBackground:        #FFF;
-$linkBorderColor:            $tertiaryColor;
+$linkBorderColor:            $darkgray;
 $linkBorderColorActive:      $dark;
 
 #wrapper{
   margin: 0 auto;
-  max-width: 80%;
+  max-width: 90%;
   background: $wrapperBackgroundColor;
   border: 1px solid #111;
   //padding: 1rem 1rem 0 1rem;
@@ -51,6 +52,7 @@ $linkBorderColorActive:      $dark;
 
 .head{
   display: block;
+  position: relative;
 }
 
 .head h1{
@@ -77,9 +79,17 @@ $linkBorderColorActive:      $dark;
   float: left;
 }
 
+.teasr{
+  position: absolute;
+  top: -30px;
+  right: 20px;
+  text-align: right;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
 // ------------------------ main container
 .mainwrapper{
-  //background: $tertiaryColor;
+  display: block;
 }
 
 //-------------------------- menu styles
@@ -94,10 +104,19 @@ $linkBorderColorActive:      $dark;
 }
 
 .btn{
-  width: 30%;
   margin-left: 1rem;
   //border: 1px solid $borderColor;
-  float: left;
+}
+
+.prominent a:link, a:visited{
+  border: 2px solid $primaryColorFocus !important;
+  background: $bright !important;
+}
+
+.prominent a:hover{
+  color: $bright !important;
+  background: $secondaryColor !important;
+  border: 2px solid $dark !important;
 }
 
 .btn a:link, a:visited{
@@ -107,16 +126,18 @@ $linkBorderColorActive:      $dark;
   color: $primaryColor;
   background: $linkBackground;
   border: 1px solid $tertiaryColor;
+  transition: all 350ms ease;
 }
 
 .btn a:hover{
   color: $linkHoverColor;
   background: $linkHoverBackground;
   border: 1px solid $linkHoverColor;
+  transition: all 350ms ease;
 }
 
 .style-chooser{
-  padding: 0.4rem;
+  padding-right: 1rem;
   width: 40%;
   float: right;
   text-align: right;
@@ -160,6 +181,7 @@ $linkBorderColorActive:      $dark;
   text-decoration: none;
   color: $primaryColor;
   background: $linkBackground;
+  transition: background 350ms ease;
 }
 
 .sort-styles ul li a:hover{
@@ -168,6 +190,7 @@ $linkBorderColorActive:      $dark;
   text-decoration: none;
   color: $linkHoverColor;
   background: $linkHoverBackground;
+  transition: background 350ms ease;
 }
 
 //-------------------------- Tasklist styles
@@ -175,6 +198,7 @@ $linkBorderColorActive:      $dark;
 .listnotes{
   display: table;
   border-collapse:collapse;
+  width: 100%;
 }
 
 
@@ -198,44 +222,49 @@ $linkBorderColorActive:      $dark;
 .tasklistrow{
   display: table-row;
   width: 100%;
-  //padding-bottom: 1rem;
   border-bottom: 1px solid $dark;
   font-size: 0.9rem;
 }
 
 .list-elem{
   display: table-cell;
-  padding: 0.7 rem;
+  padding: 0.7rem;
 }
 
 .task-date{
-  width: 25%;
+  width: 20%;
 }
 
 .task-desc{
-  max-width: 40%;
-}
+  max-width: 35%;
+  }
 
-.task-desc textarea{
-  width:90% ;
-  height: auto;
-  border: 1px solid $linkBorderColor;
-  background: $bright;
+.task-desc h4{
+  padding: 0;
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: $dark;
+}
+.task-desc p{
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 
 .task-importance{
-  width: 20%;
+  width: 25%;
 }
 
-input[type=range] {
-  margin-top: 0.5rem;
-  width: 70%;
-  //background: $linkColor;
+.task-importance img{
+  max-width: 25px;
+  height: auto;
 }
+
+
 
 .task-edit-btn{
-  width: 15%;
+  width: 20%;
 }
 
 .task-edit-btn a:link, a:visited{
@@ -245,6 +274,7 @@ input[type=range] {
   text-decoration: none;
   color: $primaryColor;
   background: $linkBackground;
+  transition: background 350ms ease;
 }
 
 .task-edit-btn a:hover{
@@ -254,12 +284,115 @@ input[type=range] {
   text-decoration: none;
   color: $linkHoverColor;
   background: $linkHoverBackground;
+  transition: background 350ms ease;
 }
+
+
+
+//-----------------------------Edit Task
+
+
+// form
+.editwrapper{
+  //background: #009998;
+  display: none;
+  //transform: translated3d(100px, 100px, 0);
+  //transition: all 1450ms ease-in;
+}
+
+.editcontent{
+  position: relative;
+  width: 100%;
+  transition: all 0.5s ease-in;
+
+}
+
+
+.edittask{
+  display: table;
+  width: 100%;
+  //transform: translate3d(300px,0, 0);
+  //transition: all 1350ms ease;
+}
+
+
+.editheader{
+  background: $secondaryColor;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  margin: 0;
+  font-weight: 400;
+  font-size: 0.9rem;
+  h3{
+    color: $bright;
+    font-family:'Glegoo', serif;
+    padding-left: 1rem;
+    font-size: 1.2rem;
+    padding-top: 1rem;
+  }
+}
+
+.edittaskrow{
+  padding: 1rem;
+  display: table-row;
+}
+
+.edit-important img{
+  max-width: 25px;
+  height: auto;
+}
+
+.taskedit-elem {
+  display: table-cell;
+  //border-bottom: solid 1px #DDD;
+  padding: 1rem;
+}
+
+
+.first-cell{
+  width: 15%;
+  text-align: right;
+}
+
+.second-cell{
+  width: 50%;
+  text-align: left;
+}
+
+
+.third-cell{
+  width: 35%;
+  text-align: right;
+}
+
+
+input[type="text"],[type="datetime-local"] {
+  width: 90%;
+  border: 1px solid $linkBorderColor;
+}
+
+input[type="range"]{
+  width: 75%;
+  border: 0;
+}
+
+#printvalue {
+  width: 5% !important;
+  color: $primaryColor;
+  text-align: right;
+}
+textarea {
+  width: 90%;
+  height: auto;
+  border: 1px solid $linkBorderColor;
+}
+
+
 
 
 //-------------------------- footer styles
 footer{
-  //position: relative;
+
 }
 
 .footer{
