@@ -3,6 +3,7 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>Reh-Minder -Project CAS FEE 01 by Martin & Felix</title>
+    <link rel="icon" href="pix/reh_small_red.png" type="image/x-icon">
     <link rel="stylesheet" href="css/normalize.css" />
     <link href='http://fonts.googleapis.com/css?family=Julius+Sans+One|Glegoo:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/styles.css" />
@@ -23,13 +24,12 @@
             <img src="pix/reh-icon1.png">
             <h1>Reh-Minder</h1>
             <h2>brought you by Martin & Felix </h2>
-        <!--</span>-->
     </header>
     <main>
         <div class="mainwrapper">
             <div class="menu-styles clearfix2">
                 <div class="btn">
-                    <a id="addNote" href="edit.html" >Add a Note</a>
+                    <a id="addNote" href="#" >Add a Note</a>
                 </div>
                 <div class="style-chooser">
                     <span>Choose your Style</span>
@@ -57,8 +57,6 @@
                     </li>
                 </ul>
             </div>
-        </div>
-        <div>
             <div class="listnotes">
                 <div class="listheader">
                     <div class="list-head-elem">
@@ -81,14 +79,20 @@
                         it's Done: <input type="checkbox" name="taskdone" value="finished" />
                     </div>
                     <div class="list-elem task-desc" >
-                        <textarea name="task-desc" rows="3"  value="my new task" maxlength="500">enter task here </textarea>
+                        <h4>Title Task: Feed the dog</h4>
+                        <p>description of your task here: Feed Gromit every Day </p>
                     </div>
                     <div class="list-elem task-importance">
-                        <span>0 &nbsp;<input type="range" max="5" min="0" id="taskimportance" value="2" onchange="updateTextInput(this.value);" />&nbsp;5</span>
-                        Importance: <input id="printvalue" type="text" size="1"  />
+                        <span>
+                            <img src="pix/reh_small_red.png" alt="#" />
+                            <img src="pix/reh_small_red.png" alt="#" />
+                            <img src="pix/reh_small_black.png" alt="#" />
+                            <img src="pix/reh_small_black.png" alt="#" />
+                            <img src="pix/reh_small_black.png" alt="#" />
+                        </span>
                     </div>
                     <div class="list-elem task-edit-btn">
-                        <a href="#" id="editnote" >Edit Note</a>
+                        <a href="#" >Edit Note</a>
                     </div>
                 </div>
                 <div class="tasklistrow">
@@ -97,16 +101,97 @@
                         Done <input type="checkbox" name="taskdone" value="finished" />
                     </div>
                     <div class="list-elem task-desc" >
-                        <textarea name="task-desc" rows="3"  value="my new task"  maxlength="500">enter task here </textarea>
+                        <h4>Title Task: Feed the cat</h4>
+                        <p>Description of your task here: feed Kitty every morning at 6 O'clock sharp or she will bite..</p>
                     </div>
                     <div class="list-elem task-importance">
-                        <span>0 &nbsp;<input type="range" max="5" min="0" value="2" />&nbsp;5</span>
-                       Importance: <input id="printvalue" type="text" size="1"  />
+                        <span>
+                            <img src="pix/reh_small_red.png" alt="#" />
+                            <img src="pix/reh_small_red.png" alt="#" />
+                            <img src="pix/reh_small_red.png" alt="#" />
+                            <img src="pix/reh_small_black.png" alt="#" />
+                            <img src="pix/reh_small_black.png" alt="#" />
+                        </span>
                     </div>
                     <div class="list-elem task-edit-btn">
-                        <a href="#" id="editnote" >Edit Note</a>
+                        <a href="#">Edit Note</a>
                     </div>
                 </div>
+            </div>
+        </div>
+        <!--start view ends here-->
+        <!--edit form starts here not visible-->
+        <div class="editwrapper">
+            <div class="editcontent">
+                <div class="editheader">
+                    <h3>Add or Edit your Task</h3>
+                </div>
+                <form class="edittask" >
+                    <div class="edittaskrow">
+                        <div class="taskedit-elem first-cell">
+                            Task Title:
+                        </div>
+                        <div class="taskedit-elem  second-cell">
+                            <input type="text" maxlength="50" name="tasktitle" />
+                        </div>
+                        <div class="taskedit-elem third-cell">
+                            &nbsp;
+                        </div>
+                    </div>
+                    <div class="edittaskrow">
+                        <div class="taskedit-elem first-cell">
+                            Description:
+                        </div>
+                        <div class="taskedit-elem second-cell">
+                            <textarea name="task-desc" rows="3"  value="my new task" maxlength="500">your task goes here.. </textarea>
+                        </div>
+                        <div class="taskedit-elem third-cell" >
+                            &nbsp;
+                        </div>
+                    </div>
+                    <div class="edittaskrow">
+                        <div class="taskedit-elem first-cell">
+                            Importance:
+                        </div>
+                        <div class="taskedit-elem  second-cell edit-important ">
+                            <span>0 &nbsp;<input type="range" max="5" min="0" id="taskimportance" value="2" onchange="updateTextInput(this.value);" />&nbsp;5 &nbsp;</span>
+                            <input id="printvalue" type="text" size="1"  />
+                            <br />
+                            <span>
+                                <img src="pix/reh_small_red.png" alt="#">
+                                <img src="pix/reh_small_red.png" alt="#">
+                                <img src="pix/reh_small_black.png" alt="#">
+                                <img src="pix/reh_small_black.png" alt="#">
+                                <img src="pix/reh_small_black.png" alt="#">
+                            </span>
+                        </div>
+                        <div class="taskedit-elem third-cell">
+                            &nbsp;
+                        </div>
+                    </div>
+                    <div class="edittaskrow">
+                        <div class="taskedit-elem first-cell">
+                            Deadline:
+                        </div>
+                        <div class="taskedit-elem second-cell">
+                            <input type="datetime-local" name="duedate" accept=""  />
+                        </div>
+                        <div class="taskedit-elem third-cell">
+                            &nbsp;
+                        </div>
+                    </div>
+                    <div class="edittaskrow">
+                        <div class="taskedit-elem first-cell">
+                            &nbsp;
+                        </div>
+                        <div class="taskedit-elem second-cell btn prominent">
+                            <a href="#" id="submittask" >Save Task</a>
+                        </div>
+                        <div class="taskedit-elem third-cell btn">
+                            <a href="#" id="goback" >Cancel</a>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </main>
@@ -123,6 +208,67 @@
 </div>
 
 </body>
+<script type="text/javascript">
+
+$(document).ready(function(){
+    console.log( "ready!" );
+    init();
+});
+
+    //attach function on doc.ready
+    function attachShowFunction(){
+        $('.task-edit-btn,.addNote a').on('click', function(e){
+            // do not execute link
+            console.log("clicked edit");
+            e.preventDefault();
+            // do this function
+            showEditScreen();
+        });
+    }
+
+    function attachCancelFunction(){
+        $('#goback').on('click', function(e){
+            // do not execute link
+            console.log("clicked go-back");
+            e.preventDefault();
+            // do this function
+            showMainScreen();
+        });
+    }
+
+
+    // toggle function mainScreen
+    function showMainScreen(){
+        $('.editwrapper').css({
+            'display':'none'
+        });
+
+        $('.mainwrapper').css({
+            'display':'block'
+        });
+        console.log("showEditScreen");
+    }
+
+    // toggle function EditScreen
+    function showEditScreen(){
+        $('.editwrapper').css({
+            'display':'block'
+        },100);
+        console.log("showEditScreen");
+        $('.mainwrapper').css({
+            'display':'none'
+        });
+        console.log("hideMainScreen");
+    }
+
+
+    function init(){
+        attachShowFunction();
+        attachCancelFunction();
+    }
+</script>
+
+
 <script type="text/javascript">
     function updateTextInput(val) {
         document.getElementById('printvalue').value=val;
