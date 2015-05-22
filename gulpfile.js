@@ -32,7 +32,7 @@ gulp.task('webserver', function(){
             // webserver options:
             // port 8100: for fun
             port:'8100',
-            defaultFile: 'index.html',
+            defaultFile: 'edit.html',
             // lifereload true
             livereload: true,
             //directoryListing: {enable:true, path:'cas-fee-p1'},
