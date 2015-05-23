@@ -1,23 +1,32 @@
 /**
- * Constructor for NoteFactory
- * @constructor
+ * Factory for note object
  */
-function NoteFactory() {
-    this.createNote = function () {
-        var note = {
-            id: -1,
-            finished: false,
-            dateCreated: new Date(),
-            dateFinishUntil: NoteProController.DATE_FINISH_UNTIL_UNDEFINED, // optional
-            title: '',
-            text: '',
-            importance: 0 // 0 bis 5
+var NoteFactory = {
+    createNote: function (note) {
+        var thisNote = note;
+        if (typeof note == 'undefined') {
+            thisNote = {
+                id: -1,
+                finished: false,
+                dateCreated: new Date(),
+                dateFinishUntil: NoteProDAL.DATE_FINISH_UNTIL_UNDEFINED, // optional
+                title: '',
+                text: '',
+                importance: NoteProDAL.IMPORTANCE_UNDEFINED // 0 bis 5
+            };
+        }
+
+        thisNote.toString = function () {
+            return "id: " + thisNote.id + ", title: " + thisNote.title + ", text: " + thisNote.text;
         };
 
-        note.toString = function () {
-            return "id: " + note.id + ", title: " + note.title + ", text: " + note.text;
+        thisNote.getDateFinishUntil = function () {
+            if (thisNote.dateFinishUntil === NoteProDAL.DATE_FINISH_UNTIL_UNDEFINED) {
+                return '?';
+            }
+            return thisNote.dateFinishUntil;
         };
 
-        return note;
+        return thisNote;
     }
-}
+};

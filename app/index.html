@@ -2,41 +2,42 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>Reh-Minder -Project CAS FEE 01 by Martin & Felix</title>
-    <link rel="icon" href="pix/reh_small_red.png" type="image/x-icon">
-    <link rel="stylesheet" href="css/normalize.css" />
-    <link href='http://fonts.googleapis.com/css?family=Julius+Sans+One|Glegoo:400,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="css/styles.css" />
-    <script src="js/NoteFactory.js"></script>
-    <script src="js/NoteProController.js"></script>
-    <script src="js/NoteProEdit.js"></script>
 
-    <!--<script type="text/javascript">-->
-        <!--function updateTextInput(val) {-->
-            <!--document.getElementById('printvalue').value=val;-->
-        <!--}-->
-    <!--</script>-->
+    <title>Reh-Minder -Project CAS FEE 01 by Martin & Felix</title>
+
+    <link rel="icon" href="pix/reh_small_red.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/normalize.css"/>
+    <link href='http://fonts.googleapis.com/css?family=Julius+Sans+One|Glegoo:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/styles.css"/>
+
+    <script src="js/jquery-1.11.js"></script>
+    <script src="js/NoteFactory.js"></script>
+    <script src="js/NoteProDAL.js"></script>
+    <script src="js/NoteProController.js"></script>
 </head>
 <body>
 <div id="wrapper">
     <header class="head clearfix">
         <!--<span class="">-->
-            <img src="pix/reh-icon1.png">
-            <h1>Reh-Minder</h1>
-            <h2>brought you by Martin & Felix </h2>
+        <img src="pix/reh-icon1.png">
+
+        <h1>Reh-Minder</h1>
+
+        <h2>brought you by Martin & Felix </h2>
     </header>
     <main>
         <div class="mainwrapper">
             <div class="menu-styles clearfix2">
-                <div class="btn">
-                    <a id="addNote" href="#" >Add a Note</a>
+                <div class="btn task-add-btn">
+                    <a href="#" id="addNote"
+                       onclick="NoteProController.showEditScreen()">Add a Note</a>
                 </div>
                 <div class="style-chooser">
                     <span>Choose your Style</span>
                     <select>
-                        <option id="br" value="br" >Red and White</option>
-                        <option id="ob" value="ob" >Orange is the new Black</option>
-                        <option id="pb" value="pb" >Pink is the new Black</option>
+                        <option id="br" value="br">Red and White</option>
+                        <option id="ob" value="ob">Orange is the new Black</option>
+                        <option id="pb" value="pb">Pink is the new Black</option>
                     </select>
                 </div>
             </div>
@@ -57,7 +58,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="listnotes">
+            <div id="listnotes" class="listnotes">
                 <div class="listheader">
                     <div class="list-head-elem">
                         Due Date
@@ -76,41 +77,44 @@
                 <div class="tasklistrow">
                     <div class="list-elem task-date">
                         <p>22. Mai 2015</p>
-                        it's Done: <input type="checkbox" name="taskdone" value="finished" />
+                        it's Done: <input type="checkbox" name="taskdone" value="finished"/>
                     </div>
-                    <div class="list-elem task-desc" >
+                    <div class="list-elem task-desc">
                         <h4>Title Task: Feed the dog</h4>
+
                         <p>description of your task here: Feed Gromit every Day </p>
                     </div>
                     <div class="list-elem task-importance">
                         <span>
-                            <img src="pix/reh_small_red.png" alt="#" />
-                            <img src="pix/reh_small_red.png" alt="#" />
-                            <img src="pix/reh_small_black.png" alt="#" />
-                            <img src="pix/reh_small_black.png" alt="#" />
-                            <img src="pix/reh_small_black.png" alt="#" />
+                            <img src="pix/reh_small_red.png" alt="#"/>
+                            <img src="pix/reh_small_red.png" alt="#"/>
+                            <img src="pix/reh_small_black.png" alt="#"/>
+                            <img src="pix/reh_small_black.png" alt="#"/>
+                            <img src="pix/reh_small_black.png" alt="#"/>
                         </span>
                     </div>
                     <div class="list-elem task-edit-btn">
-                        <a href="#" >Edit Note</a>
+                        <a href="#">Edit Note</a>
                     </div>
                 </div>
                 <div class="tasklistrow">
                     <div class="list-elem task-date">
-                        22. Juli 2015 <br />
-                        Done <input type="checkbox" name="taskdone" value="finished" />
+                        22. Juli 2015 <br/>
+                        Done <input type="checkbox" name="taskdone" value="finished"/>
                     </div>
-                    <div class="list-elem task-desc" >
+                    <div class="list-elem task-desc">
                         <h4>Title Task: Feed the cat</h4>
-                        <p>Description of your task here: feed Kitty every morning at 6 O'clock sharp or she will bite..</p>
+
+                        <p>Description of your task here: feed Kitty every morning at 6 O'clock sharp or she will
+                            bite..</p>
                     </div>
                     <div class="list-elem task-importance">
                         <span>
-                            <img src="pix/reh_small_red.png" alt="#" />
-                            <img src="pix/reh_small_red.png" alt="#" />
-                            <img src="pix/reh_small_red.png" alt="#" />
-                            <img src="pix/reh_small_black.png" alt="#" />
-                            <img src="pix/reh_small_black.png" alt="#" />
+                            <img src="pix/reh_small_red.png" alt="#"/>
+                            <img src="pix/reh_small_red.png" alt="#"/>
+                            <img src="pix/reh_small_red.png" alt="#"/>
+                            <img src="pix/reh_small_black.png" alt="#"/>
+                            <img src="pix/reh_small_black.png" alt="#"/>
                         </span>
                     </div>
                     <div class="list-elem task-edit-btn">
@@ -126,13 +130,14 @@
                 <div class="editheader">
                     <h3>Add or Edit your Task</h3>
                 </div>
-                <form class="edittask" >
+                <form class="edittask">
                     <div class="edittaskrow">
                         <div class="taskedit-elem first-cell">
                             Task Title:
                         </div>
                         <div class="taskedit-elem  second-cell">
-                            <input type="text" maxlength="50" name="tasktitle" />
+                            <input id="editTitle" name="tasktitle"
+                                   type="text" maxlength="50"/>
                         </div>
                         <div class="taskedit-elem third-cell">
                             &nbsp;
@@ -143,9 +148,10 @@
                             Description:
                         </div>
                         <div class="taskedit-elem second-cell">
-                            <textarea name="task-desc" rows="3"  value="my new task" maxlength="500">your task goes here.. </textarea>
+                            <textarea id="editText" name="task-desc"
+                                      rows="3" value="my new task" maxlength="500">your task goes here.. </textarea>
                         </div>
-                        <div class="taskedit-elem third-cell" >
+                        <div class="taskedit-elem third-cell">
                             &nbsp;
                         </div>
                     </div>
@@ -154,9 +160,10 @@
                             Importance:
                         </div>
                         <div class="taskedit-elem  second-cell edit-important ">
-                            <span>0 &nbsp;<input type="range" max="5" min="0" id="taskimportance" value="2" onchange="updateTextInput(this.value);" />&nbsp;5 &nbsp;</span>
-                            <input id="printvalue" type="text" size="1"  />
-                            <br />
+                            <span>0 &nbsp;<input type="range" max="5" min="0" id="taskimportance" value="2"
+                                                 onchange="updateTextInput(this.value);"/>&nbsp;5 &nbsp;</span>
+                            <input id="printvalue" type="text" size="1"/>
+                            <br/>
                             <span>
                                 <img src="pix/reh_small_red.png" alt="#">
                                 <img src="pix/reh_small_red.png" alt="#">
@@ -174,7 +181,7 @@
                             Deadline:
                         </div>
                         <div class="taskedit-elem second-cell">
-                            <input type="datetime-local" name="duedate" accept=""  />
+                            <input type="datetime-local" name="duedate" accept=""/>
                         </div>
                         <div class="taskedit-elem third-cell">
                             &nbsp;
@@ -185,10 +192,12 @@
                             &nbsp;
                         </div>
                         <div class="taskedit-elem second-cell btn prominent">
-                            <a href="#" id="submittask" >Save Task</a>
+                            <a href="#" id="submittask"
+                               onclick="NoteProController.saveNote()">Save Task</a>
                         </div>
                         <div class="taskedit-elem third-cell btn">
-                            <a href="#" id="goback" >Cancel</a>
+                            <a href="#" id="goback"
+                               onclick="NoteProController.showMainScreen()">Cancel</a>
                         </div>
                     </div>
                 </form>
@@ -198,10 +207,10 @@
     <footer>
         <div class="footer clearfix">
             <div class="footer-desc">
-            CAS FEE -Projekt 01
+                CAS FEE -Projekt 01
             </div>
             <div class="footer-copy">
-            &copy; by M & F
+                &copy; by M & F
             </div>
         </div>
     </footer>
@@ -209,76 +218,14 @@
 
 </body>
 <script type="text/javascript">
-
-$(document).ready(function(){
-    console.log( "ready!" );
-    init();
-});
-
-    //attach function on doc.ready
-    function attachShowFunction(){
-        $('.task-edit-btn,.addNote a').on('click', function(e){
-            // do not execute link
-            console.log("clicked edit");
-            e.preventDefault();
-            // do this function
-            showEditScreen();
-        });
-    }
-
-    function attachCancelFunction(){
-        $('#goback').on('click', function(e){
-            // do not execute link
-            console.log("clicked go-back");
-            e.preventDefault();
-            // do this function
-            showMainScreen();
-        });
-    }
-
-
-    // toggle function mainScreen
-    function showMainScreen(){
-        $('.editwrapper').css({
-            'display':'none'
-        });
-
-        $('.mainwrapper').css({
-            'display':'block'
-        });
-        console.log("showEditScreen");
-    }
-
-    // toggle function EditScreen
-    function showEditScreen(){
-        $('.editwrapper').css({
-            'display':'block'
-        },100);
-        console.log("showEditScreen");
-        $('.mainwrapper').css({
-            'display':'none'
-        });
-        console.log("hideMainScreen");
-    }
-
-
-    function init(){
-        attachShowFunction();
-        attachCancelFunction();
-    }
-</script>
-
-
-<script type="text/javascript">
     function updateTextInput(val) {
-        document.getElementById('printvalue').value=val;
+        // TODO für was ist das gedacht?
+        document.getElementById('printvalue').value = val;
     }
 
-    // print all entries
-    console.log("print all entries");
-    var notes = NoteProController.readNotes();
-    for(var i = 1; i < notes.length; i++){
-        console.log(notes[i].toString());
-    }
+    $(document).ready(function () {
+        console.log("ready!");
+        NoteProController.showAllEntries();
+    });
 </script>
 </html>
