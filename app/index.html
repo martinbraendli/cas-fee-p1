@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Reh-Minder -Project CAS FEE 01 by Martin & Felix</title>
+    <link rel="icon" href="pix/reh_small_red.png" type="image/x-icon">
+    <link rel="stylesheet" href="css/normalize.css"/>
+    <link href='http://fonts.googleapis.com/css?family=Julius+Sans+One|Glegoo:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/styles.css"/>
+    <!--link js sources-->
+    <script src="js/jquery-1.11.js"></script>
+    <script src="js/NoteFactory.js"></script>
+    <script src="js/NoteProDAL.js"></script>
+    <script src="js/NoteProController.js"></script>
+</head>
+<body>
+<div id="wrapper">
+    <header class="head clearfix">
+        <!--<span class="">-->
+        <img src="pix/reh-icon1.png">
+
+        <h1>Reh-Minder</h1>
+
+        <h2>brought you by Martin & Felix </h2>
+    </header>
+    <main>
+        <div class="mainwrapper">
+            <div class="menu-styles clearfix2">
+                <div class="btn task-add-btn">
+                    <a href="#" id="addNote"
+                       onclick="NoteProController.showEditScreen()">Add a Note</a>
+                </div>
+                <div class="style-chooser">
+                    <span>Choose your Style</span>
+                    <select>
+                        <option id="br" value="br">Red and White</option>
+                        <option id="ob" value="ob">Orange is the new Black</option>
+                        <option id="pb" value="pb">Pink is the new Black</option>
+                    </select>
+                </div>
+            </div>
+            <div class="sort-styles">
+                <h3>Sort all my Notes</h3>
+                <ul>
+                    <li>
+                        <a href="#" id="byFinishDate">Show by Finish Date</a>
+                    </li>
+                    <li>
+                        <a href="#" id="byCreateDate">Show by Create Date</a>
+                    </li>
+                    <li>
+                        <a href="#" id="byImportance">Show by Importance</a>
+                    </li>
+                    <li>
+                        <a href="#" id="byAllCompleted">Show all Finished</a>
+                    </li>
+                </ul>
+            </div>
+            <div id="listnotes" class="listnotes">
+                <div class="listheader">
+                    <div class="list-head-elem">
+                        Due Date
+                    </div>
+                    <div class="list-head-elem">
+                        Task
+                    </div>
+                    <div class="list-head-elem">
+                        Importance
+                    </div>
+                    <div class="list-head-elem">
+                        Edit Note
+                    </div>
+                </div>
+                <!--loop all tasks here-->
+                <div class="tasklistrow">
+                    <div class="list-elem task-date">
+                        <p>22. Mai 2015</p>
+                        it's Done: <input type="checkbox" name="taskdone" value="finished"/>
+                    </div>
+                    <div class="list-elem task-desc">
+                        <h4>Title Task: Feed the dog</h4>
+
+                        <p>description of your task here: Feed Gromit every Day </p>
+                    </div>
+                    <div class="list-elem task-importance">
+                        <span>
+                            <img src="pix/reh_small_red.png" alt="#"/>
+                            <img src="pix/reh_small_red.png" alt="#"/>
+                            <img src="pix/reh_small_black.png" alt="#"/>
+                            <img src="pix/reh_small_black.png" alt="#"/>
+                            <img src="pix/reh_small_black.png" alt="#"/>
+                        </span>
+                    </div>
+                    <div class="list-elem task-edit-btn">
+                        <a href="#">Edit Note</a>
+                    </div>
+                </div>
+                <div class="tasklistrow">
+                    <div class="list-elem task-date">
+                        22. Juli 2015 <br/>
+                        Done <input type="checkbox" name="taskdone" value="finished"/>
+                    </div>
+                    <div class="list-elem task-desc">
+                        <h4>Title Task: Feed the cat</h4>
+
+                        <p>Description of your task here: feed Kitty every morning at 6 O'clock sharp or she will
+                            bite..</p>
+                    </div>
+                    <div class="list-elem task-importance">
+                        <span>
+                            <img src="pix/reh_small_red.png" alt="#"/>
+                            <img src="pix/reh_small_red.png" alt="#"/>
+                            <img src="pix/reh_small_red.png" alt="#"/>
+                            <img src="pix/reh_small_black.png" alt="#"/>
+                            <img src="pix/reh_small_black.png" alt="#"/>
+                        </span>
+                    </div>
+                    <div class="list-elem task-edit-btn">
+                        <a href="#">Edit Note</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--start view ends here-->
+        <!--edit form starts here not visible-->
+        <div class="editwrapper">
+            <div class="editcontent">
+                <div class="editheader">
+                    <h3>Add or Edit your Task</h3>
+                </div>
+                <form class="edittask">
+                    <div class="edittaskrow">
+                        <div class="taskedit-elem first-cell">
+                            Task Title:
+                        </div>
+                        <div class="taskedit-elem  second-cell">
+                            <input id="editTitle" name="tasktitle"
+                                   type="text" maxlength="50"/>
+                        </div>
+                        <div class="taskedit-elem third-cell">
+                            &nbsp;
+                        </div>
+                    </div>
+                    <div class="edittaskrow">
+                        <div class="taskedit-elem first-cell">
+                            Description:
+                        </div>
+                        <div class="taskedit-elem second-cell">
+                            <textarea id="editText" name="task-desc"
+                                      rows="3" value="my new task" maxlength="500">your task goes here.. </textarea>
+                        </div>
+                        <div class="taskedit-elem third-cell">
+                            &nbsp;
+                        </div>
+                    </div>
+                    <div class="edittaskrow">
+                        <div class="taskedit-elem first-cell">
+                            Importance:
+                        </div>
+                        <div class="taskedit-elem  second-cell edit-important ">
+                            <span>0 &nbsp;<input type="range" max="5" min="0" id="taskimportance" value="2"
+                                                 onchange="updateTextInput(this.value);"/>&nbsp;5 &nbsp;</span>
+                            <input id="printvalue" type="text" size="1"/>
+                            <br/>
+                            <span>
+                                <img src="pix/reh_small_red.png" alt="#">
+                                <img src="pix/reh_small_red.png" alt="#">
+                                <img src="pix/reh_small_black.png" alt="#">
+                                <img src="pix/reh_small_black.png" alt="#">
+                                <img src="pix/reh_small_black.png" alt="#">
+                            </span>
+                        </div>
+                        <div class="taskedit-elem third-cell">
+                            &nbsp;
+                        </div>
+                    </div>
+                    <div class="edittaskrow">
+                        <div class="taskedit-elem first-cell">
+                            Deadline:
+                        </div>
+                        <div class="taskedit-elem second-cell">
+                            <input type="datetime-local" name="duedate" accept=""/>
+                        </div>
+                        <div class="taskedit-elem third-cell">
+                            &nbsp;
+                        </div>
+                    </div>
+                    <div class="edittaskrow">
+                        <div class="taskedit-elem first-cell">
+                            &nbsp;
+                        </div>
+                        <div class="taskedit-elem second-cell btn prominent">
+                            <a href="#" id="submittask"
+                               onclick="NoteProController.saveNote()">Save Task</a>
+                        </div>
+                        <div class="taskedit-elem third-cell btn">
+                            <a href="#" id="goback"
+                               onclick="NoteProController.showMainScreen()">Cancel</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="footer clearfix">
+            <div class="footer-desc">
+                CAS FEE -Projekt 01
+            </div>
+            <div class="footer-copy">
+                &copy; by M & F
+            </div>
+        </div>
+    </footer>
+</div>
+
+</body>
+<script type="text/javascript">
+    function updateTextInput(val) {
+        // TODO für was ist das gedacht?
+        document.getElementById('printvalue').value = val;
+    }
+
+    $(document).ready(function () {
+        console.log("ready!");
+        NoteProController.showAllEntries();
+    });
+</script>
+</html>

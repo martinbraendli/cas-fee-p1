@@ -1,5 +1,5 @@
 /**
- * Created by martin on 20.05.2015.
+ * Controller for page view
  */
 var NoteProController = {
     /**
@@ -9,62 +9,118 @@ var NoteProController = {
     DATE_FINISH_UNTIL_UNDEFINED: 'DATE_FINISH_UNTIL_UNDEFINED',
 
     /**
-     * write given note into local storage
+     * toggle function show > edit
      */
-    saveNote: function (note) {
-        if (note.id < 0) {
-            note.id = this.getNextNoteId();
-        }
+    showEditScreen: function (noteId) {
+        console.log("showEditScreen");
+        $('.editwrapper').css({
+            'display': 'block'
+        }, 100);
 
-        // to JSON
-        var jsonNote = this.toJSON(note);
-
-        // save to localStorage todo surround with try catch
-        localStorage.setItem("note" + note.id, jsonNote);
-        localStorage.setItem("lastNoteId", note.id);
-
-        return null; // OK
+        console.log("hideMainScreen");
+        $('.mainwrapper').css({
+            'display': 'none'
+        });
     },
 
     /**
-     * Read all available notes
+     * toggle function edit > show
      */
-    readNotes: function () {
-        var notes = [];
-        var i = 1;
-        while (true) {
-            var noteString = localStorage.getItem("note" + i);
+    showMainScreen: function () {
+        console.log("hideEditScreen");
+        $('.editwrapper').css({
+            'display': 'none'
+        });
 
-            if (noteString == null) {
-                return notes;
-            }
-            notes[i] = noteString; // todo parse JSON to object
-            i = i + 1;
-        }
-    },
+        console.log("showMainScreen");
+        $('.mainwrapper').css({
+            'display': 'block'
+        });
 
-    getNextNoteId: function () {
-        var lastNoteId = Number(localStorage.getItem("lastNoteId"));
-
-        // check initial state
-        if (lastNoteId < 0) {
-            return 0; // first entry
-        }
-
-        return lastNoteId + 1;
+        this.showAllEntries();
     },
 
     /**
-     * Convert note-object into JSON-String
+     * write given note from page edit into local storage
      */
-    toJSON: function (note) {
-        return JSON.stringify(note);
+    saveNote: function () {
+        var note = NoteFactory.createNote();
+        note.title = document.getElementById("editTitle").value;
+        note.text = document.getElementById("editText").value;
+
+        var result = NoteProDAL.saveNote(note);
+        if (typeof result === 'number') {
+            // return to the main page
+            this.showMainScreen();
+        } else {
+            // an error occured
+            alert(result);
+        }
     },
 
     /**
-     * Parse JSON-String into note-object
+     * print all entries from localStorage into console
      */
-    parseJSON: function (noteString) {
-        return JSON.parse(noteString);
+    showAllEntries: function () {
+        console.log("print all entries");
+        var notes = NoteProDAL.readNotes();
+
+        var divListNotes = document.getElementById('listnotes');
+
+        for (var i = 1; i < notes.length; i++) {
+            console.log(notes[i].toString());
+
+            var divTasklistrow = document.createElement('div');
+            divTasklistrow.setAttribute('class', 'tasklistrow');
+            divListNotes.appendChild(divTasklistrow);
+
+            /* START <div class="list-elem task-date">*/
+            var divTaskDate = document.createElement('div');
+            divTaskDate.setAttribute('class', 'list-elem task-date');
+
+            var pText = document.createElement('p');
+            pText.appendChild(document.createTextNode(notes[i].getDateFinishUntil()));
+            divTaskDate.appendChild(pText);
+
+            divTasklistrow.appendChild(divTaskDate);
+            /* END */
+
+            /* START <div class="list-elem task-desc"> */
+            var divTaskTitleText = document.createElement('div');
+            divTaskTitleText.setAttribute('class', 'list-elem task-desc');
+
+            var h4titel = document.createElement('h4');
+            h4titel.appendChild(document.createTextNode(notes[i].title));
+            divTaskTitleText.appendChild(h4titel);
+
+            var pText = document.createElement('p');
+            pText.appendChild(document.createTextNode(notes[i].text));
+            divTaskTitleText.appendChild(pText);
+
+            divTasklistrow.appendChild(divTaskTitleText);
+            /* END */
+
+            /* START <div class="list-elem task-importance">*/
+            var divTaskImportance = document.createElement('div');
+            divTaskImportance.setAttribute('class', 'list-elem task-importance');
+
+            var span = document.createElement('span');
+            divTaskImportance.appendChild(span);
+
+            divTasklistrow.appendChild(divTaskImportance);
+            /* END */
+
+            /* START <div class="list-elem task-edit-btn">*/
+            var divTaskEdit = document.createElement('div');
+            divTaskEdit.setAttribute('class', 'list-elem task-edit-btn');
+
+            var aBtn = document.createElement('a');
+            aBtn.setAttribute('href', '#');
+            aBtn.appendChild(document.createTextNode('Edit Note'));
+            divTaskEdit.appendChild(aBtn);
+
+            divTasklistrow.appendChild(divTaskEdit);
+            /* END */
+        }
     }
 };
