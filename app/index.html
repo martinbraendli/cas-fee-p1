@@ -2,7 +2,9 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
+
     <title>Reh-Minder -Project CAS FEE 01 by Martin & Felix</title>
+
     <link rel="icon" href="pix/reh_small_red.png" type="image/x-icon">
     <link rel="stylesheet" href="css/normalize.css"/>
     <link href='http://fonts.googleapis.com/css?family=Julius+Sans+One|Glegoo:400,700' rel='stylesheet' type='text/css'>
@@ -18,7 +20,6 @@
     <header class="head clearfix">
         <!--<span class="">-->
         <img src="pix/reh-icon1.png">
-
         <h1>Reh-Minder</h1>
 
         <h2>brought you by Martin & Felix </h2>
@@ -218,9 +219,9 @@
 <script type="text/javascript">
     function updateTextInput(val) {
         // TODO für was ist das gedacht?
+        // ERKLährung: dies ist für die Aktualisierung des current Importance Value beim Regler gedacht. Also Visualierungshilfe da von 0- 5
         document.getElementById('printvalue').value = val;
     }
-
     $(document).ready(function () {
         console.log("ready!");
         NoteProController.showAllEntries();
