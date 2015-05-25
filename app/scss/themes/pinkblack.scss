@@ -1,0 +1,193 @@
+// Style Red n White
+
+
+$wrapperBackgroundColor:     #F5F5F5;
+$primaryColor:               #400101;
+$primaryColorBG:             #F2F2F2;
+$secondaryColor:             #8C0303;
+$tertiaryColor:              #8C8C8C;
+
+$primaryColorFocus:          #9A0F16;
+$dark:                       #111;
+$bright:                     #F2F2F2;
+$lightgray:                  #D2D2D2;
+$graymiddle:                 #777777;
+$darkgray:                   #444444;
+
+$linkBackground:             #C3C3C3;
+$linkColor:                  $primaryColor;
+$linkHoverColor:             $primaryColorFocus;
+$linkHoverBackground:        #FFF;
+$linkBorderColor:            $darkgray;
+$linkBorderColorActive:      $dark;
+
+
+body {
+  background: $darkgray;
+}
+
+
+#wrapper{
+  background: $wrapperBackgroundColor;
+  //padding: 1rem 1rem 0 1rem;
+}
+
+.head h1{
+  color: $secondaryColor;
+  border-top: 1px solid $primaryColor;
+}
+
+.head h2{
+  color: $primaryColor;
+}
+
+.h3{
+  color: $primaryColor;
+}
+
+
+.btn a:link, a:visited{
+  padding: 0.4rem;
+  border-radius: 3px;
+  text-decoration: none;
+  color: $primaryColor;
+  //background: $linkBackground;
+  border: 1px solid $tertiaryColor;
+  transition: all 350ms ease;
+}
+
+.btn a:hover{
+  color: $linkHoverColor;
+  background: $linkHoverBackground;
+  border: 1px solid $linkHoverColor;
+  //transition: all 350ms ease;
+}
+
+.prominent a:link{
+  border: 2px solid $primaryColorFocus !important;
+  background: $bright !important;
+}
+
+.prominent a:hover{
+  color: $bright !important;
+  background: $secondaryColor !important;
+  border: 2px solid $dark !important;
+}
+
+
+
+.menu-styles{
+  color: $secondaryColor;
+  background:$lightgray;
+}
+
+
+
+//-------------------------------sort by
+.sort-styles{
+  background: $bright;
+}
+
+.sort-styles h3{
+  color: $dark;
+}
+
+.sort-styles ul li a:link{
+  border: 1px solid $primaryColor;
+  color: $bright;
+  background: $tertiaryColor;
+}
+
+.sort-styles ul li a:hover{
+  border: 1px solid $linkHoverColor;
+  color: $linkHoverColor;
+  background: $bright;
+}
+
+.editheader{
+  background: $secondaryColor;
+  h3{
+    color: $bright;
+  }
+}
+
+.sort-styles ul li a:link{
+  border: 1px solid $linkBorderColor;
+  padding: 7px;
+  border-radius: 3px;
+  text-decoration: none;
+  color: $primaryColor;
+  background: $lightgray;
+  transition: background 350ms ease;
+}
+
+
+//---------------------------- Tasklist styles
+
+
+.list-head-elem{
+  color: $primaryColor;
+  background: $primaryColorBG;
+}
+
+
+.listheader{
+  border-bottom: 1px solid $dark;
+}
+
+.tasklistrow{
+  border-bottom: 1px solid $secondaryColor;
+}
+
+.list-elem{
+  color: $secondaryColor;
+}
+
+.task-desc h4{
+  color: $primaryColor;
+}
+
+.task-edit-btn a:link, a:visited{
+  color: $dark;
+  background: $lightgray;
+}
+
+.task-edit-btn a:hover{
+  color: $primaryColor;
+  background: $bright;
+  border: 1px solid $primaryColor;
+}
+
+#printvalue {
+  color: $primaryColor;
+}
+
+
+
+// ----------------------------- Edit Styles
+
+input[type="text"],[type="datetime-local"] {
+  border: 1px solid $linkBorderColor;
+}
+
+
+textarea {
+  border: 1px solid $linkBorderColor;
+}
+
+
+
+//-------------------------- footer styles
+.footer{
+  border-top: 1px solid $primaryColor;
+  color: $primaryColorBG;
+  background: $dark;
+}
+
+.footer-desc{
+  color: $linkBorderColor;
+}
+
+.footer-copy{
+  color: $bright;
+}

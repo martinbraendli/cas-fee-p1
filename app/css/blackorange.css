@@ -1,0 +1,138 @@
+body {
+  background: #111; }
+
+#wrapper {
+  background: #222222; }
+
+.head h1 {
+  color: #eec68b;
+  border-top: 1px solid #ff9d0b; }
+
+.head h2 {
+  color: #ff9d0b; }
+
+.h3 {
+  color: #ff9d0b; }
+
+.btn a:link, a:visited {
+  padding: 0.4rem;
+  border-radius: 3px;
+  text-decoration: none;
+  color: #ff9d0b;
+  border: 1px solid #8C8C8C;
+  -webkit-transition: all 350ms ease;
+          transition: all 350ms ease; }
+
+.btn a:hover {
+  color: #ffab44;
+  background: #FFF;
+  border: 1px solid #ffab44; }
+
+.prominent a:link {
+  border: 2px solid #ff9d0b !important;
+  background: #444444 !important; }
+
+.prominent a:hover {
+  color: #ff9d0b !important;
+  background: #111 !important;
+  border: 2px solid #eec68b !important; }
+
+.menu-styles {
+  color: #eec68b;
+  background: #444444; }
+
+.sort-styles {
+  background: #999; }
+
+.sort-styles h3 {
+  color: #111; }
+
+.sort-styles ul li a:link {
+  border: 1px solid #ff9d0b;
+  color: #ff9d0b;
+  background: #444444; }
+
+.sort-styles ul li a:hover {
+  border: 1px solid #ffab44;
+  color: #ffab44;
+  background: #111; }
+
+.editheader {
+  background: #eec68b; }
+  .editheader h3 {
+    color: #111; }
+
+.edittaskrow {
+  color: #eec68b; }
+
+.sort-styles ul li a:link {
+  border: 1px solid #eec68b;
+  padding: 7px;
+  border-radius: 3px;
+  text-decoration: none;
+  color: #ff9d0b;
+  background: #C3C3C3;
+  -webkit-transition: background 350ms ease;
+          transition: background 350ms ease; }
+
+.list-head-elem {
+  color: #ff9d0b;
+  background: #262626; }
+
+.listheader {
+  border-bottom: 1px solid #111; }
+
+.tasklistrow {
+  border-bottom: 1px solid #eec68b; }
+
+.list-elem {
+  color: #eec68b; }
+
+.task-desc h4 {
+  color: #ff9d0b; }
+
+.task-edit-btn a:link, a:visited {
+  color: #ff9d0b; }
+
+.task-edit-btn a:hover {
+  border: 1px solid #ff9d0b; }
+
+#printvalue {
+  color: #ff9d0b; }
+
+.task-edit-btn a:link, a:visited {
+  border: 1px solid #eec68b;
+  color: #ff9d0b;
+  background: #777777; }
+
+.task-edit-btn a:hover {
+  border: 1px solid #ff9d0b;
+  color: #ffab44;
+  background: #444444; }
+
+input[type="text"], [type="datetime-local"] {
+  border: 1px solid #eec68b;
+  background: #777777; }
+
+input:focus[type="text"], [type="datetime-local"]:focus {
+  border: 1px solid #ff9d0b;
+  background: #C3C3C3; }
+
+textarea {
+  border: 1px solid #eec68b;
+  background: #777777; }
+
+textarea:focus {
+  border: 1px solid #ff9d0b;
+  background: #C3C3C3; }
+
+.footer {
+  border-top: 1px solid #ff9d0b;
+  color: #262626;
+  background: #111; }
+
+.footer-desc {
+  color: #eec68b; }
+
+.footer-copy {
+  color: #999; }

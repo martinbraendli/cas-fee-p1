@@ -1,0 +1,134 @@
+body {
+  background: #111; }
+
+#wrapper {
+  background: #444444;
+  border: 1px solid #656565; }
+
+.head h1 {
+  color: #c575ea;
+  border-top: 1px solid #ff1bb1; }
+
+.head h2 {
+  color: #ff1bb1; }
+
+.h3 {
+  color: #ff1bb1; }
+
+.btn a:link {
+  padding: 0.4rem;
+  border-radius: 3px;
+  text-decoration: none;
+  color: #ff1bb1;
+  background: #3D3D3D;
+  border: 1px solid #8C8C8C;
+  -webkit-transition: all 350ms ease;
+          transition: all 350ms ease; }
+
+.btn a:hover {
+  color: #d535dd;
+  background: #FFF;
+  border: 1px solid #d535dd; }
+
+.prominent a:link {
+  border: 2px solid #d535dd !important;
+  background: #444 !important; }
+
+.prominent a:hover {
+  color: #ff1bb1 !important;
+  background: #111 !important;
+  border: 2px solid #c575ea !important; }
+
+.menu-styles {
+  color: #c575ea;
+  background: #111; }
+
+.sort-styles {
+  background: #656565; }
+
+.sort-styles h3 {
+  color: #111; }
+
+.sort-styles ul li a:link {
+  border: 1px solid #ff1bb1;
+  color: #ff1bb1;
+  background: #00ffff; }
+
+.sort-styles ul li a:hover {
+  border: 1px solid #d535dd;
+  color: #d535dd;
+  background: #111; }
+
+.editheader {
+  background: #c575ea; }
+  .editheader h3 {
+    color: #111; }
+
+.edittaskrow {
+  color: #c575ea; }
+
+.sort-styles ul li a:link {
+  border: 1px solid #d535dd;
+  padding: 7px;
+  border-radius: 3px;
+  text-decoration: none;
+  color: #ff1bb1;
+  background: #444;
+  -webkit-transition: background 350ms ease;
+          transition: background 350ms ease; }
+
+.list-head-elem {
+  color: #ff1bb1;
+  background: #111; }
+
+.listheader {
+  border-bottom: 1px solid #111; }
+
+.tasklistrow {
+  border-bottom: 1px solid #c575ea;
+  background: #444444; }
+
+.list-elem {
+  color: #c575ea;
+  background: #444; }
+
+.task-desc h4 {
+  color: #ff1bb1; }
+
+.task-edit-btn a:link, a:visited {
+  color: #ff1bb1;
+  background: #656565; }
+
+.task-edit-btn a:hover {
+  border: 1px solid #ff1bb1;
+  background: #111; }
+
+#printvalue {
+  color: #ff1bb1; }
+
+input[type="text"], [type="datetime-local"] {
+  border: 1px solid #d535dd;
+  background: #656565; }
+
+input:focus[type="text"], [type="datetime-local"]:focus {
+  border: 1px solid #ff1bb1;
+  background: #3D3D3D; }
+
+textarea {
+  border: 1px solid #d535dd;
+  background: #656565; }
+
+textarea:focus {
+  border: 1px solid #ff1bb1;
+  background: #3D3D3D; }
+
+.footer {
+  border-top: 1px solid #ff1bb1;
+  color: #F2F2F2;
+  background: #111; }
+
+.footer-desc {
+  color: #d535dd; }
+
+.footer-copy {
+  color: #F2F2F2; }
