@@ -7,6 +7,7 @@ var sass = require('gulp-sass');
 var webserver = require('gulp-webserver');
 // better include, but not necessary
 var less = require('gulp-less');
+var autoprefixer = require('gulp-autoprefixer');
 var livereload = require('gulp-livereload');
 
 
@@ -15,13 +16,21 @@ livereload({ start: true });
 
 // sass function: better call sass
 gulp.task('sass', function(){
-   gulp.src('app/scss/*.scss')
+        // read all scss files
+        gulp.src('app/scss/*.scss')
+        // load sass
         .pipe(sass())
+        // prevent gulp from crashing due tu scss files
+        .on('error', function (error){
+            console.error("there was an scss syntax error -hey check your scss-file");
+            this.emit('end');
+        })
+
+        // extend autoprefixer for the last 3 browser versions
+        .pipe(autoprefixer("last 3 version", "safari 5", "ie 9"))
         // pipe it to css folder
         .pipe(gulp.dest('app/css/'));
-        // call a livereload for css-file
-        //.pipe(livereload());
-        console.log('new css written');
+    console.log('new css written');
 });
 
 
