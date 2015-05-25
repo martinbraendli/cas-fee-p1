@@ -20,6 +20,7 @@
     <header class="head clearfix">
         <!--<span class="">-->
         <img src="pix/reh-icon1.png">
+
         <h1>Reh-Minder</h1>
 
         <h2>brought you by Martin & Felix </h2>
@@ -126,6 +127,8 @@
         <!--edit form starts here not visible-->
         <div class="editwrapper">
             <div class="editcontent">
+                <input type="hidden" id="currentId"/>
+
                 <div class="editheader">
                     <h3>Add or Edit your Task</h3>
                 </div>
@@ -180,7 +183,8 @@
                             Deadline:
                         </div>
                         <div class="taskedit-elem second-cell">
-                            <input type="datetime-local" name="duedate" accept=""/>
+                            <input id="dateFinishUntil" name="duedate"
+                                   type="datetime-local" accept=""/>
                         </div>
                         <div class="taskedit-elem third-cell">
                             &nbsp;
