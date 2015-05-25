@@ -1,0 +1,129 @@
+body {
+  background: #444444; }
+
+#wrapper {
+  background: #F5F5F5; }
+
+.head h1 {
+  color: #8C0303;
+  border-top: 1px solid #400101; }
+
+.head h2 {
+  color: #400101; }
+
+.h3 {
+  color: #400101; }
+
+.btn a:link, a:visited {
+  padding: 0.4rem;
+  border-radius: 3px;
+  text-decoration: none;
+  color: #400101;
+  border: 1px solid #8C8C8C;
+  -webkit-transition: all 350ms ease;
+          transition: all 350ms ease; }
+
+.btn a:hover {
+  color: #9A0F16;
+  background: #FFF;
+  border: 1px solid #9A0F16; }
+
+.btn .prominent a:link {
+  border: 2px solid #9A0F16 !important;
+  color: #400101;
+  background: #F2F2F2 !important; }
+
+.btn .prominent a:hover {
+  color: #F2F2F2 !important;
+  background: #8C0303 !important;
+  border: 2px solid #111 !important; }
+
+.menu-styles {
+  color: #8C0303;
+  background: #D2D2D2; }
+
+.sort-styles {
+  background: #F2F2F2; }
+
+.sort-styles h3 {
+  color: #111; }
+
+.sort-styles ul li a:link {
+  border: 1px solid #400101;
+  color: #F2F2F2;
+  background: #8C8C8C; }
+
+.sort-styles ul li a:hover {
+  border: 1px solid #9A0F16;
+  color: #9A0F16;
+  background: #F2F2F2; }
+
+.editheader {
+  background: #8C0303; }
+  .editheader h3 {
+    color: #F2F2F2; }
+
+.sort-styles ul li a:link {
+  border: 1px solid #444444;
+  padding: 7px;
+  border-radius: 3px;
+  text-decoration: none;
+  color: #400101;
+  background: #D2D2D2;
+  -webkit-transition: background 350ms ease;
+          transition: background 350ms ease; }
+
+.list-head-elem {
+  color: #400101;
+  background: #F2F2F2; }
+
+.listheader {
+  border-bottom: 1px solid #111; }
+
+.tasklistrow {
+  border-bottom: 1px solid #8C0303; }
+
+.list-elem {
+  color: #8C0303; }
+
+.task-desc h4 {
+  color: #400101; }
+
+.task-edit-btn a:link, a:visited {
+  color: #111;
+  background: #D2D2D2; }
+
+.task-edit-btn a:hover {
+  color: #400101;
+  background: #F2F2F2;
+  border: 1px solid #400101; }
+
+#printvalue {
+  color: #400101; }
+
+input[type="text"], [type="datetime-local"] {
+  border: 1px solid #444444;
+  background: #D2D2D2; }
+
+input:focus[type="text"], [type="datetime-local"]:focus {
+  border: 1px solid #400101;
+  background: #F2F2F2; }
+
+textarea {
+  border: 1px solid #444444;
+  background: #D2D2D2; }
+
+textarea:focus {
+  border: 1px solid #400101;
+  background: #F2F2F2; }
+
+.footer {
+  border-top: 1px solid #400101;
+  color: #F2F2F2;
+  background: #111; }
+
+.footer-desc {
+  color: #444444; }
+
+.footer-copy {
+  color: #F2F2F2; }
