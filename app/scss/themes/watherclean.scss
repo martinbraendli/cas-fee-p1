@@ -1,0 +1,174 @@
+// Style WhaterClean - a nice Theme
+
+
+$wrapperBackgroundColor:     #F7F7FF;
+$primaryColor:               #3DACC9;
+$primaryColorBG:             #F2F2F2;
+$secondaryColor:             #619FA9;
+$tertiaryColor:              #57c0d6;
+
+$primaryColorFocus:          #86CADC;
+$dark:                       #222;
+$bright:                     #F2F2F2;
+$verybrightgray:             #DEDEDE;
+$lightgray:                  #D2D2D2;
+$graymiddle:                 #777777;
+$darkgray:                   #444444;
+
+$linkBackground:             #C3C3C3;
+$linkColor:                  $primaryColor;
+$linkHoverColor:             $bright;
+$linkHoverBackground:        #3DACC9;
+$linkBorderColor:            #57c0d6;
+$linkBorderColorActive:      $dark;
+
+body {
+  background: #CAE0EA;
+}
+
+#wrapper{
+  background: $wrapperBackgroundColor;
+}
+
+.head h1{
+  color: $secondaryColor;
+  border-top: 1px solid $dark;
+}
+
+.head h2{
+  color: $primaryColor;
+}
+
+.h3{
+  color: $primaryColor;
+}
+
+
+.task-add-btn a:link{
+  color: $bright;
+  background: $linkHoverBackground !important;
+  border: 2px solid $darkgray !important;
+}
+
+.task-add-btn a:hover{
+  color: $bright !important;
+  background: $secondaryColor !important;
+  border: 2px solid $dark !important;
+}
+
+.menu-styles{
+  color: $secondaryColor;
+  background:$lightgray;
+}
+
+
+
+//-------------------------------sort by
+.sort-styles{
+  background: $bright;
+}
+
+.sort-styles h3{
+  color: $dark;
+}
+
+.sort-styles ul li a:link{
+  border: 1px solid $darkgray;
+  color: $darkgray;
+  background: $primaryColorBG;
+}
+
+.sort-styles ul li a:hover{
+  color: $primaryColor;
+  background: $bright;
+  border: 1px solid $primaryColor;
+}
+
+.editheader{
+  background: $secondaryColor;
+  h3{
+    color: $bright;
+  }
+}
+
+
+
+//---------------------------- Tasklist styles
+
+
+.list-head-elem{
+  color: $primaryColor;
+  background: $primaryColorBG;
+}
+
+
+.listheader{
+  border-bottom: 1px solid $dark;
+}
+
+.tasklistrow{
+  border-bottom: 1px solid $secondaryColor;
+}
+
+.list-elem{
+  color: $secondaryColor;
+}
+
+.task-desc h4{
+  color: $primaryColor;
+}
+
+.task-edit-btn a:link{
+  color: $dark;
+  background: $lightgray;
+}
+
+.task-edit-btn a:hover{
+  color: $primaryColor;
+  background: $bright;
+  border: 1px solid $primaryColor;
+}
+
+#printvalue {
+  color: $primaryColor;
+}
+
+
+
+// ----------------------------- Edit Styles
+
+input[type="text"],[type="datetime-local"] {
+  border: 1px solid $linkBorderColor;
+  background: $verybrightgray;
+}
+
+input:focus[type="text"],[type="datetime-local"]:focus {
+  border: 1px solid $primaryColor;
+  background: $bright;
+}
+
+textarea{
+  border: 1px solid $linkBorderColor;
+  background: $verybrightgray;
+}
+
+textarea:focus{
+  border: 1px solid $primaryColor;
+  background: $bright;
+}
+
+
+//-------------------------- footer styles
+.footer{
+  border-top: 1px solid $primaryColor;
+  color: $dark;
+  background: $lightgray;
+}
+
+.footer-desc{
+  color: $darkgray;
+}
+
+.footer-copy{
+  color: $darkgray;
+}

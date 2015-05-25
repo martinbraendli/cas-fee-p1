@@ -1,0 +1,105 @@
+body {
+  background: #CAE0EA; }
+
+#wrapper {
+  background: #F7F7FF; }
+
+.head h1 {
+  color: #619FA9;
+  border-top: 1px solid #222; }
+
+.head h2 {
+  color: #3DACC9; }
+
+.h3 {
+  color: #3DACC9; }
+
+.task-add-btn a:link {
+  color: #F2F2F2;
+  background: #3DACC9 !important;
+  border: 2px solid #444444 !important; }
+
+.task-add-btn a:hover {
+  color: #F2F2F2 !important;
+  background: #619FA9 !important;
+  border: 2px solid #222 !important; }
+
+.menu-styles {
+  color: #619FA9;
+  background: #D2D2D2; }
+
+.sort-styles {
+  background: #F2F2F2; }
+
+.sort-styles h3 {
+  color: #222; }
+
+.sort-styles ul li a:link {
+  border: 1px solid #444444;
+  color: #444444;
+  background: #F2F2F2; }
+
+.sort-styles ul li a:hover {
+  color: #3DACC9;
+  background: #F2F2F2;
+  border: 1px solid #3DACC9; }
+
+.editheader {
+  background: #619FA9; }
+  .editheader h3 {
+    color: #F2F2F2; }
+
+.list-head-elem {
+  color: #3DACC9;
+  background: #F2F2F2; }
+
+.listheader {
+  border-bottom: 1px solid #222; }
+
+.tasklistrow {
+  border-bottom: 1px solid #619FA9; }
+
+.list-elem {
+  color: #619FA9; }
+
+.task-desc h4 {
+  color: #3DACC9; }
+
+.task-edit-btn a:link {
+  color: #222;
+  background: #D2D2D2; }
+
+.task-edit-btn a:hover {
+  color: #3DACC9;
+  background: #F2F2F2;
+  border: 1px solid #3DACC9; }
+
+#printvalue {
+  color: #3DACC9; }
+
+input[type="text"], [type="datetime-local"] {
+  border: 1px solid #57c0d6;
+  background: #DEDEDE; }
+
+input:focus[type="text"], [type="datetime-local"]:focus {
+  border: 1px solid #3DACC9;
+  background: #F2F2F2; }
+
+textarea {
+  border: 1px solid #57c0d6;
+  background: #DEDEDE; }
+
+textarea:focus {
+  border: 1px solid #3DACC9;
+  background: #F2F2F2; }
+
+.footer {
+  border-top: 1px solid #3DACC9;
+  color: #222;
+  background: #D2D2D2; }
+
+.footer-desc {
+  color: #444444; }
+
+.footer-copy {
+  color: #444444; }
