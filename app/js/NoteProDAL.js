@@ -50,6 +50,18 @@ var NoteProDAL = {
         }
     },
 
+    /**
+     * Find note by id
+     */
+    getNote: function (noteId) {
+        var notes = this.readNotes();
+        for (var i = 1; i < notes.length; i++) {
+            if (notes[i].id === noteId) {
+                return notes[i];
+            }
+        }
+    },
+
     getNextNoteId: function () {
         var lastNoteId = Number(localStorage.getItem("lastNoteId"));
 

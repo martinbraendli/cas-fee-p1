@@ -2,16 +2,26 @@
  * Controller for page view
  */
 var NoteProController = {
-    /**
-     * Undefined-value for dateFinishUntil
-     * @type {string}
-     */
-    DATE_FINISH_UNTIL_UNDEFINED: 'DATE_FINISH_UNTIL_UNDEFINED',
 
     /**
      * toggle function show > edit
      */
     showEditScreen: function (noteId) {
+        // new note > reset fields
+        if (noteId == undefined) {
+            document.getElementById("currentId").value = -1;
+            document.getElementById("editTitle").value = "";
+            document.getElementById("editText").value = "";
+            document.getElementById("taskimportance").value = 2;
+            document.getElementById("dateFinishUntil").value = "";
+        } else {
+            var note = NoteProDAL.getNote(noteId);
+            document.getElementById("currentId").value = note.id;
+            document.getElementById("editTitle").value = note.title;
+            document.getElementById("editText").value = note.text;
+            document.getElementById("taskimportance").value = note.importance;
+            document.getElementById("dateFinishUntil").value = note.dateFinishUntil;
+        }
         console.log("showEditScreen");
         $('.editwrapper').css({
             'display': 'block'
@@ -45,8 +55,16 @@ var NoteProController = {
      */
     saveNote: function () {
         var note = NoteFactory.createNote();
+        note.id = Number(document.getElementById("currentId").value);
         note.title = document.getElementById("editTitle").value;
         note.text = document.getElementById("editText").value;
+        var dateFinishUntil = document.getElementById("dateFinishUntil").value;
+        if (dateFinishUntil.length > 0) {
+            note.dateFinishUntil = dateFinishUntil;
+        } else {
+            note.dateFinishUntil = NoteProDAL.DATE_FINISH_UNTIL_UNDEFINED;
+        }
+        note.importance = Number(document.getElementById('taskimportance').value);
 
         var result = NoteProDAL.saveNote(note);
         if (typeof result === 'number') {
@@ -78,9 +96,9 @@ var NoteProController = {
             var divTaskDate = document.createElement('div');
             divTaskDate.setAttribute('class', 'list-elem task-date');
 
-            var pText = document.createElement('p');
-            pText.appendChild(document.createTextNode(notes[i].getDateFinishUntil()));
-            divTaskDate.appendChild(pText);
+            var pDate = document.createElement('p');
+            pDate.appendChild(document.createTextNode(notes[i].getDateFinishUntilString()));
+            divTaskDate.appendChild(pDate);
 
             divTasklistrow.appendChild(divTaskDate);
             /* END */
@@ -105,6 +123,18 @@ var NoteProController = {
             divTaskImportance.setAttribute('class', 'list-elem task-importance');
 
             var span = document.createElement('span');
+            for (var j = 0; j < notes[i].importance; j++) {
+                var imgRed = document.createElement('img');
+                imgRed.setAttribute('src', 'pix/reh_small_red.png');
+                imgRed.setAttribute('alt', '#');
+                span.appendChild(imgRed);
+            }
+            for (var j = notes[i].importance; j < 5; j++) {
+                var imgBlack = document.createElement('img');
+                imgBlack.setAttribute('src', 'pix/reh_small_black.png');
+                imgBlack.setAttribute('alt', '#');
+                span.appendChild(imgBlack);
+            }
             divTaskImportance.appendChild(span);
 
             divTasklistrow.appendChild(divTaskImportance);
@@ -116,6 +146,7 @@ var NoteProController = {
 
             var aBtn = document.createElement('a');
             aBtn.setAttribute('href', '#');
+            aBtn.setAttribute('onclick', 'NoteProController.showEditScreen(' + notes[i].id + ')');
             aBtn.appendChild(document.createTextNode('Edit Note'));
             divTaskEdit.appendChild(aBtn);
 

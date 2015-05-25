@@ -14,17 +14,26 @@ var NoteFactory = {
                 text: '',
                 importance: NoteProDAL.IMPORTANCE_UNDEFINED // 0 bis 5
             };
+        } else {
+            // create objects
+            if (thisNote.dateFinishUntil !== NoteProDAL.DATE_FINISH_UNTIL_UNDEFINED
+                && typeof thisNote.dateFinishUntil == 'string') {
+                // Datum
+                thisNote.dateFinishUntil = new Date(thisNote.dateFinishUntil);
+            }
         }
 
         thisNote.toString = function () {
             return "id: " + thisNote.id + ", title: " + thisNote.title + ", text: " + thisNote.text;
         };
 
-        thisNote.getDateFinishUntil = function () {
+        thisNote.getDateFinishUntilString = function () {
             if (thisNote.dateFinishUntil === NoteProDAL.DATE_FINISH_UNTIL_UNDEFINED) {
                 return '?';
             }
-            return thisNote.dateFinishUntil;
+            return thisNote.dateFinishUntil.getDate()
+                + "." + thisNote.dateFinishUntil.getMonth()
+                + "." + thisNote.dateFinishUntil.getFullYear();
         };
 
         return thisNote;
