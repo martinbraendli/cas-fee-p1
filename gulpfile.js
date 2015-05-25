@@ -14,7 +14,7 @@ var livereload = require('gulp-livereload');
 // livereload default
 livereload({ start: true });
 
-// sass function: better call sass
+// sass function: style sass
 gulp.task('sass', function(){
         // read all scss files
         gulp.src('app/scss/*.scss')
@@ -34,13 +34,33 @@ gulp.task('sass', function(){
 });
 
 
+// sass function: theme sass
+gulp.task('sass-theme', function(){
+    // read all theme scss files
+    gulp.src('app/scss/themes/*.scss')
+        // load sass
+        .pipe(sass())
+        // prevent gulp from crashing due tu scss files
+        .on('error', function (error){
+            console.error("there was an scss theme syntax in a theme style");
+            this.emit('end');
+        })
+
+        // extend autoprefixer for the last 3 browser versions
+        .pipe(autoprefixer("last 3 version", "safari 5", "ie 9"))
+        // pipe it to css folder
+        .pipe(gulp.dest('app/css/'));
+    console.log('new theme-css was written');
+});
+
+
 //gulp task webserver needs folder app & perform livereload
 gulp.task('webserver', function(){
     gulp.src('app')
         .pipe(webserver({
             // webserver options:
-            // port 8100: for fun
-            port:'8100',
+            // port 8101: for fun
+            port:'8101',
             defaultFile: 'edit.html',
             // lifereload true
             livereload: true,
@@ -53,12 +73,26 @@ gulp.task('webserver', function(){
 
 
 //watcher-task: look if there is a scss file
+//gulp.task('watch', function(){
+//    // whatch all scss dirs for new files
+//    gulp.watch('app/scss/*.scss', 'app/scss/themes/*.scss' ['sass']);
+//    // add a listener for relaod
+//    livereload.listen();
+//    //gulp.watch('app/scss/themes/*.scss' ['sass-theme']);
+//});
+
+
 gulp.task('watch', function(){
-    // add a listener for relaod
-    livereload.listen();
+    var server = livereload(),
+        reloadPage = function(evt){
+            webserver.changed(evt.path);
+            console.log("reloaded");
+        };
     gulp.watch('app/scss/*.scss', ['sass']);
+    gulp.watch('app/scss/themes/*.scss', ['sass-theme'])
 });
 
 
+
 //default gulp function: watch task, webservertask
-gulp.task('default', ['webserver','watch']);
+gulp.task('default', ['webserver', 'watch']);
