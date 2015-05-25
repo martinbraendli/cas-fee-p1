@@ -1,4 +1,7 @@
 // ---------------SCSS FLX file/
+@import "../css/normalize.css";
+
+
 // ---------------general declarations
 body{
   box-sizing: border-box;
@@ -193,7 +196,7 @@ $linkBorderColorActive:      $dark;
   transition: background 350ms ease;
 }
 
-//-------------------------- Tasklist styles
+//---------------------------- Tasklist styles
 
 .listnotes{
   display: table;
@@ -214,7 +217,7 @@ $linkBorderColorActive:      $dark;
   font-weight: bold;
   color: $dark;
   font-size: 1.2rem;
-  background: #dedede;
+  //background: #dedede;
   padding: 0.5rem;
 }
 
