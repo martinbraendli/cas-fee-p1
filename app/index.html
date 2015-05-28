@@ -14,10 +14,16 @@
     <link rel="stylesheet" id="themeCss" href="css/redwhite.css"/>
 
     <!--link js sources-->
+    <script src="js/handlebars-v3.0.3.js" type="text/javascript"></script>
     <script src="js/jquery-1.11.js"></script>
+    <!--Handlebars with STATIC JSON OBJECT in but utf-8 fails-->
+    <script src="js/integratehb.js" charset="UTF-8"> </script>
+    <!--FancyTheme Chooser external-->
+    <script src="js/ThemeChooser.js"></script>
     <script src="js/NoteFactory.js"></script>
     <script src="js/NoteProDAL.js"></script>
     <script src="js/NoteProController.js"></script>
+
 </head>
 <body>
 <div id="wrapper">
@@ -78,53 +84,40 @@
                         Edit Note
                     </div>
                 </div>
-                <!--loop all tasks here-->
-                <div class="tasklistrow">
-                    <div class="list-elem task-date">
-                        <p>22. Mai 2015</p>
-                        it's Done: <input type="checkbox" name="taskdone" value="finished"/>
-                    </div>
-                    <div class="list-elem task-desc">
-                        <h4>Title Task: Feed the dog</h4>
+            </div>
 
-                        <p>description of your task here: Feed Gromit every Day </p>
+            <!--Outer Wrapper for all listed notes-->
+            <div id="noteoutput">
+                <!--HB script -->
+                <script id="viewNoteEntry" type="text/x-handlebars-template">
+                    <!--loop all tasks here-->
+                    {{#note}}
+                    <div class="tasklistrow">
+                        <div class="list-elem task-date">
+                            <p>{{dateFinishUntil}}</p>
+                            Status finished: {{finished}}
+                            Done: <input type="checkbox" name="taskdone" value="finished" label="finished"/><br />
+                        </div>
+                        <div class="list-elem task-desc">
+                            <h4>Title Task: {{title}}</h4>
+                            <p>{{text}}</p>
+                        </div>
+                        <div class="list-elem task-importance">
+                            <p>Importance: {{importance}}</p>
+                            <span>
+                                <img src="pix/reh_small_red.png" alt="#"/>
+                                <img src="pix/reh_small_red.png" alt="#"/>
+                                <img src="pix/reh_small_black.png" alt="#"/>
+                                <img src="pix/reh_small_black.png" alt="#"/>
+                                <img src="pix/reh_small_black.png" alt="#"/>
+                            </span>
+                        </div>
+                        <div class="list-elem task-edit-btn">
+                            <a onclick="NoteProController.showEditScreen({{id}})" href="#">Edit Note id:{{id}}</a>
+                        </div>
                     </div>
-                    <div class="list-elem task-importance">
-                        <span>
-                            <img src="pix/reh_small_red.png" alt="#"/>
-                            <img src="pix/reh_small_red.png" alt="#"/>
-                            <img src="pix/reh_small_black.png" alt="#"/>
-                            <img src="pix/reh_small_black.png" alt="#"/>
-                            <img src="pix/reh_small_black.png" alt="#"/>
-                        </span>
-                    </div>
-                    <div class="list-elem task-edit-btn">
-                        <a href="#">Edit Note</a>
-                    </div>
-                </div>
-                <div class="tasklistrow">
-                    <div class="list-elem task-date">
-                        22. Juli 2015 <br/>
-                        Done <input type="checkbox" name="taskdone" value="finished"/>
-                    </div>
-                    <div class="list-elem task-desc">
-                        <h4>Title Task: Feed the cat</h4>
-                        <p>Description of your task here: feed Kitty every morning at 6 O'clock sharp or she will
-                            bite..</p>
-                    </div>
-                    <div class="list-elem task-importance">
-                        <span>
-                            <img src="pix/reh_small_red.png" alt="#"/>
-                            <img src="pix/reh_small_red.png" alt="#"/>
-                            <img src="pix/reh_small_red.png" alt="#"/>
-                            <img src="pix/reh_small_black.png" alt="#"/>
-                            <img src="pix/reh_small_black.png" alt="#"/>
-                        </span>
-                    </div>
-                    <div class="list-elem task-edit-btn">
-                        <a href="#">Edit Note</a>
-                    </div>
-                </div>
+                    {{/note}}
+                </script>
             </div>
         </div>
         <!--start view ends here-->
@@ -225,31 +218,73 @@
 </body>
 <script type="text/javascript">
     function updateTextInput(val) {
-        // TODO für was ist das gedacht?
-        // ERKLährung: dies ist für die Aktualisierung des current Importance Value beim Regler gedacht. Also Visualierungshilfe da von 0- 5
+       // TODO für was ist das gedacht?
+       // ERKLährung: dies ist für die Aktualisierung des current Importance Value beim Regler gedacht. Also Visualierungshilfe da von 0- 5
         document.getElementById('printvalue').value = val;
     }
-    $(document).ready(function () {
+   $(document).ready(function () {
         console.log("ready!");
         NoteProController.showAllEntries();
-        // Theme Chooser triggered on change of option tag
-        $("#ThemeChooser")
-                .change(function() {
-                    // empty var string
-                    var str = "";
-                    $("select option:selected" ).each(function() {
-                        // fill string with variable of VALUE of selected option
-                        str += $( this).val() + " ";
-                    });
-                    //test
-                    //$( "footer" ).text( str );
-                    // adress ID link-Css and change attribut href with string
-                    $("#themeCss").attr('href', str);
-                    console.log(str);
-                })
-        // trigger this on change of option
-        .trigger("change");
+//        // Theme Chooser triggered on change of option tag
+//        $("#ThemeChooser")
+//                .change(function() {
+//                    // empty var string
+//                    var str = "";
+//                    $("select option:selected" ).each(function() {
+//                        // fill string with variable of VALUE of selected option
+//                        str += $( this).val() + " ";
+//                    });
+//                    // adress ID link-Css and change attribut href with string
+//                    $("#themeCss").attr('href', str);
+//                    console.log(str);
+//                })
+//        // trigger this on change of option
+//        .trigger("change");
+
+
+
+//        // 0. DATA ( CONTEXT ) in JSON Format
+//        var alltasks = { note: [
+//                        {
+//                            id: 1,
+//                            finished: false,
+//                            dateCreated: "2015-05-27T08:24:47.737Z",
+//                            dateFinishUntil: "Fri Aug 12 2016 00:00:00 GMT+0200",
+//                            title: "Titel Handlebars",
+//                            text: "erfassen und einchecken im hsr-moodle. ich lappi sött scho lang das mache, also machmers jetzt denn.",
+//                            importance: 4
+//                        },
+//                        {
+//                            id: 2,
+//                            finished: false,
+//                            dateCreated: "2015-05-22T08:24:47.737Z",
+//                            dateFinishUntil: "Fri Aug 12 2018 00:00:00 GMT+0200",
+//                            title: "Mach es aschtändigs JSON Konstrukt",
+//                            text: "Du sollst ein anständiges, valides Json machen sonst beisst es dich ",
+//                            importance: 5
+//                        },
+//                        {
+//                            id: 3,
+//                            finished: true,
+//                            dateCreated: "2015-03-27T08:24:47.737Z",
+//                            dateFinishUntil: "Fri may 29 2015 00:00:00 GMT+0200",
+//                            title: "Bratwurst auf dem Grill kehren",
+//                            text: "Tsch- Tsch tsch... -Tscheisswerbung",
+//                            importance: 2
+//                        }
+//                        ]
+//        };
+//
+//        console.log(alltasks);
+//        // 1. read the source from script-id
+//        var NoteSource = $("#viewNoteEntry").html();
+//        //2. Compile the Template with source
+//        var NoteTemplate = Handlebars.compile(NoteSource);
+//
+//        //3 attach the compiled template into
+//        $("#noteoutput").html(NoteTemplate(alltasks));
 
     });
+
 </script>
 </html>
