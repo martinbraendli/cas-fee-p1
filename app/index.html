@@ -18,8 +18,6 @@
     <script src="js/lib/jquery-1.11.js"></script>
     <!--Handlebars with STATIC JSON OBJECT in but utf-8 fails-->
     <script src="js/integratehb.js" charset="UTF-8"> </script>
-    <!--FancyTheme Chooser external-->
-    <script src="js/ThemeChooser.js"></script>
     <script src="js/NoteFactory.js"></script>
     <script src="js/NoteProDAL.js"></script>
     <script src="js/NoteProController.js"></script>
@@ -225,23 +223,6 @@
    $(document).ready(function () {
         console.log("ready!");
         NoteProController.showAllEntries();
-//        // Theme Chooser triggered on change of option tag
-//        $("#ThemeChooser")
-//                .change(function() {
-//                    // empty var string
-//                    var str = "";
-//                    $("select option:selected" ).each(function() {
-//                        // fill string with variable of VALUE of selected option
-//                        str += $( this).val() + " ";
-//                    });
-//                    // adress ID link-Css and change attribut href with string
-//                    $("#themeCss").attr('href', str);
-//                    console.log(str);
-//                })
-//        // trigger this on change of option
-//        .trigger("change");
-
-
 
 //        // 0. DATA ( CONTEXT ) in JSON Format
 //        var alltasks = { note: [
@@ -287,4 +268,7 @@
     });
 
 </script>
+
+<!--FancyTheme Chooser external-->
+<script src="js/ThemeChooser.js"></script>
 </html>
