@@ -35,14 +35,14 @@ var NoteProDAL = {
     /**
      * Read all available notes
      */
-    readNotes: function () {
+    readNotes: function () { // todo sort field mit geben
         var notes = [];
         var i = 1;
         while (true) {
             var noteString = localStorage.getItem("note" + i);
 
             if (noteString == null) {
-                return notes;
+                return NoteProDAL.sort(notes);
             }
             var note = this.parseJSON(noteString);
             notes[i] = NoteFactory.createNote(note);
@@ -55,7 +55,7 @@ var NoteProDAL = {
      */
     getNote: function (noteId) {
         var notes = this.readNotes();
-        for (var i = 1; i < notes.length; i++) {
+        for (var i = 0; i < notes.length; i++) {
             if (notes[i].id === noteId) {
                 return notes[i];
             }
@@ -85,5 +85,15 @@ var NoteProDAL = {
      */
     parseJSON: function (noteString) {
         return JSON.parse(noteString);
+    },
+
+    /**
+     * sort
+     */
+    sort: function (notes) {
+        function compareNote(n1, n2){
+            return n1.dateFinishUntil - n2.dateFinishUntil;
+        }
+        return notes.sort(compareNote);
     }
 };
