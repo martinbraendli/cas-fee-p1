@@ -32,7 +32,7 @@
         {{#each this}}
         <div class="tasklistrow">
             <div class="list-elem task-date">
-                <p>{{dateFinishUntil}}</p>
+                <p>{{formatDate dateFinishUntil}}</p>
                 Status finished: {{finished}}
                 Done: <input type="checkbox" name="taskdone" value="finished" label="finished"/><br/>
             </div>

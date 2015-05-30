@@ -95,6 +95,17 @@ var NoteProController = {
                 return new Handlebars.SafeString(importanceHtml);
             });
 
+        // Helper for dateFinishUntil
+        Handlebars.registerHelper("formatDate",
+            function (date) {
+                if (typeof date == 'undefined'
+                    || date === NoteProDAL.DATE_FINISH_UNTIL_UNDEFINED) {
+                    return '?';
+                }
+                return date.getDate()
+                    + "." + date.getMonth()
+                    + "." + date.getFullYear();
+            });
         // compile template
         NoteProController.noteListRowTemplate = Handlebars.compile(document.getElementById("viewNoteEntry").textContent);
     },

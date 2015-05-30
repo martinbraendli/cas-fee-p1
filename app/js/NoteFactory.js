@@ -27,15 +27,6 @@ var NoteFactory = {
             return "id: " + thisNote.id + ", title: " + thisNote.title + ", text: " + thisNote.text;
         };
 
-        thisNote.getDateFinishUntilString = function () {
-            if (thisNote.dateFinishUntil === NoteProDAL.DATE_FINISH_UNTIL_UNDEFINED) {
-                return '?';
-            }
-            return thisNote.dateFinishUntil.getDate()
-                + "." + thisNote.dateFinishUntil.getMonth()
-                + "." + thisNote.dateFinishUntil.getFullYear();
-        };
-
         return thisNote;
     }
 };

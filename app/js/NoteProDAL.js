@@ -62,6 +62,9 @@ var NoteProDAL = {
         }
     },
 
+    /**
+     * read next id from localStorage
+     */
     getNextNoteId: function () {
         var lastNoteId = Number(localStorage.getItem("lastNoteId"));
 
@@ -88,7 +91,7 @@ var NoteProDAL = {
     },
 
     /**
-     * sort
+     * sort by dateFinishUntil
      */
     sort: function (notes) {
         function compareNote(n1, n2){
