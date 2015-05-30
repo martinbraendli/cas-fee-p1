@@ -42,6 +42,11 @@ var NoteProDAL = {
             var noteString = localStorage.getItem("note" + i);
 
             if (noteString == null) {
+                // remove gaps
+                notes = notes.filter(function(item){
+                    return typeof item != 'undefined';
+                });
+
                 return NoteProDAL.sort(notes);
             }
             var note = this.parseJSON(noteString);
