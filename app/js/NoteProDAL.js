@@ -6,7 +6,7 @@ var NoteProDAL = {
      * Undefined-value for dateFinishUntil
      * @type {string}
      */
-    DATE_FINISH_UNTIL_UNDEFINED: 'DATE_FINISH_UNTIL_UNDEFINED',
+    DATE_UNDEFINED: 'DATE_UNDEFINED',
 
     /**
      * Undefined-value for importance
@@ -49,6 +49,14 @@ var NoteProDAL = {
             var noteString = localStorage.getItem("note" + i);
 
             if (noteString == null) {
+
+                // if no viewConfig return all unsorted without undefined entries
+                if (typeof viewConfig == 'undefined') {
+                    return notes.filter(function (item) {
+                        return !(typeof item == 'undefined');
+                    });
+                }
+
                 // remove gaps
                 notes = notes.filter(function (item) {
                     if (typeof item == 'undefined') {

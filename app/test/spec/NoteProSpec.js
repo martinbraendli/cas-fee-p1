@@ -23,9 +23,10 @@ describe("NotePro", function () {
         // read note
         var readedNotes = NoteProDAL.readNotes();
         expect(readedNotes).toBeTruthy();
-        var readedNote = readedNotes[noteId];
+        var readedNote = readedNotes[0];
         expect(readedNote).toBeTruthy();
         expect(typeof readedNote).toBe('object');
+        expect(readedNote.id).toBe(noteId);
         expect(readedNote.titel).toBe("titelShouldSaveNote");
         expect(readedNote.text).toBe("textShouldSaveNote");
     });

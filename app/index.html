@@ -33,8 +33,14 @@
         <div class="tasklistrow">
             <div class="list-elem task-date">
                 <p>{{formatDate dateFinishUntil}}</p>
-                Status finished: {{finished}}
-                Done: <input type="checkbox" name="taskdone" value="finished" label="finished"/><br/>
+                {{#if finished}}
+                <input type="checkbox" name="taskdone" value="finished" label="finished" checked
+                       onclick="NoteProController.finishNote({{this.id}})"/>
+                {{else}}
+                <input type="checkbox" name="taskdone" value="finished" label="finished"
+                       onclick="NoteProController.finishNote({{this.id}})"/>
+                {{/if}}
+                Finished{{#if finished}} ({{formatDate dateFinished}}){{/if}}
             </div>
             <div class="list-elem task-desc">
                 <h4>{{title}}</h4>
@@ -85,7 +91,7 @@
                 <ul>
                     <li>
                         <a href="#" id="byFinishDate"
-                                onclick="NoteProController.switchOrderBy(this)">Show by Finish Date</a>
+                           onclick="NoteProController.switchOrderBy(this)">Show by Finish Date</a>
                     </li>
                     <li>
                         <a href="#" id="byCreateDate"

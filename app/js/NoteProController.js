@@ -66,7 +66,7 @@ var NoteProController = {
         if (dateFinishUntil.length > 0) {
             note.dateFinishUntil = dateFinishUntil;
         } else {
-            note.dateFinishUntil = NoteProDAL.DATE_FINISH_UNTIL_UNDEFINED;
+            note.dateFinishUntil = NoteProDAL.DATE_UNDEFINED;
         }
         note.importance = Number(document.getElementById('taskimportance').value);
 
@@ -78,6 +78,18 @@ var NoteProController = {
             // an error occured
             alert(result);
         }
+    },
+
+    finishNote: function (id) {
+        var r = confirm("Really finished?");
+        if (r == true) {
+            var note = NoteProDAL.getNote(id);
+            note.finished = !note.finished;
+            note.dateFinished = new Date();
+            NoteProDAL.saveNote(note);
+        }
+
+        NoteProController.showAllEntries();
     },
 
     toggleShowAllEntries: function () {
@@ -129,7 +141,7 @@ var NoteProController = {
         }
 
         if (NoteProController.viewConfig.showAllEntries) {
-            $("#showAllCompleted").html("Show only finished");
+            $("#showAllCompleted").html("Show only pendings");
         } else {
             $("#showAllCompleted").html("Show all");
         }
@@ -158,7 +170,7 @@ var NoteProController = {
         Handlebars.registerHelper("formatDate",
             function (date) {
                 if (typeof date == 'undefined'
-                    || date === NoteProDAL.DATE_FINISH_UNTIL_UNDEFINED) {
+                    || date === NoteProDAL.DATE_UNDEFINED) {
                     return '?';
                 }
                 return date.getDate()
