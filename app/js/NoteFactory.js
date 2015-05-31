@@ -22,6 +22,18 @@ var NoteFactory = {
                 // Datum
                 thisNote.dateFinishUntil = new Date(thisNote.dateFinishUntil);
             }
+
+            if (thisNote.dateFinished !== NoteProDAL.DATE_UNDEFINED
+                && typeof thisNote.dateFinished == 'string') {
+                // Datum
+                thisNote.dateFinished = new Date(thisNote.dateFinished);
+            }
+
+            if (thisNote.dateCreated !== NoteProDAL.DATE_UNDEFINED
+                && typeof thisNote.dateCreated == 'string') {
+                // Datum
+                thisNote.dateCreated = new Date(thisNote.dateCreated);
+            }
         }
 // TODO read dates from db into date object
         thisNote.toString = function () {
