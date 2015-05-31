@@ -2,9 +2,13 @@
  * Controller for page view
  */
 var NoteProController = {
+    /**
+     * object with config for reading entries from storage
+     */
     viewConfig: {
-        showAllEntries: true,
-        orderBy: NoteProDAL.ORDERBY_FINISHDATE
+        showAllEntries: true, // all or only pending entries
+        orderBy: NoteProDAL.ORDERBY_FINISHDATE, // sort field
+        orderASC: true
     },
 
     /**
@@ -103,20 +107,27 @@ var NoteProController = {
      * Change sort order
      */
     switchOrderBy: function (clickedElement) {
+        var newOrder;
         switch (clickedElement.id) {
-            case "byFinishDate":
-                NoteProController.viewConfig.orderBy = NoteProDAL.ORDERBY_FINISHDATE;
-                break;
             case "byCreateDate":
-                NoteProController.viewConfig.orderBy = NoteProDAL.ORDERBY_CREATEDATE;
+                newOrder = NoteProDAL.ORDERBY_CREATEDATE;
                 break;
             case "byImportance":
-                NoteProController.viewConfig.orderBy = NoteProDAL.ORDERBY_IMOPRTANCE;
+                newOrder = NoteProDAL.ORDERBY_IMOPRTANCE;
                 break;
+            case "byFinishDate":
             default:
-                // noop
+                newOrder = NoteProDAL.ORDERBY_FINISHDATE;
                 break;
         }
+
+        // if same field, change ASC/DESC
+        if (newOrder === NoteProController.viewConfig.orderBy) {
+            NoteProController.viewConfig.orderASC = !NoteProController.viewConfig.orderASC;
+        } else {
+            NoteProController.viewConfig.orderBy = newOrder;
+        }
+
         NoteProController.renderListControlls();
         NoteProController.showAllEntries();
         return false; // todo prevent default

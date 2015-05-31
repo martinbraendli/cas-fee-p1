@@ -71,7 +71,7 @@ var NoteProDAL = {
                     return true;
                 });
 
-                return NoteProDAL.sort(notes, viewConfig.orderBy);
+                return NoteProDAL.sort(notes, viewConfig.orderBy, viewConfig.orderASC);
             }
             var note = this.parseJSON(noteString);
             notes[i] = NoteFactory.createNote(note);
@@ -122,23 +122,32 @@ var NoteProDAL = {
     /**
      * sort by given orderBy key
      */
-    sort: function (notes, orderBy) {
+    sort: function (notes, orderBy, asc) {
         var compareNote;
         switch (orderBy) {
             case NoteProDAL.ORDERBY_CREATEDATE:
                 compareNote = function (n1, n2) {
-                    return n1.dateCreated - n2.dateCreated;
+                    if (asc) {
+                        return n1.dateCreated - n2.dateCreated;
+                    }
+                    return n2.dateCreated - n1.dateCreated;
                 };
                 break;
             case NoteProDAL.ORDERBY_IMOPRTANCE:
                 compareNote = function (n1, n2) {
-                    return n1.importance - n2.importance;
+                    if (asc) {
+                        return n1.importance - n2.importance;
+                    }
+                    return n2.importance - n1.importance;
                 };
                 break;
             case NoteProDAL.ORDERBY_FINISHDATE:
             default:
                 compareNote = function (n1, n2) {
-                    return n1.dateFinishUntil - n2.dateFinishUntil;
+                    if (asc) {
+                        return n1.dateFinishUntil - n2.dateFinishUntil;
+                    }
+                    return n2.dateFinishUntil - n1.dateFinishUntil;
                 };
                 break;
         }
