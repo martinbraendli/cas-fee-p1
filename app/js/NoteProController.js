@@ -2,6 +2,9 @@
  * Controller for page view
  */
 var NoteProController = {
+    viewConfig: {
+        showAllEntries: true
+    },
 
     /**
      * toggle function show > edit
@@ -76,6 +79,25 @@ var NoteProController = {
         }
     },
 
+    toggleShowAllEntries: function() {
+        NoteProController.viewConfig.showAllEntries = !NoteProController.viewConfig.showAllEntries;
+        NoteProController.renderListControlls();
+        return false;
+    },
+
+    /**
+     * Sort buttons and toggler for all entries/only pending entries
+     */
+    renderListControlls: function () {
+
+
+        if (NoteProController.viewConfig.showAllEntries) {
+            $("#showAllCompleted").html("Show only finished");
+        }else{
+            $("#showAllCompleted").html("Show all");
+        }
+    },
+
     /**
      * render template
      */
@@ -116,7 +138,7 @@ var NoteProController = {
     showAllEntries: function () {
         console.log("render all entries");
 
-        var notes = NoteProDAL.readNotes();
+        var notes = NoteProDAL.readNotes(NoteProController.viewConfig, NoteProController.sort);
         document.getElementById("noteoutput").innerHTML = NoteProController.noteListRowTemplate(notes);
     }
 };

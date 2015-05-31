@@ -35,7 +35,7 @@ var NoteProDAL = {
     /**
      * Read all available notes
      */
-    readNotes: function () { // todo sort field mit geben
+    readNotes: function (filter) {
         var notes = [];
         var i = 1;
         while (true) {
@@ -43,8 +43,17 @@ var NoteProDAL = {
 
             if (noteString == null) {
                 // remove gaps
-                notes = notes.filter(function(item){
-                    return typeof item != 'undefined';
+                notes = notes.filter(function (item) {
+                    if (typeof item == 'undefined') {
+                        return false;
+                    }
+
+                    // all / only pendings
+                    if (!filter.showAllEntries && item.finished) {
+                        return false; // only pendings, this item is done
+                    }
+
+                    return true;
                 });
 
                 return NoteProDAL.sort(notes);
@@ -99,7 +108,7 @@ var NoteProDAL = {
      * sort by dateFinishUntil
      */
     sort: function (notes) {
-        function compareNote(n1, n2){
+        function compareNote(n1, n2) {
             return n1.dateFinishUntil - n2.dateFinishUntil;
         }
         return notes.sort(compareNote);

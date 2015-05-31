@@ -92,8 +92,9 @@
                     <li>
                         <a href="#" id="byImportance">Show by Importance</a>
                     </li>
-                    <li>
-                        <a href="#" id="byAllCompleted">Show all Finished</a>
+                    <li><!-- TODO wenn möglich von den sortern trennen, rechtsbündig? -->
+                        <a href="#" id="showAllCompleted"
+                           onclick="NoteProController.toggleShowAllEntries()">...</a>
                     </li>
                 </ul>
             </div>
@@ -223,8 +224,8 @@
     }
     $(document).ready(function () {
         console.log("docuemnt ready");
+        NoteProController.renderListControlls();
         NoteProController.prepareTemplate();
-
         NoteProController.showAllEntries();
     });
 
