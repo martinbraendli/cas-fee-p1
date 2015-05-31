@@ -84,13 +84,16 @@
                 <h3>Sort all my Notes</h3>
                 <ul>
                     <li>
-                        <a href="#" id="byFinishDate">Show by Finish Date</a>
+                        <a href="#" id="byFinishDate"
+                                onclick="NoteProController.switchOrderBy(this)">Show by Finish Date</a>
                     </li>
                     <li>
-                        <a href="#" id="byCreateDate">Show by Create Date</a>
+                        <a href="#" id="byCreateDate"
+                           onclick="NoteProController.switchOrderBy(this)">Show by Create Date</a>
                     </li>
                     <li>
-                        <a href="#" id="byImportance">Show by Importance</a>
+                        <a href="#" id="byImportance"
+                           onclick="NoteProController.switchOrderBy(this)">Show by Importance</a>
                     </li>
                     <li><!-- TODO wenn möglich von den sortern trennen, rechtsbündig? -->
                         <a href="#" id="showAllCompleted"

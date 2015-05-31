@@ -14,6 +14,13 @@ var NoteProDAL = {
     IMPORTANCE_UNDEFINED: 'IMPORTANCE_UNDEFINED',
 
     /**
+     * Order
+     */
+    ORDERBY_FINISHDATE: 'finishDate',
+    ORDERBY_CREATEDATE: 'createDate',
+    ORDERBY_IMOPRTANCE: 'importance',
+
+    /**
      * write given note into local storage
      * @returns the id of the note, a text if an error occured
      */
@@ -35,7 +42,7 @@ var NoteProDAL = {
     /**
      * Read all available notes
      */
-    readNotes: function (filter) {
+    readNotes: function (viewConfig) {
         var notes = [];
         var i = 1;
         while (true) {
@@ -49,14 +56,14 @@ var NoteProDAL = {
                     }
 
                     // all / only pendings
-                    if (!filter.showAllEntries && item.finished) {
+                    if (!viewConfig.showAllEntries && item.finished) {
                         return false; // only pendings, this item is done
                     }
 
                     return true;
                 });
 
-                return NoteProDAL.sort(notes);
+                return NoteProDAL.sort(notes, viewConfig.orderBy);
             }
             var note = this.parseJSON(noteString);
             notes[i] = NoteFactory.createNote(note);
@@ -105,11 +112,27 @@ var NoteProDAL = {
     },
 
     /**
-     * sort by dateFinishUntil
+     * sort by given orderBy key
      */
-    sort: function (notes) {
-        function compareNote(n1, n2) {
-            return n1.dateFinishUntil - n2.dateFinishUntil;
+    sort: function (notes, orderBy) {
+        var compareNote;
+        switch (orderBy) {
+            case NoteProDAL.ORDERBY_CREATEDATE:
+                compareNote = function (n1, n2) {
+                    return n1.dateCreated - n2.dateCreated;
+                };
+                break;
+            case NoteProDAL.ORDERBY_IMOPRTANCE:
+                compareNote = function (n1, n2) {
+                    return n1.importance - n2.importance;
+                };
+                break;
+            case NoteProDAL.ORDERBY_FINISHDATE:
+            default:
+                compareNote = function (n1, n2) {
+                    return n1.dateFinishUntil - n2.dateFinishUntil;
+                };
+                break;
         }
         return notes.sort(compareNote);
     }

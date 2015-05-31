@@ -3,7 +3,8 @@
  */
 var NoteProController = {
     viewConfig: {
-        showAllEntries: true
+        showAllEntries: true,
+        orderBy: NoteProDAL.ORDERBY_FINISHDATE
     },
 
     /**
@@ -79,21 +80,57 @@ var NoteProController = {
         }
     },
 
-    toggleShowAllEntries: function() {
+    toggleShowAllEntries: function () {
         NoteProController.viewConfig.showAllEntries = !NoteProController.viewConfig.showAllEntries;
         NoteProController.renderListControlls();
-        return false;
+        NoteProController.showAllEntries();
+        return false; // todo prevent default
+    },
+
+    /**
+     * Change sort order
+     */
+    switchOrderBy: function (clickedElement) {
+        switch (clickedElement.id) {
+            case "byFinishDate":
+                NoteProController.viewConfig.orderBy = NoteProDAL.ORDERBY_FINISHDATE;
+                break;
+            case "byCreateDate":
+                NoteProController.viewConfig.orderBy = NoteProDAL.ORDERBY_CREATEDATE;
+                break;
+            case "byImportance":
+                NoteProController.viewConfig.orderBy = NoteProDAL.ORDERBY_IMOPRTANCE;
+                break;
+            default:
+                // noop
+                break;
+        }
+        NoteProController.renderListControlls();
+        NoteProController.showAllEntries();
+        return false; // todo prevent default
     },
 
     /**
      * Sort buttons and toggler for all entries/only pending entries
      */
     renderListControlls: function () {
-
+        if (NoteProController.viewConfig.orderBy === NoteProDAL.ORDERBY_FINISHDATE) {
+            $("#byFinishDate").attr('style', 'font-size: 20px'); // TODO als class anpassen
+            $("#byCreateDate").attr('style', '');
+            $("#byImportance").attr('style', '');
+        } else if (NoteProController.viewConfig.orderBy === NoteProDAL.ORDERBY_CREATEDATE) {
+            $("#byFinishDate").attr('style', '');
+            $("#byCreateDate").attr('style', 'font-size: 20px');
+            $("#byImportance").attr('style', '');
+        } else if (NoteProController.viewConfig.orderBy === NoteProDAL.ORDERBY_IMOPRTANCE) {
+            $("#byFinishDate").attr('style', '');
+            $("#byCreateDate").attr('style', '');
+            $("#byImportance").attr('style', 'font-size: 20px');
+        }
 
         if (NoteProController.viewConfig.showAllEntries) {
             $("#showAllCompleted").html("Show only finished");
-        }else{
+        } else {
             $("#showAllCompleted").html("Show all");
         }
     },
