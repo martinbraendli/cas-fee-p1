@@ -17,18 +17,18 @@ var NoteProController = {
     showEditScreen: function (noteId) {
         // new note > reset fields
         if (noteId == undefined) {
-            document.getElementById("currentId").value = -1;
-            document.getElementById("editTitle").value = "";
-            document.getElementById("editText").value = "";
-            document.getElementById("taskimportance").value = 2;
-            document.getElementById("dateFinishUntil").value = "";
+            $("#currentId").val(-1);
+            $("#editTitle").val("");
+            $("#editText").val("");
+            $("#taskimportance").val(2);
+            $("#dateFinishUntil").val("");
         } else {
             var note = NoteProDAL.getNote(noteId);
-            document.getElementById("currentId").value = note.id;
-            document.getElementById("editTitle").value = note.title;
-            document.getElementById("editText").value = note.text;
-            document.getElementById("taskimportance").value = note.importance;
-            document.getElementById("dateFinishUntil").value = note.dateFinishUntil;
+            $("#currentId").val(note.id);
+            $("#editTitle").val(note.title);
+            $("#editText").val(note.text);
+            $("#taskimportance").val(note.importance);
+            $("#dateFinishUntil").val(note.dateFinishUntil);
         }
         console.log("showEditScreen");
         $('.editwrapper').css({
@@ -63,16 +63,16 @@ var NoteProController = {
      */
     saveNote: function () {
         var note = NoteFactory.createNote();
-        note.id = Number(document.getElementById("currentId").value);
-        note.title = document.getElementById("editTitle").value;
-        note.text = document.getElementById("editText").value;
-        var dateFinishUntil = document.getElementById("dateFinishUntil").value;
+        note.id = Number($("#currentId").val());
+        note.title = $("#editTitle").val();
+        note.text = $("#editText").val();
+        var dateFinishUntil = $("#dateFinishUntil").val();
         if (dateFinishUntil.length > 0) {
             note.dateFinishUntil = dateFinishUntil;
         } else {
             note.dateFinishUntil = NoteProDAL.DATE_UNDEFINED;
         }
-        note.importance = Number(document.getElementById('taskimportance').value);
+        note.importance = Number($('#taskimportance').val());
 
         var result = NoteProDAL.saveNote(note);
         if (typeof result === 'number') {
@@ -154,7 +154,7 @@ var NoteProController = {
         if (NoteProController.viewConfig.showAllEntries) {
             $("#showAllCompleted").html("Show only pendings");
         } else {
-            $("#showAllCompleted").html("Show all");
+            $("#showAllCompleted").html("Show only pendings AKTIV");
         }
     },
 
@@ -199,6 +199,6 @@ var NoteProController = {
         console.log("render all entries");
 
         var notes = NoteProDAL.readNotes(NoteProController.viewConfig, NoteProController.sort);
-        document.getElementById("noteoutput").innerHTML = NoteProController.noteListRowTemplate(notes);
+        $("#noteoutput").html(NoteProController.noteListRowTemplate(notes));
     }
 };
