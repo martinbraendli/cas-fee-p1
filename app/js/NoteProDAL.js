@@ -3,34 +3,16 @@
  */
 var NoteProDAL = {
     /**
-     * Undefined-value for dateFinishUntil
-     * @type {string}
-     */
-    DATE_UNDEFINED: 'DATE_UNDEFINED',
-
-    /**
-     * Undefined-value for importance
-     */
-    IMPORTANCE_UNDEFINED: 'IMPORTANCE_UNDEFINED',
-
-    /**
-     * Order
-     */
-    ORDERBY_FINISHDATE: 'finishDate',
-    ORDERBY_CREATEDATE: 'createDate',
-    ORDERBY_IMOPRTANCE: 'importance',
-
-    /**
      * write given note into local storage
      * @returns the id of the note, a text if an error occured
      */
     saveNote: function (note) {
         if (note.id < 0) {
-            note.id = this.getNextNoteId();
+            note.id = NoteProDAL.getNextNoteId();
         }
 
         // to JSON
-        var jsonNote = this.toJSON(note);
+        var jsonNote = NoteProDAL.toJSON(note);
 
         // save to localStorage todo surround with try catch
         localStorage.setItem("note" + note.id, jsonNote);
@@ -125,7 +107,7 @@ var NoteProDAL = {
     sort: function (notes, orderBy, asc) {
         var compareNote;
         switch (orderBy) {
-            case NoteProDAL.ORDERBY_CREATEDATE:
+            case NoteConstants.ORDERBY_CREATEDATE:
                 compareNote = function (n1, n2) {
                     if (asc) {
                         return n1.dateCreated - n2.dateCreated;
@@ -133,7 +115,7 @@ var NoteProDAL = {
                     return n2.dateCreated - n1.dateCreated;
                 };
                 break;
-            case NoteProDAL.ORDERBY_IMOPRTANCE:
+            case NoteConstants.ORDERBY_IMOPRTANCE:
                 compareNote = function (n1, n2) {
                     if (asc) {
                         return n1.importance - n2.importance;
@@ -141,7 +123,7 @@ var NoteProDAL = {
                     return n2.importance - n1.importance;
                 };
                 break;
-            case NoteProDAL.ORDERBY_FINISHDATE:
+            case NoteConstants.ORDERBY_FINISHDATE:
             default:
                 compareNote = function (n1, n2) {
                     if (asc) {

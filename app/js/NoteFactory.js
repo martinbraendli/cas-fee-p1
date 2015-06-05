@@ -2,43 +2,27 @@
  * Factory for note object
  */
 var NoteFactory = {
+    // TODO slider > führt icons nach, textinput nachher weg
+    /**
+     *
+     * @param note
+     * @returns {*}
+     */
     createNote: function (note) {
-        var thisNote = note;
-        if (typeof note == 'undefined') {
-            thisNote = {
-                id: -1,
-                finished: false,
-                dateCreated: new Date(),
-                dateFinishUntil: NoteProDAL.DATE_UNDEFINED, // optional
-                dateFinished: NoteProDAL.DATE_UNDEFINED, // optional
-                title: '',
-                text: '',
-                importance: NoteProDAL.IMPORTANCE_UNDEFINED // 0 bis 5
-            };
+        var thisNote;
+        if (typeof note == 'undefined' || note == null) {
+            thisNote = new Note();
         } else {
-            // create objects
-            if (thisNote.dateFinishUntil !== NoteProDAL.DATE_UNDEFINED
-                && typeof thisNote.dateFinishUntil == 'string') {
-                // Datum
-                thisNote.dateFinishUntil = new Date(thisNote.dateFinishUntil);
-            }
-
-            if (thisNote.dateFinished !== NoteProDAL.DATE_UNDEFINED
-                && typeof thisNote.dateFinished == 'string') {
-                // Datum
-                thisNote.dateFinished = new Date(thisNote.dateFinished);
-            }
-
-            if (thisNote.dateCreated !== NoteProDAL.DATE_UNDEFINED
-                && typeof thisNote.dateCreated == 'string') {
-                // Datum
-                thisNote.dateCreated = new Date(thisNote.dateCreated);
-            }
+            thisNote = new Note();
+            thisNote.id = note.id;
+            thisNote.finished = note.finished;
+            thisNote.dateCreated = note.dateCreated;
+            thisNote.dateFinishUntil = note.dateFinishUntil;
+            thisNote.dateFinished = note.dateFinished;
+            thisNote.title = note.title;
+            thisNote.text = note.text;
+            thisNote.importance = note.importance;
         }
-// TODO read dates from db into date object
-        thisNote.toString = function () {
-            return "id: " + thisNote.id + ", title: " + thisNote.title + ", text: " + thisNote.text;
-        };
 
         return thisNote;
     }
