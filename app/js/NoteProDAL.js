@@ -14,7 +14,7 @@ var NoteProDAL = {
         // to JSON
         var jsonNote = NoteProDAL.toJSON(note);
 
-        // save to localStorage todo surround with try catch
+        // save to localStorage
         localStorage.setItem("note" + note.id, jsonNote);
         localStorage.setItem("lastNoteId", note.id);
 

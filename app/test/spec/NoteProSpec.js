@@ -26,27 +26,48 @@ describe("NotePro", function () {
 
         it('should convert note into json', function () {
             var note = NoteFactory.createNote();
-
+            note.id = 42;
             note.title = "Titel 42";
             note.text = "Text 42";
-            // todo andere felder füllen
             var noteDateCreated = note.dateCreated.toString();
+            note.importance = 5;
 
             var noteString = NoteProDAL.toJSON(note);
             expect(noteString).toBeDefined();
+            expect(noteString.indexOf('"id":"42"')).toBeTruthy();
             expect(noteString.indexOf('"titel":"Titel 42"')).toBeTruthy();
             expect(noteString.indexOf('"text":"Text 42"')).toBeTruthy();
             expect(noteString.indexOf('"dateCreated":"' + noteDateCreated + '"')).toBeTruthy();
+            expect(noteString.indexOf('"importance":"5"')).toBeTruthy();
         });
 
         it('should convert json into note', function () {
-            // TODO expect(true).toBeFalsy();
+            var json = '{"id":43,' +
+                '"finished":false,' +
+                '"dateCreated":"2015-06-05T20:29:31.115Z",' +
+                '"dateFinishUntil":"DATE_UNDEFINED",' +
+                '"dateFinished":"DATE_UNDEFINED",' +
+                '"title":"asdf",' +
+                '"text":"jklö",' +
+                '"importance":1}';
+
+            var parsedNote = NoteFactory.createNote(NoteProDAL.parseJSON(json));
+            expect(parsedNote.id).toBe(43);
+            expect(parsedNote.finished).toBe(false);
+            var dateCreatedDelta = new Date(Date.parse("2015-06-05T20:29:31.115Z")).getTime() + 1000; // one second tolerance
+            expect(parsedNote.dateCreated.getTime() <= dateCreatedDelta).toBeTruthy();
+            expect(parsedNote.dateFinishUntil).toBe(NoteConstants.DATE_UNDEFINED);
+            expect(parsedNote.dateFinished).toBe(NoteConstants.DATE_UNDEFINED);
+            expect(parsedNote.title).toBe("asdf");
+            expect(parsedNote.text).toBe("jklö");
+            expect(parsedNote.importance).toBe(1);
         });
 
         it('should save note', function () {
             var note = NoteFactory.createNote();
             note.title = "titelShouldSaveNote";
             note.text = "textShouldSaveNote";
+            note.importance = 4;
 
             // save
             var noteId = NoteProDAL.saveNote(note);
@@ -62,7 +83,7 @@ describe("NotePro", function () {
             expect(readedNote.id).toBe(noteId);
             expect(readedNote.title).toBe("titelShouldSaveNote");
             expect(readedNote.text).toBe("textShouldSaveNote");
-            // todo check all fields
+            expect(readedNote.importance).toBe(4);
         });
 
         it('should get note by id', function () {
