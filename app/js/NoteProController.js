@@ -46,7 +46,13 @@ var NoteProController = {
     /**
      * toggle function edit > show
      */
-    showMainScreen: function () {
+    showMainScreen: function (showCancelMessage) {
+        if (showCancelMessage) {
+            var r = confirm("Cancel without saving? All data will be lost");
+            if (r == false) {
+                return;
+            }
+        }
         console.log("hideEditScreen");
         $('.editwrapper').css({
             'display': 'none'
