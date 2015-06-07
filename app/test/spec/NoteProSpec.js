@@ -13,6 +13,8 @@ describe("NotePro", function () {
     describe("DAL", function () {
         it('should get next note id', function () {
             var note = NoteFactory.createNote();
+            note.text = "def";
+            note.title = "def";
 
             var id = NoteProDAL.getNextNoteId();
             expect(id).toBe(1);
@@ -121,12 +123,16 @@ describe("NotePro", function () {
                 note = NoteFactory.createNote();
                 expect(note.id).toBe(-1);
                 expect(note.finished).toBe(false);
-                expect(note.dateFinishUntil).toBe(NoteConstants.DATE_UNDEFINED);
-                var dateCreatedDelta = new Date().getTime() + 1000; // one second tolerance
-                expect(note.dateCreated.getTime() <= dateCreatedDelta).toBeTruthy();
                 expect(note.title).toBe("");
                 expect(note.text).toBe("");
                 expect(note.importance).toBe(NoteConstants.IMPORTANCE_DEFAULT);
+                expect(note.dateFinished).toBe(NoteConstants.DATE_UNDEFINED);
+
+                var dateInOneWeek = new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000);
+                expect(note.dateFinishUntil.getTime()).toBe(dateInOneWeek.getTime());
+
+                var dateCreatedDelta = new Date().getTime() + 1000; // one second tolerance
+                expect(note.dateCreated.getTime() <= dateCreatedDelta).toBeTruthy();
             });
 
             it('should create note with given object', function () {

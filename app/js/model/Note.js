@@ -28,7 +28,7 @@ function Note() {
     var id = -1;
     var finished = false;
     var dateCreated = new Date();
-    var dateFinishUntil = NoteConstants.DATE_UNDEFINED;
+    var dateFinishUntil = new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000); // one week in future
     var dateFinished = NoteConstants.DATE_UNDEFINED;
     var title = '';
     var text = '';
@@ -62,9 +62,9 @@ function Note() {
             return dateCreated;
         },
         set: function (value) {
-            if (value !== NoteConstants.DATE_UNDEFINED
-                && typeof value == 'string') {
-                // Datum
+            if (value === NoteConstants.DATE_UNDEFINED) {
+                dateCreated = value;
+            } else if (typeof value == 'string') {
                 dateCreated = new Date(Date.parse(value));
             } else if (typeof value == 'object') {
                 dateCreated = value;
@@ -77,9 +77,9 @@ function Note() {
             return dateFinishUntil;
         },
         set: function (value) {
-            if (value !== NoteConstants.DATE_UNDEFINED
-                && typeof value == 'string') {
-                // Datum
+            if (value === NoteConstants.DATE_UNDEFINED) {
+                dateFinishUntil = value;
+            } else if (typeof value == 'string') {
                 dateFinishUntil = new Date(Date.parse(value));
             } else if (typeof value == 'object') {
                 dateFinishUntil = value;
@@ -92,9 +92,9 @@ function Note() {
             return dateFinished;
         },
         set: function (value) {
-            if (value !== NoteConstants.DATE_UNDEFINED
-                && typeof value == 'string') {
-                // Datum
+            if (value === NoteConstants.DATE_UNDEFINED) {
+                dateFinished = value;
+            } else if (typeof value == 'string') {
                 dateFinished = new Date(Date.parse(value));
             } else if (typeof value == 'object') {
                 dateFinished = value;
