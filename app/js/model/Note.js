@@ -15,7 +15,14 @@ var NoteConstants = {
      */
     ORDERBY_FINISHDATE: 'finishDate',
     ORDERBY_CREATEDATE: 'createDate',
-    ORDERBY_IMOPRTANCE: 'importance'
+    ORDERBY_IMOPRTANCE: 'importance',
+
+    /**
+     * One week in future
+     */
+    DATE_FINISHED_UNTIL_DEFAULT: function(){
+        return new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000);
+    }
 };
 
 /**
@@ -28,7 +35,7 @@ function Note() {
     var id = -1;
     var finished = false;
     var dateCreated = new Date();
-    var dateFinishUntil = new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000); // one week in future
+    var dateFinishUntil = NoteConstants.DATE_FINISHED_UNTIL_DEFAULT();
     var dateFinished = NoteConstants.DATE_UNDEFINED;
     var title = '';
     var text = '';

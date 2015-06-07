@@ -20,15 +20,15 @@ var NoteProController = {
             $("#currentId").val(-1);
             $("#editTitle").val("");
             $("#editText").val("");
-            $("#taskimportance").val(2);
-            $("#dateFinishUntil").val("");
+            $("#taskimportance").val(NoteConstants.IMPORTANCE_DEFAULT);
+            $("#dateFinishUntil").datetimepicker({value: NoteConstants.DATE_FINISHED_UNTIL_DEFAULT()});
         } else {
             var note = NoteProDAL.getNote(noteId);
             $("#currentId").val(note.id);
             $("#editTitle").val(note.title);
             $("#editText").val(note.text);
             $("#taskimportance").val(note.importance);
-            $("#dateFinishUntil").val(note.dateFinishUntil);
+            $("#dateFinishUntil").datetimepicker({value: note.dateFinishUntil});
         }
         console.log("showEditScreen");
         $('.editwrapper').css({
@@ -76,7 +76,7 @@ var NoteProController = {
         note.text = $("#editText").val();
         var dateFinishUntil = $("#dateFinishUntil").val();
         if (dateFinishUntil.length > 0) {
-            note.dateFinishUntil = dateFinishUntil;
+            note.dateFinishUntil = new Date(Date.parse($("#dateFinishUntil").val()));
         } else {
             note.dateFinishUntil = Note.DATE_UNDEFINED;
         }
@@ -190,9 +190,7 @@ var NoteProController = {
                     || date === NoteConstants.DATE_UNDEFINED) {
                     return '?';
                 }
-                return date.getDate()
-                    + "." + date.getMonth()
-                    + "." + date.getFullYear();
+                return date.toLocaleString();
             });
         // compile template
         NoteProController.noteListRowTemplate = Handlebars.compile(document.getElementById("viewNoteEntry").textContent);

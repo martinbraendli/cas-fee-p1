@@ -10,18 +10,15 @@
     <link href='http://fonts.googleapis.com/css?family=Julius+Sans+One|Glegoo:400,700' rel='stylesheet' type='text/css'>
     <!--layout style-sheet -->
     <link rel="stylesheet" href="css/styles.css"/>
+    <link rel="stylesheet" href="css/jquery.datetimepicker.css"/>
     <!--theme style sheet -> start with redwhite -->
     <link rel="stylesheet" id="themeCss" href="css/redwhite.css"/>
 
     <!--link js sources-->
     <script src="js/lib/handlebars-v3.0.3.js" type="text/javascript"></script>
     <script src="js/lib/jquery-1.11.js"></script>
+    <script src="js/lib/jquery.datetimepicker.js"></script>
 
-    <!-- Template -->
-    <!--<script src="templates/NoteListRowTemplate.html"></script>-->
-
-    <!--Handlebars with STATIC JSON OBJECT in but utf-8 fails-->
-    <!--<script src="js/integratehb.js" charset="UTF-8"> </script>-->
     <script src="js/model/Note.js"></script>
     <script src="js/NoteFactory.js"></script>
     <script src="js/NoteProDAL.js"></script>
@@ -172,7 +169,7 @@
                             Importance:
                         </div>
                         <div class="taskedit-elem  second-cell edit-important ">
-                            <span>0 &nbsp;<input type="range" max="5" min="0" id="taskimportance" value='2'
+                            <span>0 &nbsp;<input type="range" max="5" min="0" id="taskimportance"
                                                  onchange="NoteProController.refreshEditView();"/>&nbsp;5 &nbsp;</span>
                             <br/>
                             <span id="importanceEdit">
@@ -188,8 +185,7 @@
                             Deadline:
                         </div>
                         <div class="taskedit-elem second-cell">
-                            <input id="dateFinishUntil" name="duedate"
-                                   type="datetime-local" accept=""/>
+                            <input id="dateFinishUntil" type="text"/>
                         </div>
                         <div class="taskedit-elem third-cell">
                             &nbsp;
@@ -230,6 +226,9 @@
         NoteProController.renderListControlls();
         NoteProController.prepareTemplate();
         NoteProController.showAllEntries();
+        $('#dateFinishUntil').datetimepicker({
+            format:'d.m.Y H:i'
+        });
     });
 
 </script>

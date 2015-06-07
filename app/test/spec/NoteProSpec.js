@@ -128,7 +128,7 @@ describe("NotePro", function () {
                 expect(note.importance).toBe(NoteConstants.IMPORTANCE_DEFAULT);
                 expect(note.dateFinished).toBe(NoteConstants.DATE_UNDEFINED);
 
-                var dateInOneWeek = new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000);
+                var dateInOneWeek = NoteConstants.DATE_FINISHED_UNTIL_DEFAULT();
                 expect(note.dateFinishUntil.getTime()).toBe(dateInOneWeek.getTime());
 
                 var dateCreatedDelta = new Date().getTime() + 1000; // one second tolerance
