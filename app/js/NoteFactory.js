@@ -2,7 +2,6 @@
  * Factory for note object
  */
 var NoteFactory = {
-    // TODO slider > führt icons nach, textinput nachher weg
     /**
      *
      * @param note

@@ -7,7 +7,7 @@ var NoteProController = {
      */
     viewConfig: {
         showAllEntries: true, // all or only pending entries
-        orderBy: Note.ORDERBY_FINISHDATE, // sort field
+        orderBy: NoteConstants.ORDERBY_FINISHDATE, // sort field
         orderASC: true
     },
 
@@ -39,6 +39,8 @@ var NoteProController = {
         $('.mainwrapper').css({
             'display': 'none'
         });
+
+        NoteProController.refreshEditView();
     },
 
     /**
@@ -100,7 +102,6 @@ var NoteProController = {
         NoteProController.viewConfig.showAllEntries = !NoteProController.viewConfig.showAllEntries;
         NoteProController.renderListControlls();
         NoteProController.showAllEntries();
-        return false; // todo prevent default
     },
 
     /**
@@ -110,14 +111,14 @@ var NoteProController = {
         var newOrder;
         switch (clickedElement.id) {
             case "byCreateDate":
-                newOrder = Note.ORDERBY_CREATEDATE;
+                newOrder = NoteConstants.ORDERBY_CREATEDATE;
                 break;
             case "byImportance":
-                newOrder = Note.ORDERBY_IMOPRTANCE;
+                newOrder = NoteConstants.ORDERBY_IMOPRTANCE;
                 break;
             case "byFinishDate":
             default:
-                newOrder = Note.ORDERBY_FINISHDATE;
+                newOrder = NoteConstants.ORDERBY_FINISHDATE;
                 break;
         }
 
@@ -130,22 +131,21 @@ var NoteProController = {
 
         NoteProController.renderListControlls();
         NoteProController.showAllEntries();
-        return false; // todo prevent default
     },
 
     /**
      * Sort buttons and toggler for all entries/only pending entries
      */
     renderListControlls: function () {
-        if (NoteProController.viewConfig.orderBy === Note.ORDERBY_FINISHDATE) {
+        if (NoteProController.viewConfig.orderBy === NoteConstants.ORDERBY_FINISHDATE) {
             $("#byFinishDate").attr('style', 'font-size: 20px'); // TODO als class anpassen
             $("#byCreateDate").attr('style', '');
             $("#byImportance").attr('style', '');
-        } else if (NoteProController.viewConfig.orderBy === Note.ORDERBY_CREATEDATE) {
+        } else if (NoteProController.viewConfig.orderBy === NoteConstants.ORDERBY_CREATEDATE) {
             $("#byFinishDate").attr('style', '');
             $("#byCreateDate").attr('style', 'font-size: 20px');
             $("#byImportance").attr('style', '');
-        } else if (NoteProController.viewConfig.orderBy === Note.ORDERBY_IMOPRTANCE) {
+        } else if (NoteProController.viewConfig.orderBy === NoteConstants.ORDERBY_IMOPRTANCE) {
             $("#byFinishDate").attr('style', '');
             $("#byCreateDate").attr('style', '');
             $("#byImportance").attr('style', 'font-size: 20px');
@@ -190,6 +190,7 @@ var NoteProController = {
             });
         // compile template
         NoteProController.noteListRowTemplate = Handlebars.compile(document.getElementById("viewNoteEntry").textContent);
+        NoteProController.importanceIcons = Handlebars.compile(document.getElementById("importanceIcons").textContent);
     },
 
     /**
@@ -200,5 +201,9 @@ var NoteProController = {
 
         var notes = NoteProDAL.readNotes(NoteProController.viewConfig, NoteProController.sort);
         $("#noteoutput").html(NoteProController.noteListRowTemplate(notes));
+    },
+
+    refreshEditView: function () {
+        $("#importanceEdit").html(NoteProController.importanceIcons($("#taskimportance").val()));
     }
 };
