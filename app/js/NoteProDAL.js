@@ -7,6 +7,13 @@ var NoteProDAL = {
      * @returns the id of the note, a text if an error occured
      */
     saveNote: function (note) {
+        // check fields
+        if (String(note.title).length <= 0) {
+            return "Missing title";
+        } else if (String(note.text).length <= 0) {
+            return "Missing text";
+        }
+
         if (note.id < 0) {
             note.id = NoteProDAL.getNextNoteId();
         }
