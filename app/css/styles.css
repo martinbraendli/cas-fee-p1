@@ -1,7 +1,6 @@
 @import url(../css/normalize.css);
 body {
   box-sizing: border-box;
-  background: #444444;
   font-family: 'Glegoo', serif;
   font-size: 1rem; }
 
@@ -16,23 +15,18 @@ body {
 
 #wrapper {
   margin: 0 auto;
-  max-width: 90%;
-  background: #F5F5F5;
-  border: 1px solid #111; }
+  max-width: 90%; }
 
 .head {
   display: block;
   position: relative; }
 
 .head h1 {
-  color: #400101;
   font-size: 3.6rem;
   font-family: 'Julius Sans One', sans-serif;
-  padding-top: 0.5rem;
-  border-top: 1px solid #400101; }
+  padding-top: 0.5rem; }
 
 .head h2 {
-  color: #400101;
   font-family: 'Glegoo', serif;
   text-align: left;
   padding-left: 1rem;
@@ -62,35 +56,19 @@ body {
   font-size: 0.9rem;
   width: 100%;
   padding-top: 1rem;
-  padding-bottom: 1rem;
-  background: #DEDEDE; }
+  padding-bottom: 1rem; }
 
 .btn {
   margin-left: 1rem; }
-
-.prominent a:link, a:visited {
-  border: 2px solid #9A0F16 !important;
-  background: #F2F2F2 !important; }
-
-.prominent a:hover {
-  color: #F2F2F2 !important;
-  background: #8C0303 !important;
-  border: 2px solid #111 !important; }
 
 .btn a:link, a:visited {
   padding: 0.4rem;
   border-radius: 3px;
   text-decoration: none;
-  color: #400101;
-  background: #C3C3C3;
-  border: 1px solid #8C8C8C;
   -webkit-transition: all 350ms ease;
           transition: all 350ms ease; }
 
 .btn a:hover {
-  color: #9A0F16;
-  background: #FFF;
-  border: 1px solid #9A0F16;
   -webkit-transition: all 350ms ease;
           transition: all 350ms ease; }
 
@@ -100,11 +78,7 @@ body {
   float: right;
   text-align: right; }
 
-.h3 {
-  color: #400101; }
-
 .sort-styles {
-  background: #8C0303;
   padding-top: 1rem;
   padding-bottom: 1rem;
   margin: 0;
@@ -112,7 +86,6 @@ body {
   font-size: 0.9rem; }
 
 .sort-styles h3 {
-  color: #F2F2F2;
   padding-left: 1rem;
   font-size: 1.2rem;
   padding-top: 1rem; }
@@ -125,29 +98,24 @@ body {
   display: inline;
   padding-right: 10px; }
 
+.showrightside {
+  float: right; }
+
 .sort-styles ul li a:link {
-  border: 1px solid #444444;
   padding: 7px;
   border-radius: 3px;
   text-decoration: none;
-  color: #400101;
-  background: #C3C3C3;
   -webkit-transition: background 350ms ease;
           transition: background 350ms ease; }
 
 .sort-styles ul li a:hover {
-  border: 1px solid #444444;
   padding: 7px;
   text-decoration: none;
-  color: #9A0F16;
-  background: #FFF;
   -webkit-transition: background 350ms ease;
           transition: background 350ms ease; }
 
-.sort-styles .active {
-  border: 2px solid #111 !important;
-  background: #9A0F16 !important;
-  color: #F2F2F2 !important; }
+.ontheRight {
+  margin-left: 100px; }
 
 .listnotes {
   display: table;
@@ -163,14 +131,12 @@ body {
   display: table-cell;
   font-family: 'Julius Sans One', sans-serif;
   font-weight: bold;
-  color: #111;
   font-size: 1.2rem;
   padding: 0.5rem; }
 
 .tasklistrow {
   display: table-row;
   width: 100%;
-  border-bottom: 1px solid #111;
   font-size: 0.9rem; }
 
 .list-elem {
@@ -187,8 +153,7 @@ body {
   padding: 0;
   margin: 0;
   font-size: 1rem;
-  font-weight: 600;
-  color: #111; }
+  font-weight: 600; }
 
 .task-desc p {
   overflow: hidden;
@@ -205,22 +170,16 @@ body {
   width: 20%; }
 
 .task-edit-btn a:link, a:visited {
-  border: 1px solid #444444;
   padding: 7px;
   border-radius: 3px;
   text-decoration: none;
-  color: #400101;
-  background: #C3C3C3;
   -webkit-transition: background 350ms ease;
           transition: background 350ms ease; }
 
 .task-edit-btn a:hover {
-  border: 1px solid #400101;
   padding: 7px;
   border-radius: 3px;
   text-decoration: none;
-  color: #9A0F16;
-  background: #FFF;
   -webkit-transition: background 350ms ease;
           transition: background 350ms ease; }
 
@@ -238,14 +197,12 @@ body {
   width: 100%; }
 
 .editheader {
-  background: #8C0303;
   padding-top: 1rem;
   padding-bottom: 1rem;
   margin: 0;
   font-weight: 400;
   font-size: 0.9rem; }
   .editheader h3 {
-    color: #F2F2F2;
     font-family: 'Glegoo', serif;
     padding-left: 1rem;
     font-size: 1.2rem;
@@ -276,8 +233,7 @@ body {
   text-align: right; }
 
 input[type="text"], [type="datetime-local"] {
-  width: 90%;
-  border: 1px solid #444444; }
+  width: 90%; }
 
 input[type="range"] {
   width: 75%;
@@ -285,13 +241,11 @@ input[type="range"] {
 
 #printvalue {
   width: 5% !important;
-  color: #400101;
   text-align: right; }
 
 textarea {
   width: 90%;
-  height: auto;
-  border: 1px solid #444444; }
+  height: auto; }
 
 .footer {
   font-family: 'Julius Sans One', sans-serif;
@@ -299,18 +253,45 @@ textarea {
   bottom: 0;
   width: 100%;
   border-top: 1px solid #333333;
-  padding-top: 1rem;
-  background: #111;
-  color: #F2F2F2; }
+  padding-top: 1rem; }
 
 .footer-desc {
   text-align: right;
   float: left;
-  padding-left: 1rem;
-  color: #444444; }
+  padding-left: 1rem; }
 
 .footer-copy {
   float: right;
-  color: #F2F2F2;
   font-size: 0.8rem;
   padding-right: 1rem; }
+
+#TaskDone {
+  display: none; }
+
+#TaskFailed {
+  display: none; }
+
+.popup {
+  position: absolute;
+  top: 20%;
+  left: 5%;
+  width: 90%;
+  z-index: 50; }
+
+.overlay {
+  min-width: 80%;
+  padding: 2rem; }
+  .overlay .message {
+    padding: 3rem; }
+    .overlay .message a:link, .overlay .message a:visited {
+      padding: 7px;
+      border-radius: 3px;
+      text-decoration: none;
+      -webkit-transition: background 350ms ease;
+              transition: background 350ms ease; }
+    .overlay .message a:hover {
+      padding: 7px;
+      border-radius: 3px;
+      text-decoration: none;
+      -webkit-transition: background 350ms ease;
+              transition: background 350ms ease; }

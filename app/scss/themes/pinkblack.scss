@@ -209,3 +209,54 @@ textarea:focus{
 .footer-copy{
   color: $bright;
 }
+
+// ----------------------------- Pop Up Screens
+
+#TaskDone{
+  display: none;
+}
+
+#TaskFailed{
+  display: none;
+}
+
+.popup{
+  position: absolute;
+  top:20%;
+  left:5%;
+  width: 90%;
+  z-index: 50;
+}
+
+.overlay{
+  min-width: 80%;
+  border: 1px solid $primaryColor;
+  background: $wrapperBackgroundColor;
+  padding: 2rem;
+  .message{
+    border: 2px dashed $primaryColor;
+    padding: 3rem;
+    h2{
+      color: $secondaryColor;
+    }
+    a:link, a:visited{
+      border: 1px solid $linkBorderColor;
+      padding: 7px;
+      border-radius: 3px;
+      text-decoration: none;
+      color: $primaryColor;
+      background: $linkBackground;
+      transition: background 350ms ease;
+    }
+
+    a:hover{
+      border: 1px solid $primaryColor;
+      padding: 7px;
+      border-radius: 3px;
+      text-decoration: none;
+      color: $linkHoverColor;
+      background: $linkHoverBackground;
+      transition: background 350ms ease;
+    }
+  }
+}

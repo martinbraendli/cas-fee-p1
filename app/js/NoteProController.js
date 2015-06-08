@@ -159,8 +159,10 @@ var NoteProController = {
 
         if (NoteProController.viewConfig.showAllEntries) {
             $("#showAllCompleted").html("Show only pendings");
+            $("#showAllCompleted").attr('class', '');
         } else {
-            $("#showAllCompleted").html("Show only pendings AKTIV");
+            $("#showAllCompleted").html("Show all Tasks");
+            $("#showAllCompleted").attr('class', 'active');
         }
     },
 

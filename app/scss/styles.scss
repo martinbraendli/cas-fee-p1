@@ -5,7 +5,7 @@
 // ---------------general declarations
 body{
   box-sizing: border-box;
-  background: #444444;
+  //background: #444444;
   //font-family: 'Julius Sans One', sans-serif;
   font-family: 'Glegoo', serif;
   font-size: 1rem;
@@ -24,7 +24,7 @@ body{
 
 
 // --------------style definition & variables
-//// red & white theme
+// red & white theme
 //$wrapperBackgroundColor:     #F5F5F5;
 //$primaryColor:               #400101;
 //$primaryColorBG:             #F2F2F2;
@@ -46,8 +46,8 @@ body{
 #wrapper{
   margin: 0 auto;
   max-width: 90%;
-  background: $wrapperBackgroundColor;
-  border: 1px solid #111;
+  //background: $wrapperBackgroundColor;
+  //border: 1px solid #111;
   //padding: 1rem 1rem 0 1rem;
 }
 
@@ -59,15 +59,15 @@ body{
 }
 
 .head h1{
-  color: $primaryColor;
+  //color: $primaryColor;
   font-size: 3.6rem;
   font-family: 'Julius Sans One', sans-serif;
   padding-top: 0.5rem;
-  border-top: 1px solid $primaryColor;
+  //border-top: 1px solid $primaryColor;
 }
 
 .head h2{
-  color: $primaryColor;
+  //color: $primaryColor;
   font-family: 'Glegoo', serif;
   text-align: left;
   padding-left: 1rem;
@@ -103,7 +103,7 @@ body{
   width: 100%;
   padding-top: 1rem;
   padding-bottom: 1rem;
-  background:#DEDEDE;
+  //background:#DEDEDE;
 }
 
 .btn{
@@ -112,30 +112,30 @@ body{
 }
 
 .prominent a:link, a:visited{
-  border: 2px solid $primaryColorFocus !important;
-  background: $bright !important;
+  //border: 2px solid $primaryColorFocus !important;
+  //background: $bright !important;
 }
 
 .prominent a:hover{
-  color: $bright !important;
-  background: $secondaryColor !important;
-  border: 2px solid $dark !important;
+  //color: $bright !important;
+  //background: $secondaryColor !important;
+  //border: 2px solid $dark !important;
 }
 
 .btn a:link, a:visited{
   padding: 0.4rem;
   border-radius: 3px;
   text-decoration: none;
-  color: $primaryColor;
-  background: $linkBackground;
-  border: 1px solid $tertiaryColor;
+  //color: $primaryColor;
+  //background: $linkBackground;
+  //border: 1px solid $tertiaryColor;
   transition: all 350ms ease;
 }
 
 .btn a:hover{
-  color: $linkHoverColor;
-  background: $linkHoverBackground;
-  border: 1px solid $linkHoverColor;
+  //color: $linkHoverColor;
+  //background: $linkHoverBackground;
+  //border: 1px solid $linkHoverColor;
   transition: all 350ms ease;
 }
 
@@ -147,13 +147,13 @@ body{
 }
 
 .h3{
-  color: $primaryColor;
+  //color: $primaryColor;
 }
 
 //-------------------------------sort by
 
 .sort-styles{
-  background: $secondaryColor;
+  //background: $secondaryColor;
   padding-top: 1rem;
   padding-bottom: 1rem;
   margin: 0;
@@ -161,7 +161,7 @@ body{
   font-size: 0.9rem;
 }
 .sort-styles h3{
-  color: $bright;
+  //color: $bright;
   padding-left: 1rem;
   font-size: 1.2rem;
   padding-top: 1rem;
@@ -177,30 +177,39 @@ body{
   padding-right: 10px;
 }
 
+.showrightside{
+  float: right;
+}
+
 .sort-styles ul li a:link{
-  border: 1px solid $linkBorderColor;
+  //border: 1px solid $linkBorderColor;
   padding: 7px;
   border-radius: 3px;
   text-decoration: none;
-  color: $primaryColor;
-  background: $linkBackground;
+  //color: $primaryColor;
+  //background: $linkBackground;
   transition: background 350ms ease;
 }
 
 .sort-styles ul li a:hover{
-  border: 1px solid $linkBorderColor;
+  //border: 1px solid $linkBorderColor;
   padding: 7px;
   text-decoration: none;
-  color: $linkHoverColor;
-  background: $linkHoverBackground;
+  //color: $linkHoverColor;
+  //background: $linkHoverBackground;
   transition: background 350ms ease;
 }
 
 .sort-styles .active{
-  border:  2px solid $linkBorderColorActive !important;
-  background: $primaryColorFocus !important;
-  color: $bright !important;
+  //border:  2px solid $linkBorderColorActive !important;
+  //background: $primaryColorFocus !important;
+  //color: $bright !important;
 }
+
+.ontheRight {
+  margin-left: 100px;
+}
+
 
 //---------------------------- Tasklist styles
 
@@ -221,7 +230,7 @@ body{
   display: table-cell;
   font-family: 'Julius Sans One', sans-serif;
   font-weight: bold;
-  color: $dark;
+  //color: $dark;
   font-size: 1.2rem;
   //background: #dedede;
   padding: 0.5rem;
@@ -231,7 +240,7 @@ body{
 .tasklistrow{
   display: table-row;
   width: 100%;
-  border-bottom: 1px solid $dark;
+  //border-bottom: 1px solid $dark;
   font-size: 0.9rem;
 }
 
@@ -253,7 +262,7 @@ body{
   margin: 0;
   font-size: 1rem;
   font-weight: 600;
-  color: $dark;
+  //color: $dark;
 }
 .task-desc p{
   overflow: hidden;
@@ -277,22 +286,22 @@ body{
 }
 
 .task-edit-btn a:link, a:visited{
-  border: 1px solid $linkBorderColor;
+  //border: 1px solid $linkBorderColor;
   padding: 7px;
   border-radius: 3px;
   text-decoration: none;
-  color: $primaryColor;
-  background: $linkBackground;
+  //color: $primaryColor;
+  //background: $linkBackground;
   transition: background 350ms ease;
 }
 
 .task-edit-btn a:hover{
-  border: 1px solid $primaryColor;
+  //border: 1px solid $primaryColor;
   padding: 7px;
   border-radius: 3px;
   text-decoration: none;
-  color: $linkHoverColor;
-  background: $linkHoverBackground;
+  //color: $linkHoverColor;
+  //background: $linkHoverBackground;
   transition: background 350ms ease;
 }
 
@@ -326,14 +335,14 @@ body{
 
 
 .editheader{
-  background: $secondaryColor;
+  //background: $secondaryColor;
   padding-top: 1rem;
   padding-bottom: 1rem;
   margin: 0;
   font-weight: 400;
   font-size: 0.9rem;
   h3{
-    color: $bright;
+    //color: $bright;
     font-family:'Glegoo', serif;
     padding-left: 1rem;
     font-size: 1.2rem;
@@ -377,7 +386,7 @@ body{
 
 input[type="text"],[type="datetime-local"] {
   width: 90%;
-  border: 1px solid $linkBorderColor;
+  //border: 1px solid $linkBorderColor;
 }
 
 input[type="range"]{
@@ -387,16 +396,14 @@ input[type="range"]{
 
 #printvalue {
   width: 5% !important;
-  color: $primaryColor;
+  //color: $primaryColor;
   text-align: right;
 }
 textarea {
   width: 90%;
   height: auto;
-  border: 1px solid $linkBorderColor;
+  //border: 1px solid $linkBorderColor;
 }
-
-
 
 
 //-------------------------- footer styles
@@ -411,20 +418,74 @@ footer{
   width: 100%;
   border-top: 1px solid #333333;
   padding-top: 1rem;
-  background: $dark;
-  color: $primaryColorBG;
+  //background: $dark;
+  //color: $primaryColorBG;
 }
 
 .footer-desc{
   text-align: right;
   float: left;
   padding-left: 1rem;
-  color: $linkBorderColor;
+  //color: $linkBorderColor;
 }
 
 .footer-copy{
   float: right;
-  color: $bright;
+  //color: $bright;
   font-size: 0.8rem;
   padding-right: 1rem;
 }
+
+
+// ----------------------------- Pop Up Screens
+
+#TaskDone{
+  display: none;
+}
+
+#TaskFailed{
+  display: none;
+}
+
+.popup{
+  position: absolute;
+  top:20%;
+  left:5%;
+  width: 90%;
+  z-index: 50;
+}
+
+.overlay{
+  min-width: 80%;
+  //border: 1px solid $primaryColor;
+  //background: $wrapperBackgroundColor;
+  padding: 2rem;
+  .message{
+    //border: 2px dashed $primaryColor;
+    padding: 3rem;
+    h2{
+      //color: $secondaryColor;
+    }
+    a:link, a:visited{
+      //border: 1px solid $linkBorderColor;
+      padding: 7px;
+      border-radius: 3px;
+      text-decoration: none;
+      //color: $primaryColor;
+      //background: $linkBackground;
+      transition: background 350ms ease;
+    }
+
+    a:hover{
+      //border: 1px solid $primaryColor;
+      padding: 7px;
+      border-radius: 3px;
+      text-decoration: none;
+      //color: $linkHoverColor;
+      //background: $linkHoverBackground;
+      transition: background 350ms ease;
+    }
+  }
+}
+
+

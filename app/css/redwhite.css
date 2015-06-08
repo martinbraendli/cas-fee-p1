@@ -73,6 +73,11 @@ body {
   -webkit-transition: background 350ms ease;
           transition: background 350ms ease; }
 
+.sort-styles .active {
+  border: 2px solid #111 !important;
+  background: #9A0F16 !important;
+  color: #F2F2F2 !important; }
+
 .list-head-elem {
   color: #400101;
   background: #F2F2F2; }
@@ -127,3 +132,45 @@ textarea:focus {
 
 .footer-copy {
   color: #F2F2F2; }
+
+#TaskDone {
+  display: none; }
+
+#TaskFailed {
+  display: none; }
+
+.popup {
+  position: absolute;
+  top: 20%;
+  left: 5%;
+  width: 90%;
+  z-index: 50; }
+
+.overlay {
+  min-width: 80%;
+  border: 1px solid #400101;
+  background: #F5F5F5;
+  padding: 2rem; }
+  .overlay .message {
+    border: 2px dashed #400101;
+    padding: 3rem; }
+    .overlay .message h2 {
+      color: #8C0303; }
+    .overlay .message a:link, .overlay .message a:visited {
+      border: 1px solid #444444;
+      padding: 7px;
+      border-radius: 3px;
+      text-decoration: none;
+      color: #400101;
+      background: #C3C3C3;
+      -webkit-transition: background 350ms ease;
+              transition: background 350ms ease; }
+    .overlay .message a:hover {
+      border: 1px solid #400101;
+      padding: 7px;
+      border-radius: 3px;
+      text-decoration: none;
+      color: #9A0F16;
+      background: #FFF;
+      -webkit-transition: background 350ms ease;
+              transition: background 350ms ease; }

@@ -142,3 +142,45 @@ textarea:focus {
 
 .footer-copy {
   color: #999; }
+
+#TaskDone {
+  display: none; }
+
+#TaskFailed {
+  display: none; }
+
+.popup {
+  position: absolute;
+  top: 20%;
+  left: 5%;
+  width: 90%;
+  z-index: 50; }
+
+.overlay {
+  min-width: 80%;
+  border: 1px solid #ff9d0b;
+  background: #222222;
+  padding: 2rem; }
+  .overlay .message {
+    border: 2px dashed #ff9d0b;
+    padding: 3rem; }
+    .overlay .message h2 {
+      color: #eec68b; }
+    .overlay .message a:link, .overlay .message a:visited {
+      border: 1px solid #eec68b;
+      padding: 7px;
+      border-radius: 3px;
+      text-decoration: none;
+      color: #ff9d0b;
+      background: #C3C3C3;
+      -webkit-transition: background 350ms ease;
+              transition: background 350ms ease; }
+    .overlay .message a:hover {
+      border: 1px solid #ff9d0b;
+      padding: 7px;
+      border-radius: 3px;
+      text-decoration: none;
+      color: #ffab44;
+      background: #FFF;
+      -webkit-transition: background 350ms ease;
+              transition: background 350ms ease; }
