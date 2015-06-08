@@ -144,17 +144,17 @@ var NoteProController = {
      */
     renderListControlls: function () {
         if (NoteProController.viewConfig.orderBy === NoteConstants.ORDERBY_FINISHDATE) {
-            $("#byFinishDate").attr('style', 'font-size: 20px'); // TODO als class anpassen
-            $("#byCreateDate").attr('style', '');
-            $("#byImportance").attr('style', '');
+            $("#byFinishDate").attr('class', 'active'); // DONE als class anpassen
+            $("#byCreateDate").attr('class', '');
+            $("#byImportance").attr('class', '');
         } else if (NoteProController.viewConfig.orderBy === NoteConstants.ORDERBY_CREATEDATE) {
-            $("#byFinishDate").attr('style', '');
-            $("#byCreateDate").attr('style', 'font-size: 20px');
-            $("#byImportance").attr('style', '');
+            $("#byFinishDate").attr('class', '');
+            $("#byCreateDate").attr('class', 'active');
+            $("#byImportance").attr('class', '');
         } else if (NoteProController.viewConfig.orderBy === NoteConstants.ORDERBY_IMOPRTANCE) {
-            $("#byFinishDate").attr('style', '');
-            $("#byCreateDate").attr('style', '');
-            $("#byImportance").attr('style', 'font-size: 20px');
+            $("#byFinishDate").attr('class', '');
+            $("#byCreateDate").attr('class', '');
+            $("#byImportance").attr('class', 'active');
         }
 
         if (NoteProController.viewConfig.showAllEntries) {

@@ -77,6 +77,12 @@ body {
   -webkit-transition: background 350ms ease;
           transition: background 350ms ease; }
 
+.sort-styles .active {
+  border: 2px solid #111 !important;
+  background: #d535dd !important;
+  color: #111 !important;
+  font-weight: 600; }
+
 .list-head-elem {
   color: #ff1bb1;
   background: #111; }

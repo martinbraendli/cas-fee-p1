@@ -144,6 +144,11 @@ body {
   -webkit-transition: background 350ms ease;
           transition: background 350ms ease; }
 
+.sort-styles .active {
+  border: 2px solid #111 !important;
+  background: #9A0F16 !important;
+  color: #F2F2F2 !important; }
+
 .listnotes {
   display: table;
   border-collapse: collapse;

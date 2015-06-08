@@ -1,35 +1,34 @@
-// Style Red n White
+// Style Pink is the new black - wäää pfui für meitli
 
-
-$wrapperBackgroundColor:     #F5F5F5;
-$primaryColor:               #400101;
+$wrapperBackgroundColor:     #444444;
+$primaryColor:               #ff1bb1;
 $primaryColorBG:             #F2F2F2;
-$secondaryColor:             #8C0303;
+$secondaryColor:             #c575ea;
 $tertiaryColor:              #8C8C8C;
 
-$primaryColorFocus:          #9A0F16;
+$primaryColorFocus:          #d535dd;
 $dark:                       #111;
 $bright:                     #F2F2F2;
 $lightgray:                  #D2D2D2;
-$graymiddle:                 #777777;
-$darkgray:                   #444444;
+$graymiddle:                 #656565;
+$darkgray:                   #444;
 
-$linkBackground:             #C3C3C3;
+$linkBackground:             #3D3D3D;
 $linkColor:                  $primaryColor;
 $linkHoverColor:             $primaryColorFocus;
 $linkHoverBackground:        #FFF;
-$linkBorderColor:            $darkgray;
+$linkBorderColor:            #d535dd;
 $linkBorderColorActive:      $dark;
 
 
 body {
-  background: $darkgray;
+  background: $dark;
 }
 
 
 #wrapper{
   background: $wrapperBackgroundColor;
-  //padding: 1rem 1rem 0 1rem;
+  border: 1px solid $graymiddle;
 }
 
 .head h1{
@@ -46,12 +45,12 @@ body {
 }
 
 
-.btn a:link, a:visited{
+.btn a:link{
   padding: 0.4rem;
   border-radius: 3px;
   text-decoration: none;
   color: $primaryColor;
-  //background: $linkBackground;
+  background: $linkBackground;
   border: 1px solid $tertiaryColor;
   transition: all 350ms ease;
 }
@@ -65,27 +64,26 @@ body {
 
 .prominent a:link{
   border: 2px solid $primaryColorFocus !important;
-  background: $bright !important;
+  background: $darkgray !important;
 }
 
 .prominent a:hover{
-  color: $bright !important;
-  background: $secondaryColor !important;
-  border: 2px solid $dark !important;
+  color: $primaryColor !important;
+  background: $dark !important;
+  border: 2px solid $secondaryColor !important;
 }
 
 
 
 .menu-styles{
   color: $secondaryColor;
-  background:$lightgray;
+  background:$dark;
 }
-
 
 
 //-------------------------------sort by
 .sort-styles{
-  background: $bright;
+  background: $graymiddle;
 }
 
 .sort-styles h3{
@@ -94,21 +92,25 @@ body {
 
 .sort-styles ul li a:link{
   border: 1px solid $primaryColor;
-  color: $bright;
-  background: $tertiaryColor;
+  color: $primaryColor;
+  background: #00ffff;
 }
 
 .sort-styles ul li a:hover{
   border: 1px solid $linkHoverColor;
   color: $linkHoverColor;
-  background: $bright;
+  background: $dark;
 }
 
 .editheader{
   background: $secondaryColor;
   h3{
-    color: $bright;
+    color: $dark;
   }
+}
+
+.edittaskrow{
+  color: $secondaryColor;
 }
 
 .sort-styles ul li a:link{
@@ -117,17 +119,22 @@ body {
   border-radius: 3px;
   text-decoration: none;
   color: $primaryColor;
-  background: $lightgray;
+  background: $darkgray;
   transition: background 350ms ease;
 }
 
-
+.sort-styles .active {
+  border:  2px solid $linkBorderColorActive !important;
+  background: $primaryColorFocus !important;
+  color: $dark !important;
+  font-weight: 600;
+}
 //---------------------------- Tasklist styles
 
 
 .list-head-elem{
   color: $primaryColor;
-  background: $primaryColorBG;
+  background: $dark;
 }
 
 
@@ -137,10 +144,12 @@ body {
 
 .tasklistrow{
   border-bottom: 1px solid $secondaryColor;
+  background: #444444;
 }
 
 .list-elem{
   color: $secondaryColor;
+  background: $darkgray;
 }
 
 .task-desc h4{
@@ -148,14 +157,13 @@ body {
 }
 
 .task-edit-btn a:link, a:visited{
-  color: $dark;
-  background: $lightgray;
+  color: $primaryColor;
+  background: $graymiddle;
 }
 
 .task-edit-btn a:hover{
-  color: $primaryColor;
-  background: $bright;
   border: 1px solid $primaryColor;
+  background: $dark;
 }
 
 #printvalue {
@@ -168,13 +176,23 @@ body {
 
 input[type="text"],[type="datetime-local"] {
   border: 1px solid $linkBorderColor;
+  background: $graymiddle;
 }
 
+input:focus[type="text"],[type="datetime-local"]:focus {
+  border: 1px solid $primaryColor;
+  background: $linkBackground;
+}
 
-textarea {
+textarea{
   border: 1px solid $linkBorderColor;
+  background: $graymiddle;
 }
 
+textarea:focus{
+  border: 1px solid $primaryColor;
+  background: $linkBackground;
+}
 
 
 //-------------------------- footer styles

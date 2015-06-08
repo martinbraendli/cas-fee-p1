@@ -91,6 +91,12 @@ body {
   }
 }
 
+.sort-styles .active {
+  border:  2px solid $dark !important;
+  background: $primaryColorFocus !important;
+  color: $bright !important;
+  font-weight: 600;
+}
 
 
 //---------------------------- Tasklist styles

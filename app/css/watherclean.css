@@ -49,6 +49,12 @@ body {
   .editheader h3 {
     color: #F2F2F2; }
 
+.sort-styles .active {
+  border: 2px solid #222 !important;
+  background: #86CADC !important;
+  color: #F2F2F2 !important;
+  font-weight: 600; }
+
 .list-head-elem {
   color: #3DACC9;
   background: #F2F2F2; }

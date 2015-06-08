@@ -24,24 +24,24 @@ body{
 
 
 // --------------style definition & variables
-// red & white theme
-$wrapperBackgroundColor:     #F5F5F5;
-$primaryColor:               #400101;
-$primaryColorBG:             #F2F2F2;
-$secondaryColor:             #8C0303;
-$tertiaryColor:              #8C8C8C;
-
-$primaryColorFocus:          #9A0F16;
-$dark:                       #111;
-$bright:                     #F2F2F2;
-$darkgray:                   #444444;
-
-$linkBackground:             #C3C3C3;
-$linkColor:                  $primaryColor;
-$linkHoverColor:             $primaryColorFocus;
-$linkHoverBackground:        #FFF;
-$linkBorderColor:            $darkgray;
-$linkBorderColorActive:      $dark;
+//// red & white theme
+//$wrapperBackgroundColor:     #F5F5F5;
+//$primaryColor:               #400101;
+//$primaryColorBG:             #F2F2F2;
+//$secondaryColor:             #8C0303;
+//$tertiaryColor:              #8C8C8C;
+//
+//$primaryColorFocus:          #9A0F16;
+//$dark:                       #111;
+//$bright:                     #F2F2F2;
+//$darkgray:                   #444444;
+//
+//$linkBackground:             #C3C3C3;
+//$linkColor:                  $primaryColor;
+//$linkHoverColor:             $primaryColorFocus;
+//$linkHoverBackground:        #FFF;
+//$linkBorderColor:            $darkgray;
+//$linkBorderColorActive:      $dark;
 
 #wrapper{
   margin: 0 auto;
@@ -194,6 +194,12 @@ $linkBorderColorActive:      $dark;
   color: $linkHoverColor;
   background: $linkHoverBackground;
   transition: background 350ms ease;
+}
+
+.sort-styles .active{
+  border:  2px solid $linkBorderColorActive !important;
+  background: $primaryColorFocus !important;
+  color: $bright !important;
 }
 
 //---------------------------- Tasklist styles

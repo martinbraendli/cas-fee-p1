@@ -1,0 +1,222 @@
+
+
+$wrapperBackgroundColor:     #222222;
+$primaryColor:               #ff9d0b;
+$primaryColorBG:             #262626;
+$secondaryColor:             #eec68b;
+$tertiaryColor:              #8C8C8C;
+
+$primaryColorFocus:          #ff9d0b;
+$dark:                       #111;
+$bright:                     #999;
+$lightgray:                  #D2D2D2;
+$graymiddle:                 #777777;
+$darkgray:                   #444444;
+
+$linkBackground:             #C3C3C3;
+$linkColor:                  $primaryColor;
+$linkHoverColor:             #ffab44;
+$linkHoverBackground:        #FFF;
+$linkBorderColor:            #eec68b;
+$linkBorderColorActive:      $dark;
+
+
+body {
+  background: $dark;
+}
+
+#wrapper{
+  background: $wrapperBackgroundColor;
+  //padding: 1rem 1rem 0 1rem;
+}
+
+.head h1{
+  color: $secondaryColor;
+  border-top: 1px solid $primaryColor;
+}
+
+.head h2{
+  color: $primaryColor;
+}
+
+.h3{
+  color: $primaryColor;
+}
+
+
+.btn a:link, a:visited{
+  padding: 0.4rem;
+  border-radius: 3px;
+  text-decoration: none;
+  color: $primaryColor;
+  //background: $linkBackground;
+  border: 1px solid $tertiaryColor;
+  transition: all 350ms ease;
+}
+
+.btn a:hover{
+  color: $linkHoverColor;
+  background: $linkHoverBackground;
+  border: 1px solid $linkHoverColor;
+  //transition: all 350ms ease;
+}
+
+.prominent a:link{
+  border: 2px solid $primaryColorFocus !important;
+  background: $darkgray !important;
+}
+
+.prominent a:hover{
+  color: $primaryColor !important;
+  background: $dark !important;
+  border: 2px solid $secondaryColor !important;
+}
+
+
+
+.menu-styles{
+  color: $secondaryColor;
+  background:$darkgray;
+}
+
+
+
+//-------------------------------sort by
+.sort-styles{
+  background: $bright;
+}
+
+.sort-styles h3{
+  color: $dark;
+}
+
+.sort-styles ul li a:link{
+  border: 1px solid $primaryColor;
+  color: $primaryColor;
+  background: $darkgray;
+}
+
+.sort-styles ul li a:hover{
+  border: 1px solid $linkHoverColor;
+  color: $linkHoverColor;
+  background: $dark;
+}
+
+.editheader{
+  background: $secondaryColor;
+  h3{
+    color: $dark;
+  }
+}
+
+.edittaskrow{
+  color: $secondaryColor;
+}
+
+.sort-styles ul li a:link{
+  border: 1px solid $linkBorderColor;
+  padding: 7px;
+  border-radius: 3px;
+  text-decoration: none;
+  color: $primaryColor;
+  background: $linkBackground;
+  transition: background 350ms ease;
+}
+
+.sort-styles .active {
+  border:  2px solid $linkBorderColorActive !important;
+  background: $primaryColorFocus !important;
+  color: $dark !important;
+  font-weight: 600;
+}
+
+//---------------------------- Tasklist styles
+
+
+.list-head-elem{
+  color: $primaryColor;
+  background: $primaryColorBG;
+}
+
+
+.listheader{
+  border-bottom: 1px solid $dark;
+}
+
+.tasklistrow{
+  border-bottom: 1px solid $secondaryColor;
+}
+
+.list-elem{
+  color: $secondaryColor;
+}
+
+.task-desc h4{
+  color: $primaryColor;
+}
+
+.task-edit-btn a:link, a:visited{
+  color: $primaryColor;
+}
+
+.task-edit-btn a:hover{
+  border: 1px solid $primaryColor;
+}
+
+#printvalue {
+  color: $primaryColor;
+}
+
+.task-edit-btn a:link, a:visited{
+  border: 1px solid $linkBorderColor;
+  color: $primaryColor;
+  background: $graymiddle;
+}
+
+.task-edit-btn a:hover{
+  border: 1px solid $primaryColor;
+  color: $linkHoverColor;
+  background: $darkgray;
+  //transition: background 350ms ease;
+}
+
+
+// ----------------------------- Edit Styles
+
+input[type="text"],[type="datetime-local"] {
+  border: 1px solid $linkBorderColor;
+  background: $graymiddle;
+}
+
+input:focus[type="text"],[type="datetime-local"]:focus {
+  border: 1px solid $primaryColor;
+  background: $linkBackground;
+}
+
+textarea{
+  border: 1px solid $linkBorderColor;
+  background: $graymiddle;
+}
+
+textarea:focus{
+  border: 1px solid $primaryColor;
+  background: $linkBackground;
+}
+
+
+
+
+//-------------------------- footer styles
+.footer{
+  border-top: 1px solid $primaryColor;
+  color: $primaryColorBG;
+  background: $dark;
+}
+
+.footer-desc{
+  color: $linkBorderColor;
+}
+
+.footer-copy{
+  color: $bright;
+}
