@@ -13,14 +13,14 @@ var NoteConstants = {
     /**
      * Order
      */
-    ORDERBY_FINISHDATE: 'finishDate',
+    ORDERBY_FINISH_UNTIL_DATE: 'finishDate',
     ORDERBY_CREATEDATE: 'createDate',
-    ORDERBY_IMOPRTANCE: 'importance',
+    ORDERBY_IMPORTANCE: 'importance',
 
     /**
      * One week in future
      */
-    DATE_FINISHED_UNTIL_DEFAULT: function(){
+    DATE_FINISHED_UNTIL_DEFAULT: function () {
         return new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000);
     }
 };
@@ -72,7 +72,7 @@ function Note() {
             if (value === NoteConstants.DATE_UNDEFINED) {
                 dateCreated = value;
             } else if (typeof value == 'string') {
-                dateCreated = new Date(Date.parse(value));
+                dateCreated = parseDate(value);
             } else if (typeof value == 'object') {
                 dateCreated = value;
             }
@@ -87,7 +87,7 @@ function Note() {
             if (value === NoteConstants.DATE_UNDEFINED) {
                 dateFinishUntil = value;
             } else if (typeof value == 'string') {
-                dateFinishUntil = new Date(Date.parse(value));
+                dateFinishUntil = parseDate(value);
             } else if (typeof value == 'object') {
                 dateFinishUntil = value;
             }
@@ -102,7 +102,7 @@ function Note() {
             if (value === NoteConstants.DATE_UNDEFINED) {
                 dateFinished = value;
             } else if (typeof value == 'string') {
-                dateFinished = new Date(Date.parse(value));
+                dateFinished = parseDate(value);
             } else if (typeof value == 'object') {
                 dateFinished = value;
             }
@@ -140,4 +140,24 @@ function Note() {
             }
         }
     });
+
+    var parseDate = function (dateString) {
+        if (dateString === NoteConstants.DATE_UNDEFINED) {
+            return dateString;
+        }
+
+        // 2015-06-09T19:22:43.629Z
+        if (dateString.indexOf("-") > -1) {
+            return new Date(dateString);
+        }
+
+        // 16.06.2015 21:27
+        var d = dateString.substring(0, 2);
+        var m = dateString.substring(3, 5);
+        var y = dateString.substring(6, 10);
+        var h = dateString.substring(11, 13);
+        var min = dateString.substring(14, 16);
+
+        return new Date(y + "-" + m + "-" + d + " " + h + ":" + min);
+    }
 }

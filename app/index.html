@@ -124,7 +124,7 @@
                         <a href="#" id="byImportance"
                            onclick="NoteProController.switchOrderBy(this)">Show by Importance</a>
                     </li>
-                    <li class="showrightside"><!-- DONE: TODO wenn möglich von den sortern trennen, rechtsbündig? -->
+                    <li class="showrightside">
                         <a href="#" id="showAllCompleted"
                            onclick="NoteProController.toggleShowAllEntries()">...</a>
                     </li>
@@ -164,7 +164,7 @@
                 <form class="edittask">
                     <div class="edittaskrow">
                         <div class="taskedit-elem first-cell">
-                            Task Title:
+                            <label for="editTitle">Task Title:</label>
                         </div>
                         <div class="taskedit-elem  second-cell">
                             <input id="editTitle" name="tasktitle"
@@ -176,11 +176,11 @@
                     </div>
                     <div class="edittaskrow">
                         <div class="taskedit-elem first-cell">
-                            Description:
+                            <label for="editText">Description:</label>
                         </div>
                         <div class="taskedit-elem second-cell">
                             <textarea id="editText" name="task-desc"
-                                      rows="3" value="my new task" maxlength="500">your task goes here.. </textarea>
+                                      rows="3" maxlength="500">your task goes here..</textarea>
                         </div>
                         <div class="taskedit-elem third-cell">
                             &nbsp;
@@ -188,7 +188,7 @@
                     </div>
                     <div class="edittaskrow">
                         <div class="taskedit-elem first-cell">
-                            Importance:
+                            <label for="taskimportance">Importance:</label>
                         </div>
                         <div class="taskedit-elem  second-cell edit-important ">
                             <span>0 &nbsp;<input type="range" max="5" min="0" id="taskimportance"
@@ -204,7 +204,7 @@
                     </div>
                     <div class="edittaskrow">
                         <div class="taskedit-elem first-cell">
-                            Deadline:
+                          <label for="dateFinishUntil">Deadline:</label>
                         </div>
                         <div class="taskedit-elem second-cell">
                             <input id="dateFinishUntil" type="text"/>

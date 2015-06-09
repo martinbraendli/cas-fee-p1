@@ -117,12 +117,12 @@ var NoteProDAL = {
             case NoteConstants.ORDERBY_CREATEDATE:
                 compareNote = function (n1, n2) {
                     if (asc) {
-                        return n1.dateCreated - n2.dateCreated;
+                        return n1.dateCreated.getTime() - n2.dateCreated.getTime();
                     }
-                    return n2.dateCreated - n1.dateCreated;
+                    return n2.dateCreated.getTime() - n1.dateCreated.getTime();
                 };
                 break;
-            case NoteConstants.ORDERBY_IMOPRTANCE:
+            case NoteConstants.ORDERBY_IMPORTANCE:
                 compareNote = function (n1, n2) {
                     if (asc) {
                         return n1.importance - n2.importance;
@@ -130,13 +130,13 @@ var NoteProDAL = {
                     return n2.importance - n1.importance;
                 };
                 break;
-            case NoteConstants.ORDERBY_FINISHDATE:
+            case NoteConstants.ORDERBY_FINISH_UNTIL_DATE:
             default:
                 compareNote = function (n1, n2) {
                     if (asc) {
-                        return n1.dateFinishUntil - n2.dateFinishUntil;
+                        return n1.dateFinishUntil.getTime() - n2.dateFinishUntil.getTime();
                     }
-                    return n2.dateFinishUntil - n1.dateFinishUntil;
+                    return n2.dateFinishUntil.getTime() - n1.dateFinishUntil.getTime();
                 };
                 break;
         }

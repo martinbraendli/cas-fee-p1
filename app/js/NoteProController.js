@@ -7,7 +7,7 @@ var NoteProController = {
      */
     viewConfig: {
         showAllEntries: true, // all or only pending entries
-        orderBy: NoteConstants.ORDERBY_FINISHDATE, // sort field
+        orderBy: NoteConstants.ORDERBY_FINISH_UNTIL_DATE, // sort field
         orderASC: true
     },
 
@@ -76,7 +76,7 @@ var NoteProController = {
         note.text = $("#editText").val();
         var dateFinishUntil = $("#dateFinishUntil").val();
         if (dateFinishUntil.length > 0) {
-            note.dateFinishUntil = new Date(Date.parse($("#dateFinishUntil").val()));
+            note.dateFinishUntil = dateFinishUntil;
         } else {
             note.dateFinishUntil = Note.DATE_UNDEFINED;
         }
@@ -120,11 +120,11 @@ var NoteProController = {
                 newOrder = NoteConstants.ORDERBY_CREATEDATE;
                 break;
             case "byImportance":
-                newOrder = NoteConstants.ORDERBY_IMOPRTANCE;
+                newOrder = NoteConstants.ORDERBY_IMPORTANCE;
                 break;
             case "byFinishDate":
             default:
-                newOrder = NoteConstants.ORDERBY_FINISHDATE;
+                newOrder = NoteConstants.ORDERBY_FINISH_UNTIL_DATE;
                 break;
         }
 
@@ -143,7 +143,7 @@ var NoteProController = {
      * Sort buttons and toggler for all entries/only pending entries
      */
     renderListControlls: function () {
-        if (NoteProController.viewConfig.orderBy === NoteConstants.ORDERBY_FINISHDATE) {
+        if (NoteProController.viewConfig.orderBy === NoteConstants.ORDERBY_FINISH_UNTIL_DATE) {
             $("#byFinishDate").attr('class', 'active'); // DONE als class anpassen
             $("#byCreateDate").attr('class', '');
             $("#byImportance").attr('class', '');
@@ -151,18 +151,18 @@ var NoteProController = {
             $("#byFinishDate").attr('class', '');
             $("#byCreateDate").attr('class', 'active');
             $("#byImportance").attr('class', '');
-        } else if (NoteProController.viewConfig.orderBy === NoteConstants.ORDERBY_IMOPRTANCE) {
+        } else if (NoteProController.viewConfig.orderBy === NoteConstants.ORDERBY_IMPORTANCE) {
             $("#byFinishDate").attr('class', '');
             $("#byCreateDate").attr('class', '');
             $("#byImportance").attr('class', 'active');
         }
 
         if (NoteProController.viewConfig.showAllEntries) {
-            $("#showAllCompleted").html("Show only pendings");
-            $("#showAllCompleted").attr('class', '');
+            $("#showAllCompleted").html("Show only pendings")
+                .attr('class', '');
         } else {
-            $("#showAllCompleted").html("Show all Tasks");
-            $("#showAllCompleted").attr('class', 'active');
+            $("#showAllCompleted").html("Show only pendings")
+                .attr('class', 'active');
         }
     },
 
@@ -188,7 +188,8 @@ var NoteProController = {
         // Helper for dateFinishUntil
         Handlebars.registerHelper("formatDate",
             function (date) {
-                if (typeof date == 'undefined'
+                if (date == null
+                    || typeof date == 'undefined'
                     || date === NoteConstants.DATE_UNDEFINED) {
                     return '?';
                 }

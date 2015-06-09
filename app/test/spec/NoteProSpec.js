@@ -56,7 +56,7 @@ describe("NotePro", function () {
             var parsedNote = NoteFactory.createNote(NoteProDAL.parseJSON(json));
             expect(parsedNote.id).toBe(43);
             expect(parsedNote.finished).toBe(false);
-            var dateCreatedDelta = new Date(Date.parse("2015-06-05T20:29:31.115Z")).getTime() + 1000; // one second tolerance
+            var dateCreatedDelta = new Date("2015-06-05T20:29:31.115Z").getTime() + 1000; // one second tolerance
             expect(parsedNote.dateCreated.getTime() <= dateCreatedDelta).toBeTruthy();
             expect(parsedNote.dateFinishUntil).toBe(NoteConstants.DATE_UNDEFINED);
             expect(parsedNote.dateFinished).toBe(NoteConstants.DATE_UNDEFINED);
@@ -103,23 +103,23 @@ describe("NotePro", function () {
         it('should sort notes by finish date', function () {
             var notes = getNotesToSort();
 
-            var sortedNotes = NoteProDAL.sort(notes, NoteConstants.ORDERBY_FINISHDATE, true);
-            expect(sortedNotes[0].dateFinished.getTime() < sortedNotes[1].dateFinished.getTime()).toBeTruthy();
-            expect(sortedNotes[1].dateFinished.getTime() < sortedNotes[2].dateFinished.getTime()).toBeTruthy();
+            var sortedNotes = NoteProDAL.sort(notes, NoteConstants.ORDERBY_FINISH_UNTIL_DATE, true);
+            expect(sortedNotes[0].dateFinishUntil.getTime() < sortedNotes[1].dateFinishUntil.getTime()).toBeTruthy();
+            expect(sortedNotes[1].dateFinishUntil.getTime() < sortedNotes[2].dateFinishUntil.getTime()).toBeTruthy();
 
-            sortedNotes = NoteProDAL.sort(notes, NoteConstants.ORDERBY_FINISHDATE, false);
-            expect(sortedNotes[0].dateFinished.getTime() > sortedNotes[1].dateFinished.getTime()).toBeTruthy();
-            expect(sortedNotes[1].dateFinished.getTime() > sortedNotes[2].dateFinished.getTime()).toBeTruthy();
+            sortedNotes = NoteProDAL.sort(notes, NoteConstants.ORDERBY_FINISH_UNTIL_DATE, false);
+            expect(sortedNotes[0].dateFinishUntil.getTime() > sortedNotes[1].dateFinishUntil.getTime()).toBeTruthy();
+            expect(sortedNotes[1].dateFinishUntil.getTime() > sortedNotes[2].dateFinishUntil.getTime()).toBeTruthy();
         });
 
         it('should sort notes by importance', function () {
             var notes = getNotesToSort();
 
-            var sortedNotes = NoteProDAL.sort(notes, NoteConstants.ORDERBY_IMOPRTANCE, true);
-            expect(sortedNotes[0].importance < sortedNotes[1].dateFinished).toBeTruthy();
-            expect(sortedNotes[1].importance < sortedNotes[2].dateFinished).toBeTruthy();
+            var sortedNotes = NoteProDAL.sort(notes, NoteConstants.ORDERBY_IMPORTANCE, true);
+            expect(sortedNotes[0].importance < sortedNotes[1].importance).toBeTruthy();
+            expect(sortedNotes[1].importance < sortedNotes[2].importance).toBeTruthy();
 
-            sortedNotes = NoteProDAL.sort(notes, NoteConstants.ORDERBY_IMOPRTANCE, false);
+            sortedNotes = NoteProDAL.sort(notes, NoteConstants.ORDERBY_IMPORTANCE, false);
             expect(sortedNotes[0].importance > sortedNotes[1].importance).toBeTruthy();
             expect(sortedNotes[1].importance > sortedNotes[2].importance).toBeTruthy();
         });
@@ -128,21 +128,21 @@ describe("NotePro", function () {
             var notes = [];
             var note = new Note();
             note.id = 3;
-            note.dateFinished = new Date(new Date().getTime() + 2 * 24 * 60 * 60 * 1000); // +2 days
+            note.dateFinishUntil = new Date(new Date().getTime() + 4 * 24 * 60 * 60 * 1000); // +4 days
             note.dateCreated = new Date(new Date().getTime() - 2 * 24 * 60 * 60 * 1000); // -2 days
             note.importance = 1;
             notes.push(note);
 
             note = new Note();
             note.id = 5;
-            note.dateFinished = new Date(new Date().getTime() + 3 * 24 * 60 * 60 * 1000); // +3 days
+            note.dateFinishUntil = new Date(new Date().getTime() + 3 * 24 * 60 * 60 * 1000); // +3 days
             note.dateCreated = new Date(new Date().getTime() - 3 * 24 * 60 * 60 * 1000); // -3 days
             note.importance = 2;
             notes.push(note);
 
             note = new Note();
             note.id = 7;
-            note.dateFinished = new Date(new Date().getTime() + 4 * 24 * 60 * 60 * 1000); // +4 days
+            note.dateFinishUntil = new Date(new Date().getTime() + 2 * 24 * 60 * 60 * 1000); // +2 days
             note.dateCreated = new Date(new Date().getTime() - 4 * 24 * 60 * 60 * 1000); // -4 days
             note.importance = 5;
             notes.push(note);
@@ -183,9 +183,9 @@ describe("NotePro", function () {
             });
 
             it('should create note with given object', function () {
-                var dateCreated = new Date(Date.parse("2/1/2015"));
-                var dateFinishedUntil = new Date(Date.parse("5/1/2015"));
-                var dateFinished = new Date(Date.parse("6/1/2015"));
+                var dateCreated = new Date("2/1/2015");
+                var dateFinishedUntil = new Date("5/1/2015");
+                var dateFinished = new Date("6/1/2015");
 
                 var customNote = {
                     id: 23885,
