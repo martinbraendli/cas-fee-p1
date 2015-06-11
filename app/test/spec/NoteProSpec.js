@@ -167,7 +167,7 @@ describe("NotePro", function () {
 
             it('should fill default fields', function () {
                 note = NoteFactory.createNote();
-                var dateInOneWeek = NoteConstants.DATE_FINISHED_UNTIL_DEFAULT();
+                var dateInOneWeek = NoteConstants.date_finished_until_default();
 
                 expect(note.id).toBe(-1);
                 expect(note.finished).toBe(false);
