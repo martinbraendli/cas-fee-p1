@@ -1,6 +1,11 @@
+/**
+ * Class with defined values for undefined values and sort orders.
+ *
+ * @type {{DATE_UNDEFINED: string, IMPORTANCE_DEFAULT: number, ORDERBY_FINISH_UNTIL_DATE: string, ORDERBY_CREATEDATE: string, ORDERBY_IMPORTANCE: string, date_finished_until_default: Function}}
+ */
 var NoteConstants = {
     /**
-     * Undefined-value for dateFinishUntil
+     * Undefined-value for date
      * @type {string}
      */
     DATE_UNDEFINED: 'DATE_UNDEFINED',
@@ -11,16 +16,24 @@ var NoteConstants = {
     IMPORTANCE_DEFAULT: 2,
 
     /**
-     * Order
+     * Sort-Order for finishUntil
      */
     ORDERBY_FINISH_UNTIL_DATE: 'finishDate',
+
+    /**
+     * Sort-Order for createDate
+     */
     ORDERBY_CREATEDATE: 'createDate',
+
+    /**
+     * Sort-Order for importance
+     */
     ORDERBY_IMPORTANCE: 'importance',
 
     /**
      * One week in future
      */
-    DATE_FINISHED_UNTIL_DEFAULT: function () {
+    date_finished_until_default: function () {
         return new Date(new Date().getTime() + 7 * 24 * 60 * 60 * 1000);
     }
 };
@@ -34,13 +47,16 @@ function Note() {
 
     var id = -1;
     var finished = false;
-    var dateCreated = new Date();
-    var dateFinishUntil = NoteConstants.DATE_FINISHED_UNTIL_DEFAULT();
+    var dateCreated = new Date(); // current date by default
+    var dateFinishUntil = NoteConstants.date_finished_until_default(); // one week in future by default
     var dateFinished = NoteConstants.DATE_UNDEFINED;
     var title = '';
     var text = '';
     var importance = NoteConstants.IMPORTANCE_DEFAULT; // 0 bis 5
 
+    /**
+     * id - convert value into Number
+     */
     Object.defineProperty(self, 'id', {
         enumerable: true,
         get: function () {
@@ -54,6 +70,10 @@ function Note() {
             id = Number(value);
         }
     });
+
+    /**
+     * finished - convert value into boolean
+     */
     Object.defineProperty(self, 'finished', {
         enumerable: true,
         get: function () {
@@ -63,6 +83,10 @@ function Note() {
             finished = Boolean(value);
         }
     });
+
+    /**
+     * dateCreated - parseDate if value of type string
+     */
     Object.defineProperty(self, 'dateCreated', {
         enumerable: true,
         get: function () {
@@ -78,6 +102,10 @@ function Note() {
             }
         }
     });
+
+    /**
+     * dateFinishUntil - parseDate if value of type string
+     */
     Object.defineProperty(self, 'dateFinishUntil', {
         enumerable: true,
         get: function () {
@@ -93,6 +121,10 @@ function Note() {
             }
         }
     });
+
+    /**
+     * dateFinished - parseDate if value of type string
+     */
     Object.defineProperty(self, 'dateFinished', {
         enumerable: true,
         get: function () {
@@ -108,6 +140,10 @@ function Note() {
             }
         }
     });
+
+    /**
+     * title - any value accepted
+     */
     Object.defineProperty(self, 'title', {
         enumerable: true,
         get: function () {
@@ -117,6 +153,10 @@ function Note() {
             title = value;
         }
     });
+
+    /**
+     * text - any value accepted
+     */
     Object.defineProperty(self, 'text', {
         enumerable: true,
         get: function () {
@@ -126,6 +166,10 @@ function Note() {
             text = value;
         }
     });
+
+    /**
+     * importance - check if value is between 0..5
+     */
     Object.defineProperty(self, 'importance', {
         enumerable: true,
         get: function () {
@@ -141,6 +185,15 @@ function Note() {
         }
     });
 
+    /**
+     *
+     * @param dateString date as string in two possible formats:
+     * <ul>
+     *     <li>2015-06-09T19:22:43.629Z - can be converted by default Date()</li>
+     *     <li>16.06.2015 21:27 - output from datepicker, manual splitting</li>
+     * </ul>
+     * @returns {*}
+     */
     var parseDate = function (dateString) {
         if (dateString === NoteConstants.DATE_UNDEFINED) {
             return dateString;
