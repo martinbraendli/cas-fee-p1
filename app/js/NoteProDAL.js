@@ -53,7 +53,7 @@ var NoteProDAL = {
                     }
 
                     // all / only pendings
-                    if (!viewConfig.showAllEntries && item.finished) {
+                    if (viewConfig.showAllEntries && item.finished) {
                         return false; // only pendings, this item is done
                     }
 
