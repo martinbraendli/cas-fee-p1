@@ -5,7 +5,7 @@
 // ---------------general declarations
 body{
   box-sizing: border-box;
-  //background: #444444;
+  background: #444444;
   //font-family: 'Julius Sans One', sans-serif;
   font-family: 'Glegoo', serif;
   font-size: 1rem;
@@ -45,7 +45,9 @@ body{
 
 #wrapper{
   margin: 0 auto;
+  min-width: 750px;
   max-width: 90%;
+
   //background: $wrapperBackgroundColor;
   //border: 1px solid #111;
   //padding: 1rem 1rem 0 1rem;
@@ -200,6 +202,11 @@ body{
   transition: background 350ms ease;
 }
 
+
+.arrowdown:after{
+  content: ' down';
+}
+
 .sort-styles .active{
   //border:  2px solid $linkBorderColorActive !important;
   //background: $primaryColorFocus !important;
@@ -234,7 +241,25 @@ body{
   font-size: 1.2rem;
   //background: #dedede;
   padding: 0.5rem;
+
+  &:nth-child(1){
+    width: 15%;
+  }
+
+  &:nth-child(2){
+    width: 50%;
+  }
+
+  &:nth-child(3){
+    width: 20%;
+  }
+
+  &:nth-child(4){
+    width: 15%;
+  }
+
 }
+
 
 
 .tasklistrow{
@@ -247,6 +272,18 @@ body{
 .list-elem{
   display: table-cell;
   padding: 0.7rem;
+  &:nth-child(1){
+    width: 15%;
+  }
+  &:nth-child(2){
+    width: 50%;
+  }
+  &:nth-child(3){
+    width: 20%;
+  }
+  &:nth-child(4){
+    width: 15%;
+  }
 }
 
 .task-date{
@@ -307,7 +344,7 @@ body{
 
 
 
-//-----------------------------Edit Task
+//----------------------------------- Edit Task
 
 
 // form
@@ -406,7 +443,7 @@ textarea {
 }
 
 
-//-------------------------- footer styles
+//---------------------------------- footer styles
 footer{
 
 }
