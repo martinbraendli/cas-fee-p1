@@ -110,7 +110,16 @@ var NoteProController = {
      * @param note
      */
     showFinishPopup: function (callback, note) {
-        // todo render popup mit template
+        var popup = $("#TaskDone");
+
+        popup.html(NoteProController.popupTemplate(
+            {
+                title: 'Well done!',
+                text: "You have Completed your Task '" + note.title + "' successfully.",
+                buttonOk: "Cool, next Task",
+                buttonCancel: "Oh no, not finished!"
+            }
+        ));
 
         // callback für ok-button
         $("#TaskDoneButtonOk").on("click", note, callback);
@@ -119,7 +128,7 @@ var NoteProController = {
         $("#TaskDoneButtonCancel").on("click", NoteProController.showAllEntries);
 
         // show popup
-        $("#TaskDone").show();
+        popup.show();
     },
 
     /**
@@ -216,7 +225,7 @@ var NoteProController = {
                 for (var j = 0; j < importance; j++) {
                     importanceHtml += '<img src="pix/reh_small_red.png" alt="#"/>';
                 }
-                for (var j = importance; j < 5; j++) {
+                for (j = importance; j < 5; j++) {
                     importanceHtml += '<img src="pix/reh_small_black.png" alt="#"/>';
                 }
 
@@ -236,6 +245,7 @@ var NoteProController = {
         // compile template
         NoteProController.noteListRowTemplate = Handlebars.compile(document.getElementById("viewNoteEntry").textContent);
         NoteProController.importanceIcons = Handlebars.compile(document.getElementById("importanceIcons").textContent);
+        NoteProController.popupTemplate = Handlebars.compile(document.getElementById("popup").textContent);
     },
 
     /**

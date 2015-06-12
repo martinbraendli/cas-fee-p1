@@ -60,22 +60,25 @@
     <script id="importanceIcons" type="text/x-handlebars-template">
         {{formatImportance this}}
     </script>
+
+    <script id="popup" type="text/x-handlebars-template">
+        <div class="overlay">
+            <div class="message">
+                <h2>{{this.title}}</h2>
+                <br/>
+
+                <p>{{this.text}}</p>
+                <a href="#" id="TaskDoneButtonOk">{{this.buttonOk}}</a>
+                <a href="#" id="TaskDoneButtonCancel">{{this.buttonCancel}}</a>
+            </div>
+        </div>
+    </script>
 </head>
 <body>
 <!--pop-up screens - Display: none by default -->
 <div class="popup" id="TaskDone">
-    <div class="overlay">
-        <div class="message">
-            <h2>Well Done!</h2>
-            <br/>
-
-            <p>You have Completed your Task [task-name here] successfully.</p>
-            <a href="#" id="TaskDoneButtonOk">Cool, next Task</a>
-            <a href="#" id="TaskDoneButtonCancel">Oh no, not finished!</a>
-        </div>
-    </div>
 </div>
-<div class="popup" id="TaskFailed">
+<div class="popup" id="TaskFailed"> <!-- todo render with template with timertask -->
     <div class="overlay">
         <div class="message">
             <h2>Dude!</h2>
