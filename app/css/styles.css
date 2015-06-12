@@ -1,6 +1,7 @@
 @import url(../css/normalize.css);
 body {
   box-sizing: border-box;
+  background: #444444;
   font-family: 'Glegoo', serif;
   font-size: 1rem; }
 
@@ -15,6 +16,7 @@ body {
 
 #wrapper {
   margin: 0 auto;
+  min-width: 750px;
   max-width: 90%; }
 
 .head {
@@ -114,6 +116,9 @@ body {
   -webkit-transition: background 350ms ease;
           transition: background 350ms ease; }
 
+.arrowdown:after {
+  content: ' down'; }
+
 .ontheRight {
   margin-left: 100px; }
 
@@ -133,6 +138,14 @@ body {
   font-weight: bold;
   font-size: 1.2rem;
   padding: 0.5rem; }
+  .list-head-elem:nth-child(1) {
+    width: 15%; }
+  .list-head-elem:nth-child(2) {
+    width: 50%; }
+  .list-head-elem:nth-child(3) {
+    width: 20%; }
+  .list-head-elem:nth-child(4) {
+    width: 15%; }
 
 .tasklistrow {
   display: table-row;
@@ -142,6 +155,14 @@ body {
 .list-elem {
   display: table-cell;
   padding: 0.7rem; }
+  .list-elem:nth-child(1) {
+    width: 15%; }
+  .list-elem:nth-child(2) {
+    width: 50%; }
+  .list-elem:nth-child(3) {
+    width: 20%; }
+  .list-elem:nth-child(4) {
+    width: 15%; }
 
 .task-date {
   width: 20%; }
