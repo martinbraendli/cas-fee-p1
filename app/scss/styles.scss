@@ -23,6 +23,8 @@ body{
 }
 
 
+
+
 // --------------style definition & variables
 // red & white theme
 //$wrapperBackgroundColor:     #F5F5F5;
@@ -42,6 +44,27 @@ body{
 //$linkHoverBackground:        #FFF;
 //$linkBorderColor:            $darkgray;
 //$linkBorderColorActive:      $dark;
+
+
+// Task status tests provisorisch
+#statusindicator{
+  padding: 10px;
+  border-top: 1px solid black;
+}
+
+.green{
+  background: green;
+}
+.yellow{
+  background: yellow;
+}
+.red{
+  background: red;
+}
+
+.missed{
+  background: #007069;
+}
 
 #wrapper{
   margin: 0 auto;
@@ -92,6 +115,8 @@ body{
   font-size: 0.9rem;
   font-weight: 600;
 }
+
+
 // ------------------------ main container
 .mainwrapper{
   display: block;

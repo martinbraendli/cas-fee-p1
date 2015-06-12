@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head lang="en">
+<head lang="de">
     <meta charset="UTF-8">
 
     <title>Reh-Minder -Project CAS FEE 01 by Martin & Felix</title>
@@ -89,8 +89,11 @@
         <img src="pix/reh-icon1.png">
 
         <h1>Reh-Minder</h1>
-
         <h2>brought you by Martin & Felix </h2>
+        <!--PROVISORISCH MAL hier -->
+        <div id="statusindicator" class="green">
+            <h2>Task Timer Status Indicator</h2>
+        </div>
     </header>
     <main>
         <div class="mainwrapper">
@@ -245,13 +248,62 @@
 </body>
 <script type="text/javascript">
     $(document).ready(function () {
-        console.log("docuemnt ready");
+        console.log("document ready");
         NoteProController.renderListControlls();
         NoteProController.prepareTemplate();
         NoteProController.showAllEntries();
         $('#dateFinishUntil').datetimepicker({
             format:'d.m.Y H:i'
         });
+
+        // Timer Function
+        // Filix-js-newbe-Timer function - very basic but fu**ng working... - ja du dörfsch scho lache, isch voll okay Martin! ;-)
+        function timer(){
+            // Time in Stunden bis deadline für jedes task
+            // also etwa date.now - note.dateFinished in h
+            var timeToDoTask = 10;
+            // Gelbe Warnung: fixer wert vor Ende der Deadline bzw. ausser wir spezifizieren noch wann man erinnert werden möchte.
+            var yellowwarningtime =(timeToDoTask -timeToDoTask +5);
+            console.log("yellowwarningtime: " +yellowwarningtime);
+            // Rote Warnung: fixer Wert vor dem nahen Ende der Deadline.
+            var redwarningtime =  (timeToDoTask - timeToDoTask +3);
+            console.log("redwarningtime is: " +redwarningtime);
+            // status yellowAlert
+            var yellowAlert = false;
+            // status redAlert
+            var redAlert = false;
+            // deadline is false per default
+            var timeIsUp =  false;
+
+            var setTimerforTask = setInterval(function (){
+                console.log("timeToDoTask is: " + timeToDoTask);
+                timeToDoTask = (timeToDoTask -1);
+                if(timeToDoTask === yellowwarningtime){
+                    yellowAlert = true;
+                    alert("Yellow: mach jetzt chli");
+                    console.log("yellowAlert status: "+ yellowAlert);
+                    $('#statusindicator').attr('class','yellow');
+                }
+                if(timeToDoTask === redwarningtime){
+                    redAlert = true;
+                    alert("Roter Ree-minder: mach jetzt gäng chli gwing!");
+                    console.log("redAlert status: "+ redAlert);
+                    $('#statusindicator').attr('class','red');
+                }
+                if(timeToDoTask === 0){
+                    console.log("timer is finshed");
+                    timeIsUp = true;
+                    alert("GONG - Time is up!");
+                    $('#statusindicator').attr('class','missed');
+                    // clear Timer for this task
+                    clearInterval(setTimerforTask);
+                }
+                // sollte dann auf 60 sec gestellt werden
+            },2000);
+        }
+
+        //runtimer
+        timer();
     });
 
 </script>
