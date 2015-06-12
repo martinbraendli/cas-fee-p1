@@ -2,6 +2,8 @@
  * Controller for page view
  */
 var NoteProController = {
+    // todo background task für alert + style setzn, in readme eintragen
+    // todo events mit on anhängen
     /**
      * object with config for reading entries from storage
      */
@@ -21,7 +23,7 @@ var NoteProController = {
             $("#editTitle").val("");
             $("#editText").val("");
             $("#taskimportance").val(NoteConstants.IMPORTANCE_DEFAULT);
-            $("#dateFinishUntil").datetimepicker({value: NoteConstants.DATE_FINISHED_UNTIL_DEFAULT()});
+            $("#dateFinishUntil").datetimepicker({value: NoteConstants.date_finished_until_default()});
         } else {
             var note = NoteProDAL.getNote(noteId);
             $("#currentId").val(note.id);
@@ -67,7 +69,8 @@ var NoteProController = {
     },
 
     /**
-     * write given note from page edit into local storage
+     * Write given values from edit form into note and save it into
+     * DataLayer.
      */
     saveNote: function () {
         var note = NoteFactory.createNote();
@@ -92,18 +95,53 @@ var NoteProController = {
         }
     },
 
-    finishNote: function (id) {
-        var r = confirm("Really finished?");
-        if (r == true) {
-            var note = NoteProDAL.getNote(id);
-            note.finished = !note.finished;
-            note.dateFinished = new Date();
-            NoteProDAL.saveNote(note);
-        }
-
+    finishAcceptedSaveNoteCallback: function (event) {
+        var note = event.data;
+        note.finished = !note.finished;
+        note.dateFinished = new Date();
+        NoteProDAL.saveNote(note);
         NoteProController.showAllEntries();
     },
 
+    /**
+     * Show popup which asks if the user wants to finish the task. The callback will
+     * be called if the ok button is pressed.
+     * @param callback
+     * @param note
+     */
+    showFinishPopup: function (callback, note) {
+        // todo render popup mit template
+
+        // callback für ok-button
+        $("#TaskDoneButtonOk").on("click", note, callback);
+
+        // callback für cancel-button
+        $("#TaskDoneButtonCancel").on("click", NoteProController.showAllEntries);
+
+        // show popup
+        $("#TaskDone").show();
+    },
+
+    /**
+     * Toggle function for checkbox which sets the finish state with a "are-you-sure"-popup.
+     * @param id
+     */
+    finishNote: function (id) {
+
+        var note = NoteProDAL.getNote(id);
+
+        if (note.finished) {
+            // already finished > unfinish without popup
+            NoteProController.finishAcceptedSaveNoteCallback({data: note}); // same way as the callback event passes the data
+        } else {
+            // ask if really finished
+            NoteProController.showFinishPopup(NoteProController.finishAcceptedSaveNoteCallback, note);
+        }
+    },
+
+    /**
+     * ToggleFunction for filter the finished notes.
+     */
     toggleShowAllEntries: function () {
         NoteProController.viewConfig.showAllEntries = !NoteProController.viewConfig.showAllEntries;
         NoteProController.renderListControlls();
@@ -144,7 +182,7 @@ var NoteProController = {
      */
     renderListControlls: function () {
         if (NoteProController.viewConfig.orderBy === NoteConstants.ORDERBY_FINISH_UNTIL_DATE) {
-            $("#byFinishDate").attr('class', 'active'); // DONE als class anpassen
+            $("#byFinishDate").attr('class', 'active');
             $("#byCreateDate").attr('class', '');
             $("#byImportance").attr('class', '');
         } else if (NoteProController.viewConfig.orderBy === NoteConstants.ORDERBY_CREATEDATE) {
@@ -158,16 +196,16 @@ var NoteProController = {
         }
 
         if (NoteProController.viewConfig.showAllEntries) {
-            $("#showAllCompleted").html("Show only pendings")
+            $("#showAllCompleted").html("Show finished")
                 .attr('class', '');
         } else {
-            $("#showAllCompleted").html("Show only pendings")
+            $("#showAllCompleted").html("Show finished")
                 .attr('class', 'active');
         }
     },
 
     /**
-     * render template
+     * render templates
      */
     prepareTemplate: function () {
         // Helper for importance icons
@@ -206,10 +244,17 @@ var NoteProController = {
     showAllEntries: function () {
         console.log("render all entries");
 
+        // hide popups
+        $("#TaskDone").hide();
+        $("#TaskFailed").hide();
+
         var notes = NoteProDAL.readNotes(NoteProController.viewConfig, NoteProController.sort);
         $("#noteoutput").html(NoteProController.noteListRowTemplate(notes));
     },
 
+    /**
+     * render importance icons, (e.g. after slider has been changed)
+     */
     refreshEditView: function () {
         $("#importanceEdit").html(NoteProController.importanceIcons($("#taskimportance").val()));
     },

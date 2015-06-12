@@ -3,9 +3,12 @@
  */
 var NoteFactory = {
     /**
+     * create new Note by given object with possible matching properties. The
+     * properties will be set into the new created Note. Converting of the values
+     * happens in the setter of Note.
      *
-     * @param note
-     * @returns {*}
+     * @param note any object with matching properties
+     * @returns {*} the created Note
      */
     createNote: function (note) {
         var thisNote;
