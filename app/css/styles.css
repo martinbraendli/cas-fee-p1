@@ -14,6 +14,22 @@ body {
   overflow: auto;
   zoom: 1; }
 
+#statusindicator {
+  padding: 10px;
+  border-top: 1px solid black; }
+
+.green {
+  background: green; }
+
+.yellow {
+  background: yellow; }
+
+.red {
+  background: red; }
+
+.missed {
+  background: #007069; }
+
 #wrapper {
   margin: 0 auto;
   min-width: 750px;
