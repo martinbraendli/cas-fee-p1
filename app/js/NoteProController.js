@@ -267,5 +267,13 @@ var NoteProController = {
      */
     refreshEditView: function () {
         $("#importanceEdit").html(NoteProController.importanceIcons($("#taskimportance").val()));
+    },
+
+    // F- Timer function useless now
+    timer: function(){
+        // is noch im html
+
     }
+
+
 };
