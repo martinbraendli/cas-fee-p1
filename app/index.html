@@ -28,7 +28,7 @@
     <script id="viewNoteEntry" type="text/x-handlebars-template">
         <!--loop all tasks here-->
         {{#each this}}
-        <div class="tasklistrow">
+        <div class="tasklistrow {{progressStyle dateFinishUntil}}">
             <div class="list-elem task-date">
                 <p>{{formatDate dateFinishUntil}}</p>
                 {{#if finished}}
@@ -95,6 +95,7 @@
         <img src="pix/reh-icon1.png">
 
         <h1>Reh-Minder</h1>
+
         <h2>brought you by Martin & Felix </h2>
         <!--PROVISORISCH MAL hier -->
         <div id="statusindicator" class="green">
@@ -109,7 +110,7 @@
                        onclick="NoteProController.showEditScreen()">Add a Note</a>
                 </div>
                 <div class="style-chooser">
-                    <span>Choose your Style</span>
+                    <label for="ThemeChooser">Choose your Style</label>
                     <select id="ThemeChooser">
                         <option id="br" value="css/redwhite.css">Red and White</option>
                         <option id="ob" value="css/blackorange.css">Orange is the new Black</option>
@@ -264,48 +265,50 @@
 
         // Timer Function
         // Filix-js-newbe-Timer function - very basic but fu**ng working... - ja du dörfsch scho lache, isch voll okay Martin! ;-)
-        function timer(){
+        function timer() {
             // Time in Stunden bis deadline für jedes task
             // also etwa date.now - note.dateFinished in h
             var timeToDoTask = 10;
             // Gelbe Warnung: fixer wert vor Ende der Deadline bzw. ausser wir spezifizieren noch wann man erinnert werden möchte.
-            var yellowwarningtime =(timeToDoTask -timeToDoTask +5);
-            console.log("yellowwarningtime: " +yellowwarningtime);
+            var yellowwarningtime = (timeToDoTask - timeToDoTask + 5);
+            console.log("yellowwarningtime: " + yellowwarningtime);
             // Rote Warnung: fixer Wert vor dem nahen Ende der Deadline.
-            var redwarningtime =  (timeToDoTask - timeToDoTask +3);
-            console.log("redwarningtime is: " +redwarningtime);
+            var redwarningtime = (timeToDoTask - timeToDoTask + 3);
+            console.log("redwarningtime is: " + redwarningtime);
             // status yellowAlert
             var yellowAlert = false;
             // status redAlert
             var redAlert = false;
             // deadline is false per default
-            var timeIsUp =  false;
+            var timeIsUp = false;
 
-            var setTimerforTask = setInterval(function (){
+            var setTimerforTask = setInterval(function () {
                 console.log("timeToDoTask is: " + timeToDoTask);
-                timeToDoTask = (timeToDoTask -1);
-                if(timeToDoTask === yellowwarningtime){
+                timeToDoTask = (timeToDoTask - 1);
+                if (timeToDoTask === yellowwarningtime) {
                     yellowAlert = true;
                     alert("Yellow: mach jetzt chli");
-                    console.log("yellowAlert status: "+ yellowAlert);
-                    $('#statusindicator').attr('class','yellow');
+                    console.log("yellowAlert status: " + yellowAlert);
+                    $('#statusindicator').attr('class', 'yellow');
                 }
-                if(timeToDoTask === redwarningtime){
+                if (timeToDoTask === redwarningtime) {
                     redAlert = true;
                     alert("Roter Ree-minder: mach jetzt gäng chli gwing!");
-                    console.log("redAlert status: "+ redAlert);
-                    $('#statusindicator').attr('class','red');
+                    console.log("redAlert status: " + redAlert);
+                    $('#statusindicator').attr('class', 'red');
                 }
-                if(timeToDoTask === 0){
+                if (timeToDoTask === 0) {
                     console.log("timer is finshed");
                     timeIsUp = true;
                     alert("GONG - Time is up!");
-                    $('#statusindicator').attr('class','missed');
+                    $('#statusindicator').attr('class', 'missed');
                     // clear Timer for this task
                     clearInterval(setTimerforTask);
                 }
                 // sollte dann auf 60 sec gestellt werden
-            },2000);
+
+                NoteProController.showAllEntries();
+            }, 2000);
         }
 
         //runtimer

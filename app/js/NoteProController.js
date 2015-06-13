@@ -10,7 +10,10 @@ var NoteProController = {
     viewConfig: {
         showAllEntries: true, // all or only pending entries
         orderBy: NoteConstants.ORDERBY_FINISH_UNTIL_DATE, // sort field
-        orderASC: true
+        orderASC: true,
+        timeYellow: 24 * 60 * 60 * 1000,// 1 day
+        timeRed: 60 * 60 * 1000,// 1 Hour
+        timeMissed: 0// 0
     },
 
     /**
@@ -242,6 +245,30 @@ var NoteProController = {
                 }
                 return date.toLocaleString();
             });
+
+        // Helper for coloring the note row if the end is near or reached
+        Handlebars.registerHelper("progressStyle",
+            function (dateFinishUntil) {
+                var now = (new Date()).getTime();
+                var until = dateFinishUntil.getTime();
+                var diff = until - now;
+
+                // missed
+                if (diff < NoteProController.viewConfig.timeMissed) {
+                    return "missed";
+                }
+                // redAlert
+                if (diff < NoteProController.viewConfig.timeRed) {
+                    return "red";
+                }
+                // yellowAlert
+                if (diff < NoteProController.viewConfig.timeYellow) {
+                    return "yellow";
+                }
+
+                return "";
+            });
+
         // compile template
         NoteProController.noteListRowTemplate = Handlebars.compile(document.getElementById("viewNoteEntry").textContent);
         NoteProController.importanceIcons = Handlebars.compile(document.getElementById("importanceIcons").textContent);
@@ -270,7 +297,7 @@ var NoteProController = {
     },
 
     // F- Timer function useless now
-    timer: function(){
+    timer: function () {
         // is noch im html
 
     }
