@@ -49,26 +49,37 @@ var NoteProController = {
     },
 
     /**
-     * toggle function edit > show
+     * Show popup for cancel question, ok callback will return to the list view
      */
     showMainScreen: function (showCancelMessage) {
+        var okCallback = function () {
+            console.log("hideEditScreen");
+
+            $('.editwrapper').css({
+                'display': 'none'
+            });
+
+            console.log("showMainScreen");
+            $('.mainwrapper').css({
+                'display': 'block'
+            });
+
+            NoteProController.showAllEntries();
+        };
+
         if (showCancelMessage) {
-            var r = confirm("Cancel without saving? All data will be lost");
-            if (r == false) {
-                return;
-            }
+            // ask if really finished
+            NoteProController.showPopup(okCallback, function () {/*noop*/
+                }, null,
+                {
+                    title: 'Cancel',
+                    text: "Cancel without saving? All data will be lost",
+                    buttonOk: "Ok",
+                    buttonCancel: "Cancel"
+                });
+        } else {
+            okCallback();
         }
-        console.log("hideEditScreen");
-        $('.editwrapper').css({
-            'display': 'none'
-        });
-
-        console.log("showMainScreen");
-        $('.mainwrapper').css({
-            'display': 'block'
-        });
-
-        NoteProController.showAllEntries();
     },
 
     /**
@@ -93,8 +104,13 @@ var NoteProController = {
             // return to the main page
             NoteProController.showMainScreen();
         } else {
-            // an error occured
-            alert(result);
+            // an error occured, show popup
+            NoteProController.showPopup(NoteProController.hidePopup, NoteProController.hidePopup, null,
+                {
+                    title: 'Problem occured',
+                    text: "Problems during saving: " + result,
+                    buttonOk: "Ok"
+                });
         }
     },
 
@@ -109,29 +125,34 @@ var NoteProController = {
     /**
      * Show popup which asks if the user wants to finish the task. The callback will
      * be called if the ok button is pressed.
-     * @param callback
+     * @param callbackOk action if ok button is pressed
+     * @param callbackCancel action if cancel button is pressed
      * @param note
+     * @param popupValues values for popup template
      */
-    showFinishPopup: function (callback, note) {
+    showPopup: function (callbackOk, callbackCancel, note, popupValues) {
         var popup = $("#TaskDone");
 
-        popup.html(NoteProController.popupTemplate(
-            {
-                title: 'Well done!',
-                text: "You have Completed your Task '" + note.title + "' successfully.",
-                buttonOk: "Cool, next Task",
-                buttonCancel: "Oh no, not finished!"
-            }
-        ));
+        popup.html(NoteProController.popupTemplate(popupValues));
 
         // callback für ok-button
-        $("#TaskDoneButtonOk").on("click", note, callback);
+        $("#TaskDoneButtonOk").on("click", note, function (event) {
+            callbackOk(event);
+            NoteProController.hidePopup();
+        });
 
         // callback für cancel-button
-        $("#TaskDoneButtonCancel").on("click", NoteProController.showAllEntries);
+        $("#TaskDoneButtonCancel").on("click", function () {
+            callbackCancel();
+            NoteProController.hidePopup();
+        });
 
         // show popup
         popup.show();
+    },
+
+    hidePopup: function () {
+        $("#TaskDone").hide();
     },
 
     /**
@@ -147,7 +168,15 @@ var NoteProController = {
             NoteProController.finishAcceptedSaveNoteCallback({data: note}); // same way as the callback event passes the data
         } else {
             // ask if really finished
-            NoteProController.showFinishPopup(NoteProController.finishAcceptedSaveNoteCallback, note);
+            NoteProController.showPopup(NoteProController.finishAcceptedSaveNoteCallback,
+                NoteProController.showAllEntries,
+                note,
+                {
+                    title: 'Well done!',
+                    text: "You have Completed your Task '" + note.title + "' successfully.",
+                    buttonOk: "Cool, next Task",
+                    buttonCancel: "Oh no, not finished!"
+                });
         }
     },
 
@@ -281,10 +310,6 @@ var NoteProController = {
     showAllEntries: function () {
         console.log("render all entries");
 
-        // hide popups
-        $("#TaskDone").hide();
-        $("#TaskFailed").hide();
-
         var notes = NoteProDAL.readNotes(NoteProController.viewConfig, NoteProController.sort);
         $("#noteoutput").html(NoteProController.noteListRowTemplate(notes));
     },
@@ -296,11 +321,31 @@ var NoteProController = {
         $("#importanceEdit").html(NoteProController.importanceIcons($("#taskimportance").val()));
     },
 
-    // F- Timer function useless now
+    /**
+     * Timer runs each minute to display state of tasks and open reminder popups
+     */
     timer: function () {
-        // is noch im html
+        var setTimerforTask = setInterval(function () {
+            console.log("setTimerforTask");
+            // render note list with styles to highlight late tasks
+            NoteProController.showAllEntries();
+        }, 2000);
+    },
 
+    /**
+     * Document ready, time to init the view
+     */
+    setup: function () {
+        NoteProController.renderListControlls();
+        NoteProController.prepareTemplate();
+        NoteProController.showAllEntries();
+
+        // configure date picker
+        $('#dateFinishUntil').datetimepicker({
+            format: 'd.m.Y H:i'
+        });
+
+        // start timer task
+        NoteProController.timer();
     }
-
-
 };
