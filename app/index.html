@@ -23,9 +23,9 @@
     <script src="js/NoteFactory.js"></script>
     <script src="js/dal/CommonsDAL.js"></script>
     <!-- client side storage -->
-    <script src="js/dal/NoteProLocalDAL.js"></script>
+    <!--<script src="js/dal/NoteProLocalDAL.js"></script>-->
     <!-- server side storage -->
-    <!--<script src="js/dal/NoteProServerDAL.js"></script>-->
+    <script src="js/dal/NoteProServerDAL.js"></script>
     <script src="js/NoteProController.js"></script>
 
     <!--Template view list entry -->
@@ -37,10 +37,10 @@
                 <p>{{formatDate dateFinishUntil}}</p>
                 {{#if finished}}
                 <input type="checkbox" name="taskdone" value="finished" label="finished" checked
-                       onclick="NoteProController.finishNote({{this.id}})"/>
+                       onclick="NoteProController.finishNote('{{this.id}}')"/>
                 {{else}}
                 <input type="checkbox" name="taskdone" value="finished" label="finished"
-                       onclick="NoteProController.finishNote({{this.id}})"/>
+                       onclick="NoteProController.finishNote('{{this.id}}')"/>
                 {{/if}}
                 Finished{{#if finished}} ({{formatDate dateFinished}}){{/if}}
             </div>
@@ -55,7 +55,7 @@
                 </span>
             </div>
             <div class="list-elem task-edit-btn">
-                <a onclick="NoteProController.showEditScreen({{id}})" href="#">Edit Note</a>
+                <a onclick="NoteProController.showEditScreen('{{id}}')" href="#">Edit Note</a>
             </div>
         </div>
         {{/each}}

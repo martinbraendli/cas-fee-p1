@@ -4,9 +4,6 @@
 var NoteProController = {
     // todo events mit on anhängen
 
-    // todo express-server
-    // todo login mit token?
-
     /**
      * object with config for reading entries from storage
      */
@@ -19,7 +16,8 @@ var NoteProController = {
     timerConstants: {
         timeYellow: 24 * 60 * 60 * 1000,// 1 day
         timeRed: 60 * 60 * 1000,// 1 Hour
-        timeMissed: 0// 0
+        timeMissed: 0,// 0,
+        refreshTimer: 60 * 1000 // 1 Minute
     },
 
     /**
@@ -33,13 +31,17 @@ var NoteProController = {
             $("#editText").val("");
             $("#taskimportance").val(NoteConstants.IMPORTANCE_DEFAULT);
             $("#dateFinishUntil").datetimepicker({value: NoteConstants.date_finished_until_default()});
+            NoteProController.refreshEditView();
         } else {
-            var note = NoteProDAL.getNote(noteId);
-            $("#currentId").val(note.id);
-            $("#editTitle").val(note.title);
-            $("#editText").val(note.text);
-            $("#taskimportance").val(note.importance);
-            $("#dateFinishUntil").datetimepicker({value: note.dateFinishUntil});
+            var callback = function (note) {
+                $("#currentId").val(note.id);
+                $("#editTitle").val(note.title);
+                $("#editText").val(note.text);
+                $("#taskimportance").val(note.importance);
+                $("#dateFinishUntil").datetimepicker({value: note.dateFinishUntil});
+                NoteProController.refreshEditView();
+            };
+            NoteProDAL.getNote(noteId, callback);
         }
         console.log("showEditScreen");
         $('.editwrapper').css({
@@ -50,8 +52,6 @@ var NoteProController = {
         $('.mainwrapper').css({
             'display': 'none'
         });
-
-        NoteProController.refreshEditView();
     },
 
     /**
@@ -94,7 +94,7 @@ var NoteProController = {
      */
     saveNote: function () {
         var note = NoteFactory.createNote();
-        note.id = Number($("#currentId").val());
+        note.id = $("#currentId").val();
         note.title = $("#editTitle").val();
         note.text = $("#editText").val();
         var dateFinishUntil = $("#dateFinishUntil").val();
@@ -166,24 +166,24 @@ var NoteProController = {
      * @param id
      */
     finishNote: function (id) {
-
-        var note = NoteProDAL.getNote(id);
-
-        if (note.finished) {
-            // already finished > unfinish without popup
-            NoteProController.finishAcceptedSaveNoteCallback({data: note}); // same way as the callback event passes the data
-        } else {
-            // ask if really finished
-            NoteProController.showPopup(NoteProController.finishAcceptedSaveNoteCallback,
-                NoteProController.showAllEntries,
-                note,
-                {
-                    title: 'Well done!',
-                    text: "You have Completed your Task '" + note.title + "' successfully.",
-                    buttonOk: "Cool, next Task",
-                    buttonCancel: "Oh no, not finished!"
-                });
-        }
+        var callback = function (note) {
+            if (note.finished) {
+                // already finished > unfinish without popup
+                NoteProController.finishAcceptedSaveNoteCallback({data: note}); // same way as the callback event passes the data
+            } else {
+                // ask if really finished
+                NoteProController.showPopup(NoteProController.finishAcceptedSaveNoteCallback,
+                    NoteProController.showAllEntries,
+                    note,
+                    {
+                        title: 'Well done!',
+                        text: "You have Completed your Task '" + note.title + "' successfully.",
+                        buttonOk: "Cool, next Task",
+                        buttonCancel: "Oh no, not finished!"
+                    });
+            }
+        };
+        NoteProDAL.getNote(id, callback);
     },
 
     /**
@@ -320,8 +320,10 @@ var NoteProController = {
     showAllEntries: function () {
         console.log("render all entries");
 
-        var notes = NoteProDAL.readNotes(NoteProController.viewConfig, NoteProController.sort);
-        $("#noteoutput").html(NoteProController.noteListRowTemplate(notes));
+        var callback = function (notes) {
+            $("#noteoutput").html(NoteProController.noteListRowTemplate(notes));
+        };
+        var notes = NoteProDAL.readNotes(NoteProController.viewConfig, callback);
     },
 
     /**
@@ -339,7 +341,7 @@ var NoteProController = {
             console.log("setTimerforTask");
             // render note list with styles to highlight late tasks
             NoteProController.showAllEntries();
-        }, 2000);
+        }, NoteProController.timerConstants.refreshTimer);
     },
 
     /**

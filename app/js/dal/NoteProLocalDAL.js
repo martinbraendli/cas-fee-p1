@@ -8,7 +8,7 @@ var NoteProDAL = {
      */
     saveNote: function (note) {
         var validate = CommonsDAL.validateRequiredFields(note);
-        if (!(validate === 0)){
+        if (!(validate === 0)) {
             return validate;
         }
 
@@ -30,19 +30,24 @@ var NoteProDAL = {
     /**
      * Read all available notes
      */
-    readNotes: function (viewConfig) {
+    readNotes: function (viewConfig, callback) {
         var notes = [];
         var i = 1;
         while (true) {
             var noteString = localStorage.getItem("note" + i);
 
             if (noteString == null) {
+                var finalNotes;
 
                 // if no viewConfig return all unsorted without undefined entries
                 if (typeof viewConfig == 'undefined') {
-                    return notes.filter(function (item) {
+                    finalNotes = notes.filter(function (item) {
                         return !(typeof item == 'undefined');
                     });
+                    if (callback) {
+                        callback(finalNotes)
+                    }
+                    return;
                 }
 
                 // remove gaps
@@ -52,14 +57,14 @@ var NoteProDAL = {
                     }
 
                     // all / only pendings
-                    if (viewConfig.showAllEntries && item.finished) {
-                        return false; // only pendings, this item is done
-                    }
-
-                    return true;
+                    return (!(viewConfig.showAllEntries && item.finished));
                 });
 
-                return CommonsDAL.sort(notes, viewConfig.orderBy, viewConfig.orderASC);
+                finalNotes = CommonsDAL.sort(notes, viewConfig.orderBy, viewConfig.orderASC);
+                if (callback) {
+                    callback(finalNotes);
+                }
+                return;
             }
             var note = CommonsDAL.parseJSON(noteString);
             notes[i] = NoteFactory.createNote(note);
@@ -70,13 +75,15 @@ var NoteProDAL = {
     /**
      * Find note by id
      */
-    getNote: function (noteId) {
-        var notes = this.readNotes();
-        for (var i = 0; i < notes.length; i++) {
-            if (notes[i].id === noteId) {
-                return notes[i];
+    getNote: function (noteId, callback) {
+        var readAllCallback = function (notes) {
+            for (var i = 0; i < notes.length; i++) {
+                if (notes[i].id == noteId) {
+                    callback(notes[i]);
+                }
             }
-        }
+        };
+        var notes = this.readNotes(undefined, readAllCallback);
     },
 
     /**

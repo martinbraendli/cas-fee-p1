@@ -12,9 +12,7 @@ describe("NotePro", function () {
 
     describe("Commons DAL", function () {
         it('should validate all required fields', function () {
-            var note = {
-
-            };
+            var note = {};
             var result = CommonsDAL.validateRequiredFields(note);
             expect(result).toBe("Missing title");
 
@@ -163,15 +161,17 @@ describe("NotePro", function () {
             expect(typeof noteId).toBe('number');
 
             // read note
-            var readedNotes = NoteProDAL.readNotes();
-            expect(readedNotes).toBeTruthy();
-            var readedNote = readedNotes[0];
-            expect(readedNote).toBeTruthy();
-            expect(typeof readedNote).toBe('object');
-            expect(readedNote.id).toBe(noteId);
-            expect(readedNote.title).toBe("titelShouldSaveNote");
-            expect(readedNote.text).toBe("textShouldSaveNote");
-            expect(readedNote.importance).toBe(4);
+            var callback1 = function (readedNotes) {
+                expect(readedNotes).toBeTruthy();
+                var readedNote = readedNotes[0];
+                expect(readedNote).toBeTruthy();
+                expect(typeof readedNote).toBe('object');
+                expect(readedNote.id).toBe(noteId);
+                expect(readedNote.title).toBe("titelShouldSaveNote");
+                expect(readedNote.text).toBe("textShouldSaveNote");
+                expect(readedNote.importance).toBe(4);
+            };
+            var readedNotes = NoteProDAL.readNotes(undefined, callback1);
         });
 
     });

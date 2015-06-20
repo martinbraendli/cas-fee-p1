@@ -67,7 +67,7 @@ function Note() {
                 console.log("Canceled setting id = undefined");
                 return;
             }
-            id = Number(value);
+            id = value;
         }
     });
 
@@ -80,7 +80,11 @@ function Note() {
             return finished;
         },
         set: function (value) {
-            finished = Boolean(value);
+            if (value === "false") {
+                finished = false;
+            } else {
+                finished = Boolean(value);
+            }
         }
     });
 
