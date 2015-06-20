@@ -2,15 +2,21 @@
  * Controller for page view
  */
 var NoteProController = {
-    // todo background task für alert + style setzn, in readme eintragen
     // todo events mit on anhängen
+
+    // todo express-server
+    // todo login mit token?
+
     /**
      * object with config for reading entries from storage
      */
     viewConfig: {
         showAllEntries: true, // all or only pending entries
         orderBy: NoteConstants.ORDERBY_FINISH_UNTIL_DATE, // sort field
-        orderASC: true,
+        orderASC: true
+    },// todo save to db
+
+    timerConstants: {
         timeYellow: 24 * 60 * 60 * 1000,// 1 day
         timeRed: 60 * 60 * 1000,// 1 Hour
         timeMissed: 0// 0
@@ -278,20 +284,24 @@ var NoteProController = {
         // Helper for coloring the note row if the end is near or reached
         Handlebars.registerHelper("progressStyle",
             function (dateFinishUntil) {
+                if (typeof dateFinishUntil == 'undefined'
+                    || dateFinishUntil == null) {
+                    return "";
+                }
                 var now = (new Date()).getTime();
                 var until = dateFinishUntil.getTime();
                 var diff = until - now;
 
                 // missed
-                if (diff < NoteProController.viewConfig.timeMissed) {
+                if (diff < NoteProController.timerConstants.timeMissed) {
                     return "missed";
                 }
                 // redAlert
-                if (diff < NoteProController.viewConfig.timeRed) {
+                if (diff < NoteProController.timerConstants.timeRed) {
                     return "red";
                 }
                 // yellowAlert
-                if (diff < NoteProController.viewConfig.timeYellow) {
+                if (diff < NoteProController.timerConstants.timeYellow) {
                     return "yellow";
                 }
 
@@ -336,14 +346,15 @@ var NoteProController = {
      * Document ready, time to init the view
      */
     setup: function () {
+        // configure date picker
+        $('#dateFinishUntil').datetimepicker({
+            format: 'd.m.Y H:i'
+        }); // todo test in firefox
+
         NoteProController.renderListControlls();
         NoteProController.prepareTemplate();
         NoteProController.showAllEntries();
 
-        // configure date picker
-        $('#dateFinishUntil').datetimepicker({
-            format: 'd.m.Y H:i'
-        });
 
         // start timer task
         NoteProController.timer();

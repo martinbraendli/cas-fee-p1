@@ -8,3 +8,9 @@ Zu beachten:
 Special-Features:
 - Popup beim Erledigen
 - Popup bei abgelaufenen Tasks
+- Ablaufende Tasks werden eingefärbt
+
+- Getestete Browser: Chrome XXX, Firefox YYY
+
+Server:
+- Daten als JSON in File

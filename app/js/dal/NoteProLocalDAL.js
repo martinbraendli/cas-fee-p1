@@ -1,5 +1,5 @@
 /**
- * Data Access Layer - Interface to the storage
+ * Data Access Layer - Interface to the local storage
  */
 var NoteProDAL = {
     /**
@@ -7,19 +7,18 @@ var NoteProDAL = {
      * @returns the id of the note, a text if an error occured
      */
     saveNote: function (note) {
-        // check fields
-        if (String(note.title).length <= 0) {
-            return "Missing title";
-        } else if (String(note.text).length <= 0) {
-            return "Missing text";
+        var validate = CommonsDAL.validateRequiredFields(note);
+        if (!(validate === 0)){
+            return validate;
         }
 
+        // get next id if not set
         if (note.id < 0) {
             note.id = NoteProDAL.getNextNoteId();
         }
 
         // to JSON
-        var jsonNote = NoteProDAL.toJSON(note);
+        var jsonNote = CommonsDAL.toJSON(note);
 
         // save to localStorage
         localStorage.setItem("note" + note.id, jsonNote);
@@ -60,9 +59,9 @@ var NoteProDAL = {
                     return true;
                 });
 
-                return NoteProDAL.sort(notes, viewConfig.orderBy, viewConfig.orderASC);
+                return CommonsDAL.sort(notes, viewConfig.orderBy, viewConfig.orderASC);
             }
-            var note = this.parseJSON(noteString);
+            var note = CommonsDAL.parseJSON(noteString);
             notes[i] = NoteFactory.createNote(note);
             i = i + 1;
         }
@@ -92,54 +91,5 @@ var NoteProDAL = {
         }
 
         return lastNoteId + 1;
-    },
-
-    /**
-     * Convert note-object into JSON-String
-     */
-    toJSON: function (note) {
-        return JSON.stringify(note);
-    },
-
-    /**
-     * Parse JSON-String into note-object
-     */
-    parseJSON: function (noteString) {
-        return JSON.parse(noteString);
-    },
-
-    /**
-     * sort by given orderBy key
-     */
-    sort: function (notes, orderBy, asc) {
-        var compareNote;
-        switch (orderBy) {
-            case NoteConstants.ORDERBY_CREATEDATE:
-                compareNote = function (n1, n2) {
-                    if (asc) {
-                        return n1.dateCreated.getTime() - n2.dateCreated.getTime();
-                    }
-                    return n2.dateCreated.getTime() - n1.dateCreated.getTime();
-                };
-                break;
-            case NoteConstants.ORDERBY_IMPORTANCE:
-                compareNote = function (n1, n2) {
-                    if (asc) {
-                        return n1.importance - n2.importance;
-                    }
-                    return n2.importance - n1.importance;
-                };
-                break;
-            case NoteConstants.ORDERBY_FINISH_UNTIL_DATE:
-            default:
-                compareNote = function (n1, n2) {
-                    if (asc) {
-                        return n1.dateFinishUntil.getTime() - n2.dateFinishUntil.getTime();
-                    }
-                    return n2.dateFinishUntil.getTime() - n1.dateFinishUntil.getTime();
-                };
-                break;
-        }
-        return notes.sort(compareNote);
     }
 };

@@ -10,20 +10,27 @@ describe("NotePro", function () {
         localStorage.clear();
     });
 
-    describe("DAL", function () {
-        it('should get next note id', function () {
-            var note = NoteFactory.createNote();
-            note.text = "def";
-            note.title = "def";
+    describe("Commons DAL", function () {
+        it('should validate all required fields', function () {
+            var note = {
 
-            var id = NoteProDAL.getNextNoteId();
-            expect(id).toBe(1);
-            NoteProDAL.saveNote(note); // bekommt id = 1
-            id = NoteProDAL.getNextNoteId();
-            expect(id).toBe(2);
-            NoteProDAL.saveNote(note); // darf next id nicht verändern
-            id = NoteProDAL.getNextNoteId();
-            expect(id).toBe(2);
+            };
+            var result = CommonsDAL.validateRequiredFields(note);
+            expect(result).toBe("Missing title");
+
+            note = {
+                title: 'title is defined'
+            };
+            result = CommonsDAL.validateRequiredFields(note);
+            expect(result).toBe("Missing text");
+
+            note = {
+                title: 'title is defined',
+                text: 'text is defined'
+            };
+            result = CommonsDAL.validateRequiredFields(note);
+            expect(result).toBe(0);
+
         });
 
         it('should convert note into json', function () {
@@ -34,7 +41,7 @@ describe("NotePro", function () {
             var noteDateCreated = note.dateCreated.toString();
             note.importance = 5;
 
-            var noteString = NoteProDAL.toJSON(note);
+            var noteString = CommonsDAL.toJSON(note);
             expect(noteString).toBeDefined();
             expect(noteString.indexOf('"id":"42"')).toBeTruthy();
             expect(noteString.indexOf('"titel":"Titel 42"')).toBeTruthy();
@@ -53,7 +60,7 @@ describe("NotePro", function () {
                 '"text":"jklö",' +
                 '"importance":1}';
 
-            var parsedNote = NoteFactory.createNote(NoteProDAL.parseJSON(json));
+            var parsedNote = NoteFactory.createNote(CommonsDAL.parseJSON(json));
             expect(parsedNote.id).toBe(43);
             expect(parsedNote.finished).toBe(false);
             var dateCreatedDelta = new Date("2015-06-05T20:29:31.115Z").getTime() + 1000; // one second tolerance
@@ -65,37 +72,14 @@ describe("NotePro", function () {
             expect(parsedNote.importance).toBe(1);
         });
 
-        it('should save note', function () {
-            var note = NoteFactory.createNote();
-            note.title = "titelShouldSaveNote";
-            note.text = "textShouldSaveNote";
-            note.importance = 4;
-
-            // save
-            var noteId = NoteProDAL.saveNote(note);
-            expect(noteId).toBeTruthy();
-            expect(typeof noteId).toBe('number');
-
-            // read note
-            var readedNotes = NoteProDAL.readNotes();
-            expect(readedNotes).toBeTruthy();
-            var readedNote = readedNotes[0];
-            expect(readedNote).toBeTruthy();
-            expect(typeof readedNote).toBe('object');
-            expect(readedNote.id).toBe(noteId);
-            expect(readedNote.title).toBe("titelShouldSaveNote");
-            expect(readedNote.text).toBe("textShouldSaveNote");
-            expect(readedNote.importance).toBe(4);
-        });
-
         it('should sort notes by create date', function () {
             var notes = getNotesToSort();
 
-            var sortedNotes = NoteProDAL.sort(notes, NoteConstants.ORDERBY_CREATEDATE, true);
+            var sortedNotes = CommonsDAL.sort(notes, NoteConstants.ORDERBY_CREATEDATE, true);
             expect(sortedNotes[0].dateCreated.getTime() < sortedNotes[1].dateCreated.getTime()).toBeTruthy();
             expect(sortedNotes[1].dateCreated.getTime() < sortedNotes[2].dateCreated.getTime()).toBeTruthy();
 
-            sortedNotes = NoteProDAL.sort(notes, NoteConstants.ORDERBY_CREATEDATE, false);
+            sortedNotes = CommonsDAL.sort(notes, NoteConstants.ORDERBY_CREATEDATE, false);
             expect(sortedNotes[0].dateCreated.getTime() > sortedNotes[1].dateCreated.getTime()).toBeTruthy();
             expect(sortedNotes[1].dateCreated.getTime() > sortedNotes[2].dateCreated.getTime()).toBeTruthy();
         });
@@ -103,11 +87,11 @@ describe("NotePro", function () {
         it('should sort notes by finish date', function () {
             var notes = getNotesToSort();
 
-            var sortedNotes = NoteProDAL.sort(notes, NoteConstants.ORDERBY_FINISH_UNTIL_DATE, true);
+            var sortedNotes = CommonsDAL.sort(notes, NoteConstants.ORDERBY_FINISH_UNTIL_DATE, true);
             expect(sortedNotes[0].dateFinishUntil.getTime() < sortedNotes[1].dateFinishUntil.getTime()).toBeTruthy();
             expect(sortedNotes[1].dateFinishUntil.getTime() < sortedNotes[2].dateFinishUntil.getTime()).toBeTruthy();
 
-            sortedNotes = NoteProDAL.sort(notes, NoteConstants.ORDERBY_FINISH_UNTIL_DATE, false);
+            sortedNotes = CommonsDAL.sort(notes, NoteConstants.ORDERBY_FINISH_UNTIL_DATE, false);
             expect(sortedNotes[0].dateFinishUntil.getTime() > sortedNotes[1].dateFinishUntil.getTime()).toBeTruthy();
             expect(sortedNotes[1].dateFinishUntil.getTime() > sortedNotes[2].dateFinishUntil.getTime()).toBeTruthy();
         });
@@ -115,11 +99,11 @@ describe("NotePro", function () {
         it('should sort notes by importance', function () {
             var notes = getNotesToSort();
 
-            var sortedNotes = NoteProDAL.sort(notes, NoteConstants.ORDERBY_IMPORTANCE, true);
+            var sortedNotes = CommonsDAL.sort(notes, NoteConstants.ORDERBY_IMPORTANCE, true);
             expect(sortedNotes[0].importance < sortedNotes[1].importance).toBeTruthy();
             expect(sortedNotes[1].importance < sortedNotes[2].importance).toBeTruthy();
 
-            sortedNotes = NoteProDAL.sort(notes, NoteConstants.ORDERBY_IMPORTANCE, false);
+            sortedNotes = CommonsDAL.sort(notes, NoteConstants.ORDERBY_IMPORTANCE, false);
             expect(sortedNotes[0].importance > sortedNotes[1].importance).toBeTruthy();
             expect(sortedNotes[1].importance > sortedNotes[2].importance).toBeTruthy();
         });
@@ -149,6 +133,47 @@ describe("NotePro", function () {
 
             return notes;
         }
+    });
+
+    describe("DAL", function () {
+        it('should get next note id', function () {
+            var note = NoteFactory.createNote();
+            note.text = "def";
+            note.title = "def";
+
+            var id = NoteProDAL.getNextNoteId();
+            expect(id).toBe(1);
+            NoteProDAL.saveNote(note); // bekommt id = 1
+            id = NoteProDAL.getNextNoteId();
+            expect(id).toBe(2);
+            NoteProDAL.saveNote(note); // darf next id nicht verändern
+            id = NoteProDAL.getNextNoteId();
+            expect(id).toBe(2);
+        });
+
+        it('should save note', function () {
+            var note = NoteFactory.createNote();
+            note.title = "titelShouldSaveNote";
+            note.text = "textShouldSaveNote";
+            note.importance = 4;
+
+            // save
+            var noteId = NoteProDAL.saveNote(note);
+            expect(noteId).toBeTruthy();
+            expect(typeof noteId).toBe('number');
+
+            // read note
+            var readedNotes = NoteProDAL.readNotes();
+            expect(readedNotes).toBeTruthy();
+            var readedNote = readedNotes[0];
+            expect(readedNote).toBeTruthy();
+            expect(typeof readedNote).toBe('object');
+            expect(readedNote.id).toBe(noteId);
+            expect(readedNote.title).toBe("titelShouldSaveNote");
+            expect(readedNote.text).toBe("textShouldSaveNote");
+            expect(readedNote.importance).toBe(4);
+        });
+
     });
 
     describe("Controller", function () {
