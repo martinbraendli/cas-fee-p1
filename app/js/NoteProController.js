@@ -2,7 +2,7 @@
  * Controller for page view
  */
 var NoteProController = {
-    // todo events mit on anhängen
+    // todo events mit on anhï¿½ngen
 
     /**
      * object with config for reading entries from storage
@@ -141,13 +141,13 @@ var NoteProController = {
 
         popup.html(NoteProController.popupTemplate(popupValues));
 
-        // callback für ok-button
+        // callback fï¿½r ok-button
         $("#TaskDoneButtonOk").on("click", note, function (event) {
             callbackOk(event);
             NoteProController.hidePopup();
         });
 
-        // callback für cancel-button
+        // callback fï¿½r cancel-button
         $("#TaskDoneButtonCancel").on("click", function () {
             callbackCancel();
             NoteProController.hidePopup();
@@ -351,7 +351,7 @@ var NoteProController = {
         // configure date picker
         $('#dateFinishUntil').datetimepicker({
             format: 'd.m.Y H:i'
-        }); // todo test in firefox
+        });
 
         NoteProController.renderListControlls();
         NoteProController.prepareTemplate();

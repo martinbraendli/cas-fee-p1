@@ -26,10 +26,15 @@ var NoteProDAL = {
                     finalNotes[i] = NoteFactory.createNote(notes[i]);
                 }
 
+                // all / only pendings
+                finalNotes = finalNotes.filter(function (item) {
+                    return (!(viewConfig.showAllEntries && item.finished));
+                });
+
+                // client side sort for faster response time
+                finalNotes = CommonsDAL.sort(finalNotes, viewConfig.orderBy, viewConfig.orderASC);
                 callback(finalNotes);
             });
-
-        // todo use viewconfig for filter and sort
     },
 
     /**
