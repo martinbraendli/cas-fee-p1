@@ -203,8 +203,11 @@ function Note() {
             return dateString;
         }
 
+        // parseable formats..
         // 2015-06-09T19:22:43.629Z
-        if (dateString.indexOf("-") > -1) {
+        // Sat Jun 20 2015 15:19:28 GMT+0200 (Mitteleuropäische Sommerzeit)
+        if (dateString.indexOf("-") > -1
+            || dateString.indexOf("GMT") > -1) {
             return new Date(dateString);
         }
 
