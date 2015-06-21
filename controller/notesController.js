@@ -2,6 +2,7 @@ var store = require("../services/noteStore.js");
 
 function publicSaveNote(req, res) {
     var note = req.body;    //get note from request
+    console.log("notesController: saveNote");
 
     var callback = function (err, note) {
         res.format({

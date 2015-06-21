@@ -218,6 +218,7 @@ function Note() {
         var h = dateString.substring(11, 13);
         var min = dateString.substring(14, 16);
 
-        return new Date(y + "-" + m + "-" + d + " " + h + ":" + min);
+        var preparedDateString = "" + y + "-" + m + "-" + d + "T" + h + ":" + min;
+        return new Date(preparedDateString);
     }
 }
