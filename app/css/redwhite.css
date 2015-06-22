@@ -106,6 +106,18 @@ body {
 #printvalue {
   color: #400101; }
 
+.red {
+  background: #b2453a; }
+
+.yellow {
+  background: #f0e26f; }
+
+.missed {
+  background: #ac6269; }
+
+.finishedtask {
+  background: #75bab7; }
+
 input[type="text"], [type="datetime-local"] {
   border: 1px solid #444444;
   background: #D2D2D2; }

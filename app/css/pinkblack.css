@@ -112,21 +112,37 @@ body {
 #printvalue {
   color: #ff1bb1; }
 
+.red {
+  background: #b2453a; }
+
+.yellow {
+  background: #f0e26f; }
+
+.missed {
+  background: #ac6269; }
+
+.finishedtask {
+  background: #75bab7; }
+
 input[type="text"], [type="datetime-local"] {
   border: 1px solid #d535dd;
-  background: #656565; }
+  background: #656565;
+  color: #ff1bb1; }
 
 input:focus[type="text"], [type="datetime-local"]:focus {
   border: 1px solid #ff1bb1;
-  background: #3D3D3D; }
+  background: #3D3D3D;
+  color: #ff1bb1; }
 
 textarea {
   border: 1px solid #d535dd;
-  background: #656565; }
+  background: #656565;
+  color: #ff1bb1; }
 
 textarea:focus {
   border: 1px solid #ff1bb1;
-  background: #3D3D3D; }
+  background: #3D3D3D;
+  color: #ff1bb1; }
 
 .footer {
   border-top: 1px solid #ff1bb1;
@@ -159,7 +175,8 @@ textarea:focus {
   padding: 2rem; }
   .overlay .message {
     border: 2px dashed #ff1bb1;
-    padding: 3rem; }
+    padding: 3rem;
+    color: #ff1bb1; }
     .overlay .message h2 {
       color: #c575ea; }
     .overlay .message a:link, .overlay .message a:visited {
@@ -172,7 +189,7 @@ textarea:focus {
       -webkit-transition: background 350ms ease;
               transition: background 350ms ease; }
     .overlay .message a:hover {
-      border: 1px solid #ff1bb1;
+      border: 1px solid #444;
       padding: 7px;
       border-radius: 3px;
       text-decoration: none;
