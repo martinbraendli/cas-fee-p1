@@ -52,19 +52,19 @@ body{
   border-top: 1px solid black;
 }
 
-.green{
-  background: green;
-}
-.yellow{
-  background: yellow;
-}
-.red{
-  background: red;
-}
-
-.missed{
-  background: #007069;
-}
+//.green{
+//  background: green;
+//}
+//.yellow{
+//  background: yellow;
+//}
+//.red{
+//  background: red;
+//}
+//
+//.missed{
+//  background: #75bab7;
+//}
 
 #wrapper{
   margin: 0 auto;
@@ -243,14 +243,13 @@ body{
 }
 
 
-//---------------------------- Tasklist styles
+//---------------------------- Tasklist styles Header
 
 .listnotes{
   display: table;
   border-collapse:collapse;
   width: 100%;
 }
-
 
 .listheader{
   font-family: 'Julius Sans One', sans-serif;
@@ -265,7 +264,7 @@ body{
   //color: $dark;
   font-size: 1.2rem;
   //background: #dedede;
-  padding: 0.5rem;
+  padding: 0.7rem;
 
   &:nth-child(1){
     width: 15%;
@@ -282,26 +281,32 @@ body{
   &:nth-child(4){
     width: 15%;
   }
-
 }
+// ---------------------------- Task List styles
 
-
+#noteoutput{
+  width: 100%;
+  display: table;
+}
 
 .tasklistrow{
   display: table-row;
   width: 100%;
   //border-bottom: 1px solid $dark;
   font-size: 0.9rem;
+  border-bottom: 1px solid #444444 ;
 }
+
 
 .list-elem{
   display: table-cell;
-  padding: 0.7rem;
+  //padding: 0.7rem;
+  padding-left: 10px;
   &:nth-child(1){
     width: 15%;
   }
   &:nth-child(2){
-    width: 50%;
+    //min-width: 50%;
   }
   &:nth-child(3){
     width: 20%;

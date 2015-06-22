@@ -13,6 +13,12 @@ $lightgray:                  #D2D2D2;
 $graymiddle:                 #777777;
 $darkgray:                   #444444;
 
+$warningRedColor:            #b2453a;
+$warningYellowColor:         #f0e26f;
+$warningMissedColor:         #ac6269;
+$taskdoneColor:              #75bab7;
+
+
 $linkBackground:             #C3C3C3;
 $linkColor:                  $primaryColor;
 $linkHoverColor:             #ffab44;
@@ -177,7 +183,24 @@ body {
   border: 1px solid $primaryColor;
   color: $linkHoverColor;
   background: $darkgray;
-  //transition: background 350ms ease;
+}
+
+//----------------------- Task status Styles
+
+.red{
+  background:  $warningRedColor;
+}
+
+.yellow{
+  background:  $warningYellowColor;
+}
+// done and missed same
+.missed{
+  background:$warningMissedColor;
+}
+
+.finishedtask{
+  background: $taskdoneColor;
 }
 
 
@@ -186,21 +209,25 @@ body {
 input[type="text"],[type="datetime-local"] {
   border: 1px solid $linkBorderColor;
   background: $graymiddle;
+  color: $primaryColor;
 }
 
 input:focus[type="text"],[type="datetime-local"]:focus {
   border: 1px solid $primaryColor;
   background: $linkBackground;
+  color: $primaryColor;
 }
 
 textarea{
   border: 1px solid $linkBorderColor;
   background: $graymiddle;
+  color: $primaryColor;
 }
 
 textarea:focus{
   border: 1px solid $primaryColor;
   background: $linkBackground;
+  color: $primaryColor;
 }
 
 
@@ -247,6 +274,7 @@ textarea:focus{
   .message{
     border: 2px dashed $primaryColor;
     padding: 3rem;
+    color: $primaryColor;
     h2{
       color: $secondaryColor;
     }
@@ -256,7 +284,7 @@ textarea:focus{
       border-radius: 3px;
       text-decoration: none;
       color: $primaryColor;
-      background: $linkBackground;
+      background: none;
       transition: background 350ms ease;
     }
 
@@ -266,7 +294,7 @@ textarea:focus{
       border-radius: 3px;
       text-decoration: none;
       color: $linkHoverColor;
-      background: $linkHoverBackground;
+      background: none;
       transition: background 350ms ease;
     }
   }

@@ -13,6 +13,13 @@ $lightgray:                  #D2D2D2;
 $graymiddle:                 #656565;
 $darkgray:                   #444;
 
+$warningRedColor:            #b2453a;
+$warningYellowColor:         #f0e26f;
+$warningMissedColor:         #ac6269;
+$taskdoneColor:              #75bab7;
+
+
+
 $linkBackground:             #3D3D3D;
 $linkColor:                  $primaryColor;
 $linkHoverColor:             $primaryColorFocus;
@@ -170,6 +177,23 @@ body {
   color: $primaryColor;
 }
 
+//----------------------- Task status Styles
+
+.red{
+  background:  $warningRedColor;
+}
+
+.yellow{
+  background:  $warningYellowColor;
+}
+// done and missed same
+.missed{
+  background:$warningMissedColor;
+}
+
+.finishedtask{
+  background: $taskdoneColor;
+}
 
 
 // ----------------------------- Edit Styles
@@ -177,21 +201,25 @@ body {
 input[type="text"],[type="datetime-local"] {
   border: 1px solid $linkBorderColor;
   background: $graymiddle;
+  color: $primaryColor;
 }
 
 input:focus[type="text"],[type="datetime-local"]:focus {
   border: 1px solid $primaryColor;
   background: $linkBackground;
+  color: $primaryColor;
 }
 
 textarea{
   border: 1px solid $linkBorderColor;
   background: $graymiddle;
+  color: $primaryColor;
 }
 
 textarea:focus{
   border: 1px solid $primaryColor;
   background: $linkBackground;
+  color: $primaryColor;
 }
 
 
@@ -236,6 +264,7 @@ textarea:focus{
   .message{
     border: 2px dashed $primaryColor;
     padding: 3rem;
+    color: $primaryColor;
     h2{
       color: $secondaryColor;
     }
@@ -250,7 +279,7 @@ textarea:focus{
     }
 
     a:hover{
-      border: 1px solid $primaryColor;
+      border: 1px solid $darkgray;
       padding: 7px;
       border-radius: 3px;
       text-decoration: none;

@@ -7,6 +7,11 @@ $primaryColorBG:             #F2F2F2;
 $secondaryColor:             #8C0303;
 $tertiaryColor:              #8C8C8C;
 
+$warningRedColor:            #b2453a;
+$warningYellowColor:         #f0e26f;
+$warningMissedColor:         #ac6269;
+$taskdoneColor:              #75bab7;
+
 $primaryColorFocus:          #9A0F16;
 $dark:                       #111;
 $bright:                     #F2F2F2;
@@ -124,9 +129,6 @@ body {
   background: $primaryColorFocus !important;
   color: $bright !important;
 }
-
-
-
 //---------------------------- Tasklist styles
 
 
@@ -167,7 +169,23 @@ body {
   color: $primaryColor;
 }
 
+//----------------------- Task status Styles
 
+.red{
+  background:  $warningRedColor;
+}
+
+.yellow{
+  background:  $warningYellowColor;
+}
+// done and missed same
+.missed{
+  background:$warningMissedColor;
+}
+
+.finishedtask{
+  background: $taskdoneColor;
+}
 
 // ----------------------------- Edit Styles
 

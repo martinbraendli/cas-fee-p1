@@ -15,6 +15,12 @@ $lightgray:                  #D2D2D2;
 $graymiddle:                 #777777;
 $darkgray:                   #444444;
 
+$warningRedColor:            #b2453a;
+$warningYellowColor:         #f0e26f;
+$warningMissedColor:         #ac6269;
+$taskdoneColor:              #75bab7;
+
+
 $linkBackground:             #C3C3C3;
 $linkColor:                  $primaryColor;
 $linkHoverColor:             $bright;
@@ -139,6 +145,23 @@ body {
   color: $primaryColor;
 }
 
+//----------------------- Task status Styles
+
+.red{
+  background:  $warningRedColor;
+}
+
+.yellow{
+  background:  $warningYellowColor;
+}
+// done and missed same
+.missed{
+  background:$warningMissedColor;
+}
+
+.finishedtask{
+  background: $taskdoneColor;
+}
 
 
 // ----------------------------- Edit Styles
