@@ -33,7 +33,7 @@
     <script id="viewNoteEntry" type="text/x-handlebars-template">
         <!--loop all tasks here-->
         {{#each this}}
-        <div class="tasklistrow {{progressStyle dateFinishUntil}} animated slideInUp">
+        <div class="tasklistrow {{#if finished}}finishedtask{{else}}{{progressStyle dateFinishUntil}}{{/if}} animated slideInUp">
             <div class="list-elem task-date">
                 <p>{{formatDate dateFinishUntil}}</p>
                 {{#if finished}}
