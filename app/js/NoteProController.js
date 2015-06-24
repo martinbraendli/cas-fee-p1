@@ -323,7 +323,7 @@ var NoteProController = {
         var callback = function (notes) {
             $("#noteoutput").html(NoteProController.noteListRowTemplate(notes));
         };
-        var notes = NoteProDAL.readNotes(NoteProController.viewConfig, callback);
+        NoteProDAL.readNotes(NoteProController.viewConfig, callback);
     },
 
     /**
