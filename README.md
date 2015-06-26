@@ -1,24 +1,24 @@
 # cas-fee-p1
-HSR CAS FEE Projekt1 NotePro von Gruppe3: Felix Adam + Martin Brändli
+HSR CAS FEE Projekt1 NotePro von Gruppe3: Felix Adam + Martin BrÃ¤ndli
 
 Zu beachten:
 - Single-Applikation unter app/index.html
 - ein Markup- File
-- zwei DAL's (Data Abstraction Layer) für local Storage bzw Datenbank
+- zwei DAL's (Data Abstraction Layer) fÃ¼r local Storage bzw Datenbank
 - Jasmine-Tests unter app/test/SpecRunner.html (ACHTUNG: leert local Storage)
 
 Special-Features:
 - Popup beim Erledigen
 - Popup bei abgelaufenen Tasks
-- Ablaufende Tasks werden eingefärbt
-- 4 fancy color schemes zur Auswahl für individuelle visuelle Bedürfnisse
+- Ablaufende Tasks werden eingefÃ¤rbt
+- 4 fancy color schemes zur Auswahl fÃ¼r individuelle visuelle BedÃ¼rfnisse
 - Alle Daten werden laufend vom Server gelesen (Daten immer aktuell)
 - Formular-checker via Popup- Screen
 - Animiertes visuelles Feedback
 - Sortierung erfolgt beim zweiten Klick in die andere Richtung (ASC / DESC)
-
+- Im Branch gh-pages unter: http://martinbraendli.github.io/cas-fee-p1/app ist die identische Applikation jedoch mit anderem Data-Access-Layer (NoteProLocalDAL statt NoteProServerDAL) welcher in den LocalStorage schreibt.
 - Getestete Browser: Chrome Version 43, Firefox 38
 
-Verbesserungsmöglichkeiten:
-- Offline-Funktionalität (localStorage und nur auf Wunsch vom User eine Synchronisation mit dem Server)
-- Einstellungen im localStorage speichern (Sort-Reihenfolge, Switch für erledigte Aufgaben)
+VerbesserungsmÃ¶glichkeiten:
+- Offline-FunktionalitÃ¤t (localStorage und nur auf Wunsch vom User eine Synchronisation mit dem Server)
+- Einstellungen im localStorage speichern (Sort-Reihenfolge, Switch fÃ¼r erledigte Aufgaben)
