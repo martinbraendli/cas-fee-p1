@@ -2,8 +2,6 @@
  * Controller for page view
  */
 var NoteProController = {
-    // todo events mit on anh�ngen
-
     /**
      * object with config for reading entries from storage
      */
@@ -11,7 +9,7 @@ var NoteProController = {
         showAllEntries: true, // all or only pending entries
         orderBy: NoteConstants.ORDERBY_FINISH_UNTIL_DATE, // sort field
         orderASC: true
-    },// todo save to db
+    },
 
     timerConstants: {
         timeYellow: 24 * 60 * 60 * 1000,// 1 day
