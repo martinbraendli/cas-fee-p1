@@ -1,5 +1,5 @@
 # cas-fee-p1
-HSR CAS FEE Projekt1 NotePro
+HSR CAS FEE Projekt1 NotePro von Gruppe3: Felix Adam + Martin Brändli
 
 Zu beachten:
 - Single-Applikation unter app/index.html
@@ -9,12 +9,10 @@ Special-Features:
 - Popup beim Erledigen
 - Popup bei abgelaufenen Tasks
 - Ablaufende Tasks werden eingefärbt
+- Alle Daten werden laufend vom Server gelesen (Daten immer aktuell)
 
-- Getestete Browser: Chrome XXX, Firefox YYY
+- Getestete Browser: Chrome Version 43, Firefox 38
 
-- alle Daten werden laufend vom Server gelesen:
--- immer aktuell
--- Verbesserungsmöglichkeit: lokaler Cache und nur auf Wunsch vom User neu vom Server laden
-
-Server:
-- Daten als JSON in File
+Verbesserungsmöglichkeiten:
+- Offline-Funktionalität (localStorage und nur auf Wunsch vom User eine Synchronisation mit dem Server)
+- Einstellungen im localStorage speichern (Sort-Reihenfolge, Switch für erledigte Aufgaben)
