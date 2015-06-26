@@ -10,6 +10,7 @@ Special-Features:
 - Popup bei abgelaufenen Tasks
 - Ablaufende Tasks werden eingefärbt
 - Alle Daten werden laufend vom Server gelesen (Daten immer aktuell)
+- Sortierung erfolgt beim zweiten Klick in die andere Richtung (ASC / DESC)
 
 - Getestete Browser: Chrome Version 43, Firefox 38
 
